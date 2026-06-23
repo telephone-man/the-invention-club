@@ -12,6 +12,7 @@ venv/
 # Generated temporary files
 *.tmp
 *.log
+_site/
 
 docs
 tools
