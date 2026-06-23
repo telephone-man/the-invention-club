@@ -1099,7 +1099,7 @@ h3 {
 
 @media (max-width: 520px) {
   h1 {
-    font-size: 2.65rem;
+    font-size: clamp(2.05rem, 10vw, 2.35rem);
   }
 
   h2 {
@@ -1116,6 +1116,22 @@ h3 {
     flex-direction: column;
   }
 
+  .hero-content,
+  .section-inner {
+    width: 100%;
+    max-width: calc(100vw - 2rem);
+  }
+
+  .hero .eyebrow {
+    display: block;
+    width: 100%;
+    font-size: 0.72rem;
+  }
+
+  .hero-copy {
+    font-size: 1.04rem;
+  }
+
   .button {
     width: 100%;
   }
@@ -1130,7 +1146,7 @@ h3 {
 }
 
 /* Production Workbench Direction
-   A tactile maker system for the live static site. */
+   A tactile maker system for the site. */
 
 :root {
   --bench: #e7cfad;
@@ -1831,7 +1847,7 @@ html {
 @media (max-width: 820px) {
   .site-header {
     background: var(--card);
-    width: 100vw;
+    width: 100%;
     padding-right: 4.75rem;
   }
 
@@ -2793,6 +2809,156 @@ html {
   font-size: 1.16rem;
 }
 
+.parent-note-panel,
+.next-step-note {
+  border: 3px solid var(--outline);
+  border-radius: 6px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.parent-note-panel h2,
+.parent-note-panel p,
+.next-step-note h3 {
+  margin: 0;
+}
+
+.parent-note-panel p,
+.next-step-note,
+.next-step-note li {
+  color: var(--muted);
+}
+
+.example-build-grid,
+.support-grid {
+  display: grid;
+  gap: 1rem;
+  margin-top: 1.4rem;
+}
+
+.example-build-grid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.example-build-card {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  overflow: hidden;
+  border: 3px solid var(--outline);
+  border-radius: 6px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.example-build-card img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-bottom: 3px solid var(--outline);
+  object-fit: cover;
+}
+
+.example-build-card span,
+.support-grid span {
+  display: inline-flex;
+  width: fit-content;
+  padding: 0.22rem 0.45rem;
+  border: 2px solid var(--outline);
+  border-radius: 4px;
+  background: var(--gold);
+  color: var(--outline);
+  font-size: 0.78rem;
+  font-weight: 950;
+  line-height: 1.15;
+  text-transform: uppercase;
+}
+
+.example-build-card span {
+  margin: 1rem 1rem 0.8rem;
+}
+
+.support-grid span {
+  margin-bottom: 0.8rem;
+}
+
+.example-build-card h3,
+.support-grid h3,
+.parent-note-panel h2,
+.next-step-note h3 {
+  color: var(--teal-dark);
+}
+
+.example-build-card h3 {
+  margin-inline: 1rem;
+}
+
+.example-build-card p,
+.support-grid p {
+  margin: 0.55rem 0 0;
+  color: var(--muted);
+}
+
+.example-build-card p {
+  margin: 0.55rem 1rem 1rem;
+}
+
+.support-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0;
+  overflow: hidden;
+  border: 3px solid var(--outline);
+  border-radius: 6px;
+  background: var(--card);
+  box-shadow: var(--shadow);
+}
+
+.support-grid article {
+  min-width: 0;
+  padding: 1rem;
+}
+
+.support-grid article + article {
+  border-left: 2px solid var(--outline);
+}
+
+.parent-note-panel,
+.next-step-note {
+  padding: 1rem;
+}
+
+.parent-note-panel {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 1.2rem;
+  background:
+    repeating-linear-gradient(90deg, rgba(36, 33, 31, 0.045) 0 1px, transparent 1px 22px),
+    var(--card);
+}
+
+.parent-note-panel h2 {
+  font-size: clamp(1.45rem, 2.2vw, 1.9rem);
+}
+
+.next-step-note {
+  margin-top: 1rem;
+  background: #e8f4ef;
+  box-shadow: 4px 4px 0 rgba(36, 33, 31, 0.16);
+}
+
+.next-step-note h3 {
+  font-size: 1rem;
+}
+
+.next-step-note ul {
+  margin: 0.6rem 0 0;
+  padding-left: 1.2rem;
+}
+
+.next-step-note li + li {
+  margin-top: 0.35rem;
+}
+
 .age-table {
   width: 100%;
   table-layout: fixed;
@@ -2913,11 +3079,39 @@ html {
   .make-loop-panel {
     grid-template-columns: 1fr;
   }
+
+  .example-build-grid,
+  .support-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .support-grid article:nth-child(odd) {
+    border-left: 0;
+  }
+
+  .support-grid article:nth-child(n + 3) {
+    border-top: 2px solid var(--outline);
+  }
 }
 
 @media (max-width: 820px) {
   .faq-item summary {
     gap: 0.75rem;
+  }
+
+  .example-build-grid,
+  .support-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .support-grid article,
+  .support-grid article + article,
+  .support-grid article:nth-child(n + 3) {
+    border-left: 0;
+  }
+
+  .support-grid article + article {
+    border-top: 2px solid var(--outline);
   }
 
   .age-table,
@@ -2976,19 +3170,30 @@ html {
     padding: 0.9rem;
   }
 
+  .parent-note-panel,
+  .next-step-note,
+  .example-build-card,
+  .support-grid {
+    box-shadow: 4px 4px 0 rgba(36, 33, 31, 0.16);
+  }
+
   .loop-diagram {
-    min-height: 21rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+    min-height: 0;
   }
 
   .loop-cycle {
-    inset: 4%;
-    width: 92%;
-    height: 92%;
+    display: none;
   }
 
   .loop-card {
-    width: 9.8rem;
+    position: static;
+    width: auto;
+    min-width: 0;
     padding: 0.65rem;
+    transform: none;
   }
 
   .loop-card strong {

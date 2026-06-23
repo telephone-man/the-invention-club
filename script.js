@@ -26,7 +26,7 @@ if (header && menuButton) {
 if (interestForm && formNote) {
   interestForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    formNote.textContent = "Prototype note: this static demo does not send details yet. Before launch, connect this form to the chosen interest process.";
+    formNote.textContent = "This page does not send details directly. Connect it to the chosen registration route to collect submissions.";
     formNote.classList.add("is-active");
   });
 }
