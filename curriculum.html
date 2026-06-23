@@ -1,0 +1,396 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>How sessions work - The Invention Club</title>
+    <meta
+      name="description"
+      content="A parent-friendly explanation of The Invention Club card system: children choose a Skill Card, pick a level, try Power Cards, test, improve, then combine and invent."
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-site-header>
+      <a class="brand" href="index.html#top" aria-label="The Invention Club home">
+        <span class="brand-mark" aria-hidden="true">IC</span>
+        <span>The Invention Club</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="index.html#top">Home</a>
+        <a href="curriculum.html">How sessions work</a>
+        <a href="index.html#pathways">Ages</a>
+        <a href="index.html#faq">FAQ</a>
+        <a class="nav-cta" href="index.html#register">Register interest</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="section curriculum-intro-section workbench-strip" id="top">
+        <div class="section-inner">
+          <div class="section-heading">
+            <h1>The cards guide the invention loop.</h1>
+            <p>
+              Day to day, children build one power at a time, test what happened,
+              improve it, then choose whether to repeat, stretch, switch skills or combine
+              what they have learned.
+            </p>
+          </div>
+          <div class="make-loop-panel curriculum-loop-panel" aria-label="Choose try test improve loop">
+            <div class="loop-diagram" aria-hidden="true">
+              <div class="loop-cycle" data-scroll-spin>
+                <span class="loop-arrow loop-arrow-one">→</span>
+                <span class="loop-arrow loop-arrow-two">→</span>
+                <span class="loop-arrow loop-arrow-three">→</span>
+                <span class="loop-arrow loop-arrow-four">→</span>
+              </div>
+              <div class="loop-card loop-card-make">
+                <span>1</span>
+                <strong>Choose</strong>
+                <small>Pick a Skill Card and level</small>
+              </div>
+              <div class="loop-card loop-card-test">
+                <span>2</span>
+                <strong>Try</strong>
+                <small>Use a Power Card</small>
+              </div>
+              <div class="loop-card loop-card-improve">
+                <span>3</span>
+                <strong>Test</strong>
+                <small>Notice what changed</small>
+              </div>
+              <div class="loop-card loop-card-repeat">
+                <span>4</span>
+                <strong>Improve</strong>
+                <small>Repeat, stretch or combine</small>
+              </div>
+            </div>
+            <div class="loop-copy">
+              <h2>It keeps coming back to the next useful move.</h2>
+              <p>
+                A child can practise inside one skill, stretch up a level, switch to a different
+                skill, or combine powers when they are ready.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section card-wall" id="skill-cards">
+        <div class="section-inner">
+          <div class="flow-step-heading">
+            <span>1</span>
+            <div>
+              <h2>Choose a Skill Card.</h2>
+              <p>
+                Each Skill Card is a broad practical area. It holds the specific Power Cards inside
+                that grouping, so children can stay with one interest while choosing different challenges.
+              </p>
+            </div>
+          </div>
+          <div class="power-card-grid" aria-label="Skill Cards">
+            <a class="skill-card-tile" href="#levels" data-family="movement">
+              <div class="skill-card-art"><img src="assets/skill-icons/make-it-move.jpg" alt=""></div>
+              <h3>Make it move</h3>
+              <p>Motors, servos, wheels and mechanisms.</p>
+            </a>
+            <a class="skill-card-tile" href="#levels" data-family="control_input">
+              <div class="skill-card-art"><img src="assets/skill-icons/make-it-obey.jpg" alt=""></div>
+              <h3>Make it obey</h3>
+              <p>Buttons, switches, knobs and controllers.</p>
+            </a>
+            <a class="skill-card-tile" href="#levels" data-family="sensing">
+              <div class="skill-card-art"><img src="assets/skill-icons/make-it-notice.jpg" alt=""></div>
+              <h3>Make it notice</h3>
+              <p>Sensors for light, tilt, distance or touch.</p>
+            </a>
+            <a class="skill-card-tile" href="#levels" data-family="structures">
+              <div class="skill-card-art"><img src="assets/skill-icons/make-it-strong.jpg" alt=""></div>
+              <h3>Make it strong</h3>
+              <p>Frames, hinges, mounts and stable builds.</p>
+            </a>
+            <a class="skill-card-tile" href="#levels" data-family="power">
+              <div class="skill-card-art"><img src="assets/skill-icons/make-it-run-safely.jpg" alt=""></div>
+              <h3>Make it run safely</h3>
+              <p>Batteries, polarity, loads and safe choices.</p>
+            </a>
+            <a class="skill-card-tile" href="#levels" data-family="materials_fabrication">
+              <div class="skill-card-art"><img src="assets/skill-icons/make-it-real.jpg" alt=""></div>
+              <h3>Make it real</h3>
+              <p>Materials, fabrication, joins and enclosures.</p>
+            </a>
+            <a class="skill-card-tile" href="#levels" data-family="logic_sequencing">
+              <div class="skill-card-art"><img src="assets/skill-icons/make-it-decide.jpg" alt=""></div>
+              <h3>Make it decide</h3>
+              <p>Sequences, rules, timing and simple logic.</p>
+            </a>
+            <a class="skill-card-tile" href="#levels" data-family="communication">
+              <div class="skill-card-art"><img src="assets/skill-icons/make-it-signal.jpg" alt=""></div>
+              <h3>Make it signal</h3>
+              <p>Messages, radio links, alerts and displays.</p>
+            </a>
+            <a class="skill-card-tile" href="#levels" data-family="debugging_testing">
+              <div class="skill-card-art"><img src="assets/skill-icons/make-it-work-again.jpg" alt=""></div>
+              <h3>Make it work again</h3>
+              <p>Testing, debugging, repair and evidence.</p>
+            </a>
+            <a class="skill-card-tile" href="#levels" data-family="design_iteration">
+              <div class="skill-card-art"><img src="assets/skill-icons/make-it-better.jpg" alt=""></div>
+              <h3>Make it better</h3>
+              <p>User needs, criteria, feedback and iteration.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section levels-section level-bench" id="levels">
+        <div class="section-inner">
+          <div class="flow-step-heading">
+            <span>2</span>
+            <div>
+              <h2>Choose a level.</h2>
+              <p>
+                A level is a quick way to choose the right amount of challenge. It helps children
+                decide whether to practise, stretch, or come back later with stronger skills.
+              </p>
+            </div>
+          </div>
+          <ol class="level-track" aria-label="Shared level track">
+            <li><a class="level-step-link" href="#power-cards" data-level="1"><span>1</span><strong>Encounter</strong><p>Recognise it and use it safely.</p></a></li>
+            <li><a class="level-step-link" href="#power-cards" data-level="2"><span>2</span><strong>Activate</strong><p>Make the basic thing happen.</p></a></li>
+            <li><a class="level-step-link" href="#power-cards" data-level="3"><span>3</span><strong>Adjust</strong><p>Change how it behaves.</p></a></li>
+            <li><a class="level-step-link" href="#power-cards" data-level="4"><span>4</span><strong>Apply</strong><p>Use it in a new context.</p></a></li>
+            <li><a class="level-step-link" href="#power-cards" data-level="5"><span>5</span><strong>Coordinate</strong><p>Make related things work together.</p></a></li>
+            <li><a class="level-step-link" href="#power-cards" data-level="6"><span>6</span><strong>Improve</strong><p>Test, refine and explain trade-offs.</p></a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section power-cards-section card-table" id="power-cards">
+        <div class="section-inner">
+          <div class="flow-step-heading">
+            <span>3</span>
+            <div>
+              <h2>Try a Power Card in that level.</h2>
+              <p>
+                Power Cards are the day-to-day challenge cards. Choose a Skill Card and a level
+                above to see the matching cards.
+              </p>
+            </div>
+          </div>
+          <div class="card-example-grid power-example-grid" id="power-card-results" aria-label="Matching Power Cards" aria-live="polite"></div>
+        </div>
+      </section>
+
+      <section class="section loop-decision-section choice-board" id="learning-loop">
+        <div class="section-inner">
+          <div class="flow-step-heading">
+            <span>4</span>
+            <div>
+              <h2>Test, improve, then choose the next move.</h2>
+              <p>
+                The card is not finished when something works once. Children test it, notice what
+                happened, improve one thing, then choose how to continue the loop.
+              </p>
+            </div>
+          </div>
+          <div class="loop-choice-grid">
+            <article>
+              <span>Repeat</span>
+              <h3>Try another card at the same level.</h3>
+              <p>Useful when a child wants more practice before moving on.</p>
+            </article>
+            <article>
+              <span>Stretch</span>
+              <h3>Move up a level inside the same Skill Card.</h3>
+              <p>Useful when the child is ready for a harder version of the same power.</p>
+            </article>
+            <article>
+              <span>Switch</span>
+              <h3>Choose a different Skill Card.</h3>
+              <p>Useful when a build needs another power, such as sensing, power or structure.</p>
+            </article>
+            <article>
+              <span>Combine</span>
+              <h3>Use built-up powers in a bigger challenge.</h3>
+              <p>Useful when the child is ready for Integration or Invention Cards.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section extra-card-section choice-board" id="bigger-cards">
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2>Once enough powers are built, bigger cards open.</h2>
+            <p>
+              Integration and Invention Cards are not the day-to-day starting point. They are where
+              children use the powers they have built up across skills and levels.
+            </p>
+          </div>
+          <div class="discovery-card-grid" aria-label="Bigger card types">
+            <a class="discovery-card integration-discovery" href="#integration-card">
+              <img src="assets/card-icons/integration-card.jpg" alt="" aria-hidden="true">
+              <h3>Integration Cards</h3>
+              <p>Combine powers from different Skill Cards in a fixed challenge.</p>
+            </a>
+            <a class="discovery-card invention-discovery" href="#invention-card">
+              <img src="assets/card-icons/invention-card.jpg" alt="" aria-hidden="true">
+              <h3>Invention Cards</h3>
+              <p>Set open-ended creative objectives with more room for child choice.</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section card-detail-section card-table" id="integration-card">
+        <div class="section-inner card-detail-layout">
+          <div class="example-card-deck" aria-label="Example Integration Cards">
+            <article class="play-card integration-play-card">
+              <img class="card-type-icon" src="assets/card-icons/integration-card.jpg" alt="" aria-hidden="true">
+              <span class="level-badge">Fixed build</span>
+              <h3>Button-controlled wheel</h3>
+              <p class="card-objective">
+                Build a wheel that spins only when a child presses the chosen button.
+              </p>
+              <div class="card-chips">
+                <span>Level 2 Make it move</span>
+                <span>Level 3 Make it obey</span>
+              </div>
+            </article>
+            <article class="play-card integration-play-card">
+              <img class="card-type-icon" src="assets/card-icons/integration-card.jpg" alt="" aria-hidden="true">
+              <span class="level-badge">Fixed build</span>
+              <h3>Light-sensitive sign</h3>
+              <p class="card-objective">
+                Make a sign that changes when a sensor notices light or shadow.
+              </p>
+              <div class="card-chips">
+                <span>Level 2 Make it notice</span>
+                <span>Level 2 Make it run safely</span>
+              </div>
+            </article>
+            <article class="play-card integration-play-card">
+              <img class="card-type-icon" src="assets/card-icons/integration-card.jpg" alt="" aria-hidden="true">
+              <span class="level-badge">Fixed build</span>
+              <h3>Servo greeting sign</h3>
+              <p class="card-objective">
+                Press a control to move a small sign between two positions.
+              </p>
+              <div class="card-chips">
+                <span>Level 2 Make it obey</span>
+                <span>Level 2 Make it move</span>
+              </div>
+            </article>
+          </div>
+          <div class="card-detail-copy">
+            <h2>Integration Cards combine powers from different skills.</h2>
+            <p>
+              These are structured challenges. The child still gets choices, but the card names the
+              powers and levels needed so they can see how earlier practice unlocks a bigger build.
+            </p>
+            <a class="button secondary" href="#invention-card">See Invention Cards</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section card-detail-section card-table" id="invention-card">
+        <div class="section-inner card-detail-layout">
+          <div class="example-card-deck" aria-label="Example Invention Cards">
+            <article class="play-card invention-play-card">
+              <img class="card-type-icon" src="assets/card-icons/invention-card.jpg" alt="" aria-hidden="true">
+              <span class="level-badge">Open mission</span>
+              <h3>Helpful classroom gadget</h3>
+              <p class="card-objective">
+                Invent something that helps a classroom job happen more easily.
+              </p>
+              <div class="card-chips">
+                <span>Choose your powers</span>
+                <span>Test with someone</span>
+              </div>
+            </article>
+            <article class="play-card invention-play-card">
+              <img class="card-type-icon" src="assets/card-icons/invention-card.jpg" alt="" aria-hidden="true">
+              <span class="level-badge">Open mission</span>
+              <h3>Secret signal</h3>
+              <p class="card-objective">
+                Create a way to send or reveal a simple message to a friend.
+              </p>
+              <div class="card-chips">
+                <span>Pick a sender</span>
+                <span>Pick a receiver</span>
+              </div>
+            </article>
+            <article class="play-card invention-play-card">
+              <img class="card-type-icon" src="assets/card-icons/invention-card.jpg" alt="" aria-hidden="true">
+              <span class="level-badge">Open mission</span>
+              <h3>Creature with personality</h3>
+              <p class="card-objective">
+                Make something that uses movement, signals or sensing to feel alive.
+              </p>
+              <div class="card-chips">
+                <span>Choose behaviours</span>
+                <span>Show personality</span>
+              </div>
+            </article>
+          </div>
+          <div class="card-detail-copy">
+            <h2>Invention Cards open the brief.</h2>
+            <p>
+              These cards are for more child-led making. Instead of prescribing the route, they set
+              an objective and invite children to choose which built-up powers might help.
+            </p>
+            <a class="button secondary" href="#choose-a-card">See the child flow</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section child-flow-section choice-board" id="choose-a-card">
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2>How a child might use it.</h2>
+            <p>
+              The point is not to finish a perfect deck. The point is to guide children through the
+              art of the possible until they have enough powers to combine and invent with confidence.
+            </p>
+          </div>
+          <ol class="choice-flow">
+            <li><span>1</span><strong>Pick a Skill Card for today.</strong><p>"I want to make it move."</p></li>
+            <li><span>2</span><strong>Choose a level.</strong><p>Repeat a comfortable level, or try a stretch.</p></li>
+            <li><span>3</span><strong>Pick a Power Card.</strong><p>Try the practical challenge and test what happens.</p></li>
+            <li><span>4</span><strong>Improve and choose the next move.</strong><p>Repeat, stretch, switch skills or combine.</p></li>
+            <li><span>5</span><strong>Use bigger cards when ready.</strong><p>Integration gives structure. Invention gives more freedom.</p></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="section register-section" id="curriculum-cta">
+        <div class="section-inner power-strip final-cta">
+          <div>
+            <h2>The cards guide the loop without taking over.</h2>
+            <p>
+              They help children build enough practical powers to take on bigger combinations and open inventions.
+            </p>
+          </div>
+          <a class="button primary" href="index.html#register">Register interest</a>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="section-inner footer-inner">
+        <p>The Invention Club prototype website.</p>
+        <a href="#top">Back to top</a>
+      </div>
+    </footer>
+
+    <script src="curriculum-data.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>

@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>The Invention Club - hands-on creative engineering for children</title>
+    <meta
+      name="description"
+      content="A parent-friendly prototype website for The Invention Club: a hands-on creative engineering club where children learn to invent with movement, sensing, control, structures, power, communication, debugging and design."
+    >
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <header class="site-header" data-site-header>
+      <a class="brand" href="index.html#top" aria-label="The Invention Club home">
+        <span class="brand-mark" aria-hidden="true">IC</span>
+        <span>The Invention Club</span>
+      </a>
+      <button class="menu-button" type="button" aria-expanded="false" aria-controls="site-nav">
+        <span class="menu-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Menu</span>
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Primary navigation">
+        <a href="index.html#top">Home</a>
+        <a href="curriculum.html">How sessions work</a>
+        <a href="index.html#pathways">Ages</a>
+        <a href="index.html#faq">FAQ</a>
+        <a class="nav-cta" href="index.html#register">Register interest</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero home-hero" id="top" aria-label="Children making inventions on a workshop table">
+        <div class="hero-content">
+          <p class="eyebrow">Hands-on creative engineering for children</p>
+          <h1>The Invention Club</h1>
+          <p class="hero-copy">
+            Children build real ideas with motors, sensors, cardboard, wheels, switches, sketches,
+            stories and practical problem solving.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="index.html#register">Register interest</a>
+            <a class="button secondary" href="curriculum.html">See how sessions work</a>
+          </div>
+        </div>
+      </section>
+
+      <section class="section intro-section workbench-strip" id="what">
+        <div class="section-inner">
+          <div class="make-loop-panel" aria-label="Make test improve and try again loop">
+            <div class="loop-diagram" aria-hidden="true">
+              <div class="loop-cycle" data-scroll-spin>
+                <span class="loop-arrow loop-arrow-one">→</span>
+                <span class="loop-arrow loop-arrow-two">→</span>
+                <span class="loop-arrow loop-arrow-three">→</span>
+                <span class="loop-arrow loop-arrow-four">→</span>
+              </div>
+              <div class="loop-card loop-card-make">
+                <span>1</span>
+                <strong>Make</strong>
+                <small>Build the idea</small>
+              </div>
+              <div class="loop-card loop-card-test">
+                <span>2</span>
+                <strong>Test</strong>
+                <small>See what happens</small>
+              </div>
+              <div class="loop-card loop-card-improve">
+                <span>3</span>
+                <strong>Improve</strong>
+                <small>Change one thing</small>
+              </div>
+              <div class="loop-card loop-card-repeat">
+                <span>4</span>
+                <strong>Try again</strong>
+                <small>Choose the next move</small>
+              </div>
+            </div>
+            <div class="loop-copy">
+              <h3>Invention is a repeatable habit.</h3>
+              <p>Weekly sessions turn curiosity into things children can make, test, improve and try again.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section pathways-section age-rail-section" id="pathways">
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2>The right level of support for each age group.</h2>
+            <p>
+              The same idea stretches from playful cause-and-effect making to robotics, debugging
+              and design choices. Initial sessions will launch for selected age groups while the wider model is developed.
+            </p>
+          </div>
+          <table class="age-table">
+            <colgroup>
+              <col class="age-col">
+              <col class="group-col">
+              <col class="support-col">
+              <col class="making-col">
+            </colgroup>
+            <thead>
+              <tr>
+                <th scope="col">Age</th>
+                <th scope="col">Group</th>
+                <th scope="col">Support level</th>
+                <th scope="col">Typical making</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td class="age-cell" data-label="Age"><span>4-6</span></td><th scope="row" data-label="Group">Mini Inventors</th><td data-label="Support level">Adult-supported</td><td data-label="Typical making">Stories, big parts and cause-and-effect play</td></tr>
+              <tr><td class="age-cell" data-label="Age"><span>6-8</span></td><th scope="row" data-label="Group">Junior Inventors</th><td data-label="Support level">Guided making</td><td data-label="Typical making">Buttons, wheels, switches and simple structures</td></tr>
+              <tr><td class="age-cell" data-label="Age"><span>8-10½</span></td><th scope="row" data-label="Group">Inventors</th><td data-label="Support level">Supported choices</td><td data-label="Typical making">Motors, sensors, stronger builds and simple logic</td></tr>
+              <tr><td class="age-cell" data-label="Age"><span>10½-14</span></td><th scope="row" data-label="Group">Advanced Inventors</th><td data-label="Support level">More self-directed</td><td data-label="Typical making">Robotics, radio control, debugging and trade-offs</td></tr>
+              <tr><td class="age-cell" data-label="Age"><span>14-18</span></td><th scope="row" data-label="Group">Studio Inventors</th><td data-label="Support level">Independent studio work</td><td data-label="Typical making">Open builds, mentoring, repairability and deeper choices</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="section curriculum-teaser-section" id="curriculum-preview">
+        <div class="section-inner power-strip">
+          <div>
+            <h2>Curious how the making is guided?</h2>
+            <p>
+              Sessions feel playful and child-led, but there is a simple rhythm underneath:
+              try one practical idea, combine it with others, then use it in a real invention.
+            </p>
+          </div>
+          <a class="button primary" href="curriculum.html">See how sessions work</a>
+        </div>
+      </section>
+
+      <section class="section faq-section bench-board" id="faq">
+        <div class="section-inner">
+          <div class="section-heading">
+            <h2>Practical questions before joining.</h2>
+          </div>
+          <div class="faq-list">
+            <details class="faq-item">
+              <summary>Does my child need coding experience?</summary>
+              <p>No. Coding is introduced as one invention material, alongside motors, sensors, structures, craft materials and testing.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Which age groups are available?</summary>
+              <p>The full age range being explored is 4-18, but initial sessions will launch for selected age groups first.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Is it safe?</summary>
+              <p>Activities should use age-appropriate materials, supervised tools and safe batteries. Full safety, safeguarding and consent arrangements will be confirmed before launch.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Is this school-like?</summary>
+              <p>It has structure, but the feel is workshop-first: make, test, improve, share.</p>
+            </details>
+            <details class="faq-item">
+              <summary>How do I register interest?</summary>
+              <p>Use the prototype interest section below. It does not submit yet, but it shows the information the live version may collect.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <section class="section register-section" id="register">
+        <div class="section-inner register-layout">
+          <div>
+            <h2>Help shape the first local sessions.</h2>
+            <p>
+              This prototype does not send data yet. It shows the kind of parent-friendly interest
+              form that could be connected before launch.
+            </p>
+          </div>
+          <form class="interest-form" id="interest-form">
+            <label>
+              Parent or carer name
+              <input type="text" name="name" autocomplete="name">
+            </label>
+            <label>
+              Child age range
+              <select name="age-range">
+                <option value="">Choose an age range</option>
+                <option>Mini Inventors: 4-6</option>
+                <option>Junior Inventors: 6-8</option>
+                <option>Inventors: 8-10½</option>
+                <option>Advanced Inventors: 10½-14</option>
+                <option>Studio Inventors: 14-18</option>
+              </select>
+            </label>
+            <label>
+              What would you want to know before joining?
+              <textarea name="question" rows="4"></textarea>
+            </label>
+            <button class="button primary" type="submit">Register interest</button>
+            <p class="form-note" id="form-note" role="status">
+              Prototype only: no details are sent from this static page.
+            </p>
+          </form>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="section-inner footer-inner">
+        <p>The Invention Club prototype website.</p>
+        <a href="#top">Back to top</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>

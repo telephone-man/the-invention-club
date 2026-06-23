@@ -1,0 +1,22 @@
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# OS/editor
+.DS_Store
+.idea/
+.vscode/
+
+# Generated temporary files
+*.tmp
+*.log
+
+docs
+tools
+reports
+curriculum
+AGENTS.md
+concat.xml
+README.md
