@@ -425,7 +425,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_10"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_mov_01.svg",
+      "result_alt": "Recognise actuators result build on a workshop table"
     },
     {
       "id": "r_mov_02",
@@ -452,7 +454,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_16"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_mov_02.svg",
+      "result_alt": "Spin a DC motor result build on a workshop table"
     },
     {
       "id": "r_mov_03",
@@ -479,7 +483,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_28"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_mov_03.svg",
+      "result_alt": "Set a servo angle result build on a workshop table"
     },
     {
       "id": "r_mov_04",
@@ -507,7 +513,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_20"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_mov_04.svg",
+      "result_alt": "Adjust speed with gearing result build on a workshop table"
     },
     {
       "id": "r_mov_05",
@@ -534,7 +542,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_11"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_mov_05.svg",
+      "result_alt": "Move a linkage result build on a workshop table"
     },
     {
       "id": "r_mov_06",
@@ -562,7 +572,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_17"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_mov_06.svg",
+      "result_alt": "Coordinate two actuators result build on a workshop table"
     },
     {
       "id": "r_mov_07",
@@ -590,7 +602,9 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [
         "debugging_testing"
       ],
-      "classification_rationale": "Primary learning is refining the mechanism motion; debugging evidence supports the Movement improvement."
+      "classification_rationale": "Primary learning is refining the mechanism motion; debugging evidence supports the Movement improvement.",
+      "result_image": "assets/power-card-results/r_mov_07.svg",
+      "result_alt": "Improve unreliable motion result build on a workshop table"
     },
     {
       "id": "r_mov_08",
@@ -617,7 +631,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_30"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_mov_08.svg",
+      "result_alt": "Explain motion trade-offs result build on a workshop table"
     },
     {
       "id": "r_ctl_01",
@@ -643,7 +659,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_14"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_ctl_01.svg",
+      "result_alt": "Recognise input controls result build on a workshop table"
     },
     {
       "id": "r_ctl_02",
@@ -670,7 +688,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_16"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_ctl_02.svg",
+      "result_alt": "Read a button result build on a workshop table"
     },
     {
       "id": "r_ctl_03",
@@ -696,7 +716,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_18"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_ctl_03.svg",
+      "result_alt": "Read a knob result build on a workshop table"
     },
     {
       "id": "r_ctl_04",
@@ -724,7 +746,9 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [
         "debugging_testing"
       ],
-      "classification_rationale": "Primary learning is interpreting one human input as one command; debounce testing supports Control/Input."
+      "classification_rationale": "Primary learning is interpreting one human input as one command; debounce testing supports Control/Input.",
+      "result_image": "assets/power-card-results/r_ctl_04.svg",
+      "result_alt": "Debounce a button result build on a workshop table"
     },
     {
       "id": "r_ctl_05",
@@ -751,7 +775,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_23"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_ctl_05.svg",
+      "result_alt": "Map a joystick direction result build on a workshop table"
     },
     {
       "id": "r_ctl_06",
@@ -779,7 +805,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_14"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_ctl_06.svg",
+      "result_alt": "Combine two controls result build on a workshop table"
     },
     {
       "id": "r_ctl_07",
@@ -809,7 +837,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "design_iteration",
         "materials_fabrication"
       ],
-      "classification_rationale": "Primary learning is making controls understandable and operable; design and fabrication support the interface."
+      "classification_rationale": "Primary learning is making controls understandable and operable; design and fabrication support the interface.",
+      "result_image": "assets/power-card-results/r_ctl_07.svg",
+      "result_alt": "Arrange a control panel result build on a workshop table"
     },
     {
       "id": "r_ctl_08",
@@ -838,7 +868,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "debugging_testing",
         "design_iteration"
       ],
-      "classification_rationale": "Primary learning is improving how an input is pressed, read, or understood; tests support the input refinement."
+      "classification_rationale": "Primary learning is improving how an input is pressed, read, or understood; tests support the input refinement.",
+      "result_image": "assets/power-card-results/r_ctl_08.svg",
+      "result_alt": "Improve input reliability result build on a workshop table"
     },
     {
       "id": "r_sen_01",
@@ -863,7 +895,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_05"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_sen_01.svg",
+      "result_alt": "Recognise sensors result build on a workshop table"
     },
     {
       "id": "r_sen_02",
@@ -890,7 +924,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_29"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_sen_02.svg",
+      "result_alt": "Read a light sensor result build on a workshop table"
     },
     {
       "id": "r_sen_03",
@@ -917,7 +953,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_17"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_sen_03.svg",
+      "result_alt": "Set a sensor threshold result build on a workshop table"
     },
     {
       "id": "r_sen_04",
@@ -944,7 +982,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_06"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_sen_04.svg",
+      "result_alt": "Use a distance sensor result build on a workshop table"
     },
     {
       "id": "r_sen_05",
@@ -970,7 +1010,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_17"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_sen_05.svg",
+      "result_alt": "Calibrate a sensor result build on a workshop table"
     },
     {
       "id": "r_sen_06",
@@ -997,7 +1039,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_26"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_sen_06.svg",
+      "result_alt": "Combine two sensors result build on a workshop table"
     },
     {
       "id": "r_sen_07",
@@ -1023,7 +1067,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_26"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_sen_07.svg",
+      "result_alt": "Explain false readings result build on a workshop table"
     },
     {
       "id": "r_sen_08",
@@ -1051,7 +1097,9 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [
         "debugging_testing"
       ],
-      "classification_rationale": "Primary learning is improving sensor readings; the diagnostic work supports the Sensing improvement."
+      "classification_rationale": "Primary learning is improving sensor readings; the diagnostic work supports the Sensing improvement.",
+      "result_image": "assets/power-card-results/r_sen_08.svg",
+      "result_alt": "Improve a noisy sensor setup result build on a workshop table"
     },
     {
       "id": "r_str_01",
@@ -1076,7 +1124,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_11"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_str_01.svg",
+      "result_alt": "Recognise beams and joints result build on a workshop table"
     },
     {
       "id": "r_str_02",
@@ -1103,7 +1153,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_20"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_str_02.svg",
+      "result_alt": "Build a stable frame result build on a workshop table"
     },
     {
       "id": "r_str_03",
@@ -1130,7 +1182,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_20"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_str_03.svg",
+      "result_alt": "Brace a frame result build on a workshop table"
     },
     {
       "id": "r_str_04",
@@ -1160,7 +1214,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "movement",
         "materials_fabrication"
       ],
-      "classification_rationale": "Primary learning is a passive load-bearing joint; motion and fabrication support the Structures problem."
+      "classification_rationale": "Primary learning is a passive load-bearing joint; motion and fabrication support the Structures problem.",
+      "result_image": "assets/power-card-results/r_str_04.svg",
+      "result_alt": "Build a hinge joint result build on a workshop table"
     },
     {
       "id": "r_str_05",
@@ -1187,7 +1243,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_20"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_str_05.svg",
+      "result_alt": "Build a loaded chassis result build on a workshop table"
     },
     {
       "id": "r_str_06",
@@ -1216,7 +1274,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_18"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_str_06.svg",
+      "result_alt": "Coordinate frame and mounts result build on a workshop table"
     },
     {
       "id": "r_str_07",
@@ -1246,7 +1306,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "debugging_testing",
         "design_iteration"
       ],
-      "classification_rationale": "Primary learning is strengthening the chassis; testing and iteration support the Structures improvement."
+      "classification_rationale": "Primary learning is strengthening the chassis; testing and iteration support the Structures improvement.",
+      "result_image": "assets/power-card-results/r_str_07.svg",
+      "result_alt": "Improve a weak chassis result build on a workshop table"
     },
     {
       "id": "r_str_08",
@@ -1273,7 +1335,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_25"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_str_08.svg",
+      "result_alt": "Explain structure trade-offs result build on a workshop table"
     },
     {
       "id": "r_pow_01",
@@ -1299,7 +1363,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_16"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_pow_01.svg",
+      "result_alt": "Recognise safe power sources result build on a workshop table"
     },
     {
       "id": "r_pow_02",
@@ -1326,7 +1392,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_29"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_pow_02.svg",
+      "result_alt": "Power one load result build on a workshop table"
     },
     {
       "id": "r_pow_03",
@@ -1352,7 +1420,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_12"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_pow_03.svg",
+      "result_alt": "Measure voltage result build on a workshop table"
     },
     {
       "id": "r_pow_04",
@@ -1381,7 +1451,9 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [
         "design_iteration"
       ],
-      "classification_rationale": "Primary learning is selecting safe and adequate energy for a load; design criteria support the choice."
+      "classification_rationale": "Primary learning is selecting safe and adequate energy for a load; design criteria support the choice.",
+      "result_image": "assets/power-card-results/r_pow_04.svg",
+      "result_alt": "Choose a safe battery result build on a workshop table"
     },
     {
       "id": "r_pow_05",
@@ -1407,7 +1479,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_16"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_pow_05.svg",
+      "result_alt": "Add current protection result build on a workshop table"
     },
     {
       "id": "r_pow_06",
@@ -1434,7 +1508,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_17"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_pow_06.svg",
+      "result_alt": "Separate motor and logic power result build on a workshop table"
     },
     {
       "id": "r_pow_07",
@@ -1464,7 +1540,9 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [
         "debugging_testing"
       ],
-      "classification_rationale": "Primary learning is diagnosing voltage drop in the power path; the family object remains Power."
+      "classification_rationale": "Primary learning is diagnosing voltage drop in the power path; the family object remains Power.",
+      "result_image": "assets/power-card-results/r_pow_07.svg",
+      "result_alt": "Diagnose power drop result build on a workshop table"
     },
     {
       "id": "r_pow_08",
@@ -1491,7 +1569,9 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [
         "design_iteration"
       ],
-      "classification_rationale": "Primary learning is explaining battery safety and capability trade-offs within Power."
+      "classification_rationale": "Primary learning is explaining battery safety and capability trade-offs within Power.",
+      "result_image": "assets/power-card-results/r_pow_08.svg",
+      "result_alt": "Explain battery safety trade-offs result build on a workshop table"
     },
     {
       "id": "r_mat_01",
@@ -1518,7 +1598,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_15"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_mat_01.svg",
+      "result_alt": "Compare material properties result build on a workshop table"
     },
     {
       "id": "r_mat_02",
@@ -1546,7 +1628,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_25"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_mat_02.svg",
+      "result_alt": "Cut and fold safely result build on a workshop table"
     },
     {
       "id": "r_mat_03",
@@ -1574,7 +1658,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_18"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_mat_03.svg",
+      "result_alt": "Make repeatable holes result build on a workshop table"
     },
     {
       "id": "r_mat_04",
@@ -1604,7 +1690,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_15"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_mat_04.svg",
+      "result_alt": "Join dissimilar materials result build on a workshop table"
     },
     {
       "id": "r_mat_05",
@@ -1632,7 +1720,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_25"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_mat_05.svg",
+      "result_alt": "Build an enclosure result build on a workshop table"
     },
     {
       "id": "r_mat_06",
@@ -1659,7 +1749,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_25"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_mat_06.svg",
+      "result_alt": "Coordinate template and parts result build on a workshop table"
     },
     {
       "id": "r_mat_07",
@@ -1686,7 +1778,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_25"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_mat_07.svg",
+      "result_alt": "Improve a rough join result build on a workshop table"
     },
     {
       "id": "r_mat_08",
@@ -1712,7 +1806,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_25"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_mat_08.svg",
+      "result_alt": "Explain material trade-offs result build on a workshop table"
     },
     {
       "id": "r_log_01",
@@ -1736,7 +1832,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_05"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_log_01.svg",
+      "result_alt": "Recognise events and actions result build on a workshop table"
     },
     {
       "id": "r_log_02",
@@ -1762,7 +1860,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_21"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_log_02.svg",
+      "result_alt": "Make a command sequence result build on a workshop table"
     },
     {
       "id": "r_log_03",
@@ -1789,7 +1889,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_09"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_log_03.svg",
+      "result_alt": "Use an if-then rule result build on a workshop table"
     },
     {
       "id": "r_log_04",
@@ -1815,7 +1917,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_21"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_log_04.svg",
+      "result_alt": "Use timing result build on a workshop table"
     },
     {
       "id": "r_log_05",
@@ -1842,7 +1946,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_17"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_log_05.svg",
+      "result_alt": "Use states result build on a workshop table"
     },
     {
       "id": "r_log_06",
@@ -1869,7 +1975,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_26"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_log_06.svg",
+      "result_alt": "Coordinate several rules result build on a workshop table"
     },
     {
       "id": "r_log_07",
@@ -1897,7 +2005,9 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [
         "debugging_testing"
       ],
-      "classification_rationale": "Primary learning is fixing sequence order and timing; diagnostic method supports Logic/Sequencing."
+      "classification_rationale": "Primary learning is fixing sequence order and timing; diagnostic method supports Logic/Sequencing.",
+      "result_image": "assets/power-card-results/r_log_07.svg",
+      "result_alt": "Debug wrong order result build on a workshop table"
     },
     {
       "id": "r_log_08",
@@ -1924,7 +2034,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_27"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_log_08.svg",
+      "result_alt": "Explain logic trade-offs result build on a workshop table"
     },
     {
       "id": "r_com_01",
@@ -1950,7 +2062,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_14"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_com_01.svg",
+      "result_alt": "Recognise messages result build on a workshop table"
     },
     {
       "id": "r_com_02",
@@ -1976,7 +2090,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_27"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_com_02.svg",
+      "result_alt": "Send one wireless command result build on a workshop table"
     },
     {
       "id": "r_com_03",
@@ -2003,7 +2119,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_19"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_com_03.svg",
+      "result_alt": "Pair transmitter and receiver result build on a workshop table"
     },
     {
       "id": "r_com_04",
@@ -2030,7 +2148,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_27"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_com_04.svg",
+      "result_alt": "Change message code result build on a workshop table"
     },
     {
       "id": "r_com_05",
@@ -2059,7 +2179,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "logic_sequencing",
         "movement"
       ],
-      "classification_rationale": "Primary learning is mapping remote messages to clear meanings; receiver actions are supporting context."
+      "classification_rationale": "Primary learning is mapping remote messages to clear meanings; receiver actions are supporting context.",
+      "result_image": "assets/power-card-results/r_com_05.svg",
+      "result_alt": "Apply remote commands result build on a workshop table"
     },
     {
       "id": "r_com_06",
@@ -2086,7 +2208,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_14"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_com_06.svg",
+      "result_alt": "Coordinate two senders result build on a workshop table"
     },
     {
       "id": "r_com_07",
@@ -2112,7 +2236,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_19"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_com_07.svg",
+      "result_alt": "Improve radio reliability result build on a workshop table"
     },
     {
       "id": "r_com_08",
@@ -2138,7 +2264,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_27"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_com_08.svg",
+      "result_alt": "Explain communication trade-offs result build on a workshop table"
     },
     {
       "id": "r_dbg_01",
@@ -2162,7 +2290,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_24"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_dbg_01.svg",
+      "result_alt": "Notice one symptom result build on a workshop table"
     },
     {
       "id": "r_dbg_02",
@@ -2188,7 +2318,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_24"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_dbg_02.svg",
+      "result_alt": "Test one part at a time result build on a workshop table"
     },
     {
       "id": "r_dbg_03",
@@ -2214,7 +2346,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_24"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_dbg_03.svg",
+      "result_alt": "Use a fault checklist result build on a workshop table"
     },
     {
       "id": "r_dbg_04",
@@ -2243,7 +2377,9 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [
         "power"
       ],
-      "classification_rationale": "Primary learning is applying a diagnostic method; circuit knowledge supplies the test context."
+      "classification_rationale": "Primary learning is applying a diagnostic method; circuit knowledge supplies the test context.",
+      "result_image": "assets/power-card-results/r_dbg_04.svg",
+      "result_alt": "Test a broken circuit result build on a workshop table"
     },
     {
       "id": "r_dbg_05",
@@ -2268,7 +2404,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_19"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_dbg_05.svg",
+      "result_alt": "Compare expected and actual result build on a workshop table"
     },
     {
       "id": "r_dbg_06",
@@ -2299,7 +2437,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "structures",
         "logic_sequencing"
       ],
-      "classification_rationale": "Primary learning is coordinating a transferable subsystem test order; each subsystem is supporting context."
+      "classification_rationale": "Primary learning is coordinating a transferable subsystem test order; each subsystem is supporting context.",
+      "result_image": "assets/power-card-results/r_dbg_06.svg",
+      "result_alt": "Coordinate subsystem tests result build on a workshop table"
     },
     {
       "id": "r_dbg_07",
@@ -2325,7 +2465,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_30"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_dbg_07.svg",
+      "result_alt": "Improve a weak fix result build on a workshop table"
     },
     {
       "id": "r_dbg_08",
@@ -2351,7 +2493,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_24"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_dbg_08.svg",
+      "result_alt": "Explain repair evidence result build on a workshop table"
     },
     {
       "id": "r_des_01",
@@ -2375,7 +2519,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_30"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_des_01.svg",
+      "result_alt": "Recognise users and constraints result build on a workshop table"
     },
     {
       "id": "r_des_02",
@@ -2401,7 +2547,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_25"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_des_02.svg",
+      "result_alt": "Sketch one idea result build on a workshop table"
     },
     {
       "id": "r_des_03",
@@ -2426,7 +2574,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_25"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_des_03.svg",
+      "result_alt": "Change an idea for a constraint result build on a workshop table"
     },
     {
       "id": "r_des_04",
@@ -2451,7 +2601,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_25"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_des_04.svg",
+      "result_alt": "Choose with criteria result build on a workshop table"
     },
     {
       "id": "r_des_05",
@@ -2478,7 +2630,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_30"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_des_05.svg",
+      "result_alt": "Coordinate a build plan result build on a workshop table"
     },
     {
       "id": "r_des_06",
@@ -2507,7 +2661,9 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [
         "debugging_testing"
       ],
-      "classification_rationale": "Primary learning is deciding a design iteration from evidence; the test result is supporting evidence."
+      "classification_rationale": "Primary learning is deciding a design iteration from evidence; the test result is supporting evidence.",
+      "result_image": "assets/power-card-results/r_des_06.svg",
+      "result_alt": "Iterate after a test result build on a workshop table"
     },
     {
       "id": "r_des_07",
@@ -2534,7 +2690,9 @@ window.INVENTION_CLUB_CURRICULUM = {
         "r_int_30"
       ],
       "supporting_families": [],
-      "classification_rationale": ""
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_des_07.svg",
+      "result_alt": "Explain design trade-offs result build on a workshop table"
     },
     {
       "id": "r_des_08",
@@ -2563,7 +2721,1262 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [
         "logic_sequencing"
       ],
-      "classification_rationale": "Primary learning is scoping an open theme into a buildable challenge; the resulting challenge may later become invention work."
+      "classification_rationale": "Primary learning is scoping an open theme into a buildable challenge; the resulting challenge may later become invention work.",
+      "result_image": "assets/power-card-results/r_des_08.svg",
+      "result_alt": "Scope an invention challenge result build on a workshop table"
+    },
+    {
+      "id": "r_mov_09",
+      "title": "Compare wheel and flap motion",
+      "i_can_statement": "I can compare a wheel, flap, and slider and describe how each moves.",
+      "primary_family": "movement",
+      "level": 1,
+      "dependencies": [],
+      "materials": [
+        "wheel",
+        "cardboard flap",
+        "slider sample"
+      ],
+      "success_condition": "Three moving samples are matched to spin, swing, or slide motion.",
+      "debug_prompts": [
+        "What path does the part follow?",
+        "Does it turn around a point or move along a line?"
+      ],
+      "stretch_challenge": "Find a toy or household object that uses the same motion.",
+      "possible_integrations": [
+        "r_int_08",
+        "r_int_11"
+      ],
+      "supporting_families": [],
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_mov_09.svg",
+      "result_alt": "Compare wheel and flap motion result build on a workshop table"
+    },
+    {
+      "id": "r_mov_10",
+      "title": "Tune a rubber-band winder",
+      "i_can_statement": "I can change the wind-up length to alter how far a simple mover travels.",
+      "primary_family": "movement",
+      "level": 3,
+      "dependencies": [
+        "r_mov_02"
+      ],
+      "materials": [
+        "rubber band",
+        "axle",
+        "wheels",
+        "card chassis"
+      ],
+      "success_condition": "Two wind-up settings produce visibly different travel distances.",
+      "debug_prompts": [
+        "Is the band slipping?",
+        "Is the axle rubbing on the frame?"
+      ],
+      "stretch_challenge": "Find the setting that travels furthest without snapping or skidding.",
+      "possible_integrations": [
+        "r_int_07",
+        "r_int_20"
+      ],
+      "supporting_families": [
+        "materials_fabrication"
+      ],
+      "classification_rationale": "Primary learning is adjusting stored motion; the chassis only supports the motion test.",
+      "result_image": "assets/power-card-results/r_mov_10.svg",
+      "result_alt": "Tune a rubber-band winder result build on a workshop table"
+    },
+    {
+      "id": "r_mov_11",
+      "title": "Make a walking foot",
+      "i_can_statement": "I can use a cam or crank to make a cardboard foot lift and drop.",
+      "primary_family": "movement",
+      "level": 4,
+      "dependencies": [
+        "r_mov_04",
+        "r_mov_05"
+      ],
+      "materials": [
+        "cam",
+        "cardboard foot",
+        "motor",
+        "axle"
+      ],
+      "success_condition": "The foot repeats a lift-and-drop movement for five cycles.",
+      "debug_prompts": [
+        "Is the cam touching the follower?",
+        "Does the foot have enough clearance?"
+      ],
+      "stretch_challenge": "Change the cam shape and compare the walking style.",
+      "possible_integrations": [
+        "r_int_10",
+        "r_int_17"
+      ],
+      "supporting_families": [
+        "structures"
+      ],
+      "classification_rationale": "Primary learning is applying motion conversion in a creature-like mechanism.",
+      "result_image": "assets/power-card-results/r_mov_11.svg",
+      "result_alt": "Make a walking foot result build on a workshop table"
+    },
+    {
+      "id": "r_mov_12",
+      "title": "Synchronise a waving creature",
+      "i_can_statement": "I can time two moving parts so a creature waves without tangling.",
+      "primary_family": "movement",
+      "level": 5,
+      "dependencies": [
+        "r_mov_03",
+        "r_mov_06"
+      ],
+      "materials": [
+        "two servos",
+        "card arms",
+        "mount",
+        "controller"
+      ],
+      "success_condition": "Both arms complete a repeatable wave without colliding.",
+      "debug_prompts": [
+        "Which arm needs to move first?",
+        "Where can the arms catch?"
+      ],
+      "stretch_challenge": "Add a pause or offset to make the wave look more natural.",
+      "possible_integrations": [
+        "r_int_10",
+        "r_int_30"
+      ],
+      "supporting_families": [
+        "logic_sequencing"
+      ],
+      "classification_rationale": "Primary learning is coordinating motion; sequencing helps make the timing visible.",
+      "result_image": "assets/power-card-results/r_mov_12.svg",
+      "result_alt": "Synchronise a waving creature result build on a workshop table"
+    },
+    {
+      "id": "r_ctl_09",
+      "title": "Match controls to jobs",
+      "i_can_statement": "I can choose whether a button, switch, knob, or joystick fits a job.",
+      "primary_family": "control_input",
+      "level": 1,
+      "dependencies": [],
+      "materials": [
+        "button",
+        "toggle switch",
+        "knob",
+        "joystick"
+      ],
+      "success_condition": "Each control is matched to a sensible job such as start, stay on, choose amount, or steer.",
+      "debug_prompts": [
+        "Does the job need one press, two states, a range, or a direction?",
+        "What would a person expect to do?"
+      ],
+      "stretch_challenge": "Find a real object with the same kind of control.",
+      "possible_integrations": [
+        "r_int_01",
+        "r_int_14"
+      ],
+      "supporting_families": [
+        "design_iteration"
+      ],
+      "classification_rationale": "Primary learning is recognising control roles; user expectation supports the choice.",
+      "result_image": "assets/power-card-results/r_ctl_09.svg",
+      "result_alt": "Match controls to jobs result build on a workshop table"
+    },
+    {
+      "id": "r_ctl_10",
+      "title": "Set a useful control range",
+      "i_can_statement": "I can turn a changing input into low, middle, and high control zones.",
+      "primary_family": "control_input",
+      "level": 3,
+      "dependencies": [
+        "r_ctl_03"
+      ],
+      "materials": [
+        "knob",
+        "input board",
+        "LED strip"
+      ],
+      "success_condition": "The output changes in three clear zones as the knob turns.",
+      "debug_prompts": [
+        "Where do the values change?",
+        "Are the zones too small to use?"
+      ],
+      "stretch_challenge": "Adjust the zone boundaries for easier control.",
+      "possible_integrations": [
+        "r_int_18",
+        "r_int_24"
+      ],
+      "supporting_families": [
+        "logic_sequencing"
+      ],
+      "classification_rationale": "Primary learning is interpreting a human control as useful command ranges.",
+      "result_image": "assets/power-card-results/r_ctl_10.svg",
+      "result_alt": "Set a useful control range result build on a workshop table"
+    },
+    {
+      "id": "r_ctl_11",
+      "title": "Build a tilt-control handle",
+      "i_can_statement": "I can use a tilted handle as a control for a simple action.",
+      "primary_family": "control_input",
+      "level": 4,
+      "dependencies": [
+        "r_ctl_03"
+      ],
+      "materials": [
+        "tilt sensor",
+        "handle",
+        "input board",
+        "indicator"
+      ],
+      "success_condition": "Tilting the handle reliably triggers the chosen action.",
+      "debug_prompts": [
+        "Which direction counts as tilted?",
+        "Is the handle comfortable to hold?"
+      ],
+      "stretch_challenge": "Add a neutral zone so small shakes are ignored.",
+      "possible_integrations": [
+        "r_int_07",
+        "r_int_23"
+      ],
+      "supporting_families": [
+        "sensing"
+      ],
+      "classification_rationale": "Primary learning is applying an input device as a purposeful control.",
+      "result_image": "assets/power-card-results/r_ctl_11.svg",
+      "result_alt": "Build a tilt-control handle result build on a workshop table"
+    },
+    {
+      "id": "r_ctl_12",
+      "title": "Improve a confusing control panel",
+      "i_can_statement": "I can improve a control layout so people make fewer mistakes.",
+      "primary_family": "control_input",
+      "level": 6,
+      "dependencies": [
+        "r_ctl_06"
+      ],
+      "materials": [
+        "two controls",
+        "test panel",
+        "observation notes"
+      ],
+      "success_condition": "A tested layout change reduces wrong presses or hesitations.",
+      "debug_prompts": [
+        "Which control did people reach for first?",
+        "What mistake happened more than once?"
+      ],
+      "stretch_challenge": "Compare two layouts and choose the clearer one.",
+      "possible_integrations": [
+        "r_int_24",
+        "r_int_30"
+      ],
+      "supporting_families": [
+        "design_iteration",
+        "debugging_testing"
+      ],
+      "classification_rationale": "Primary learning is improving input reliability for a person using the control.",
+      "result_image": "assets/power-card-results/r_ctl_12.svg",
+      "result_alt": "Improve a confusing control panel result build on a workshop table"
+    },
+    {
+      "id": "r_sen_09",
+      "title": "Sort sensors by what they notice",
+      "i_can_statement": "I can sort sensors by whether they notice light, touch, tilt, sound, or distance.",
+      "primary_family": "sensing",
+      "level": 1,
+      "dependencies": [],
+      "materials": [
+        "light sensor",
+        "touch sensor",
+        "tilt sensor",
+        "distance sensor"
+      ],
+      "success_condition": "Sensor samples are grouped by the thing each one notices.",
+      "debug_prompts": [
+        "What changes around the sensor?",
+        "Does it need contact or can it notice from far away?"
+      ],
+      "stretch_challenge": "Choose one sensor for a useful club-room problem.",
+      "possible_integrations": [
+        "r_int_02",
+        "r_int_12"
+      ],
+      "supporting_families": [],
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_sen_09.svg",
+      "result_alt": "Sort sensors by what they notice result build on a workshop table"
+    },
+    {
+      "id": "r_sen_10",
+      "title": "Read a tilt sensor",
+      "i_can_statement": "I can make a tilt sensor change an output when it is tipped.",
+      "primary_family": "sensing",
+      "level": 2,
+      "dependencies": [
+        "r_sen_01"
+      ],
+      "materials": [
+        "tilt sensor",
+        "input board",
+        "indicator"
+      ],
+      "success_condition": "The indicator changes when the sensor tips past a clear point.",
+      "debug_prompts": [
+        "Which way up is the sensor?",
+        "Does the output change every time?"
+      ],
+      "stretch_challenge": "Use the sensor to detect when a model falls over.",
+      "possible_integrations": [
+        "r_int_12",
+        "r_int_22"
+      ],
+      "supporting_families": [
+        "control_input"
+      ],
+      "classification_rationale": "Primary learning is reading a sensor; input handling supports the visible result.",
+      "result_image": "assets/power-card-results/r_sen_10.svg",
+      "result_alt": "Read a tilt sensor result build on a workshop table"
+    },
+    {
+      "id": "r_sen_11",
+      "title": "Set a light threshold",
+      "i_can_statement": "I can choose the light level that changes an output.",
+      "primary_family": "sensing",
+      "level": 3,
+      "dependencies": [
+        "r_sen_02"
+      ],
+      "materials": [
+        "light sensor",
+        "lamp",
+        "shade card",
+        "indicator"
+      ],
+      "success_condition": "The output changes at a chosen light or shadow level.",
+      "debug_prompts": [
+        "Is the room light changing?",
+        "Where is the threshold between light and shadow?"
+      ],
+      "stretch_challenge": "Make the threshold work in a different part of the room.",
+      "possible_integrations": [
+        "r_int_02",
+        "r_int_18"
+      ],
+      "supporting_families": [
+        "logic_sequencing"
+      ],
+      "classification_rationale": "Primary learning is adjusting sensor interpretation.",
+      "result_image": "assets/power-card-results/r_sen_11.svg",
+      "result_alt": "Set a light threshold result build on a workshop table"
+    },
+    {
+      "id": "r_sen_12",
+      "title": "Check two sensors before acting",
+      "i_can_statement": "I can use two sensor readings so an action only happens in the right situation.",
+      "primary_family": "sensing",
+      "level": 5,
+      "dependencies": [
+        "r_sen_03",
+        "r_sen_05"
+      ],
+      "materials": [
+        "two sensors",
+        "input board",
+        "indicator",
+        "test objects"
+      ],
+      "success_condition": "The action only happens when both readings match the chosen situation.",
+      "debug_prompts": [
+        "Which reading is allowed to trigger?",
+        "What happens if only one sensor notices?"
+      ],
+      "stretch_challenge": "Choose between either-sensor and both-sensors behaviour.",
+      "possible_integrations": [
+        "r_int_12",
+        "r_int_25"
+      ],
+      "supporting_families": [
+        "logic_sequencing"
+      ],
+      "classification_rationale": "Primary learning is coordinating sensing evidence before action.",
+      "result_image": "assets/power-card-results/r_sen_12.svg",
+      "result_alt": "Check two sensors before acting result build on a workshop table"
+    },
+    {
+      "id": "r_str_09",
+      "title": "Spot triangles and braces",
+      "i_can_statement": "I can spot shapes that help a structure resist bending or wobbling.",
+      "primary_family": "structures",
+      "level": 1,
+      "dependencies": [],
+      "materials": [
+        "card frames",
+        "straws",
+        "tape",
+        "triangle samples"
+      ],
+      "success_condition": "Stable and wobbly sample frames are sorted with a reason.",
+      "debug_prompts": [
+        "Where can the shape squash sideways?",
+        "Which part stops the wobble?"
+      ],
+      "stretch_challenge": "Find a triangle or brace in the room.",
+      "possible_integrations": [
+        "r_int_03",
+        "r_int_05"
+      ],
+      "supporting_families": [],
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_str_09.svg",
+      "result_alt": "Spot triangles and braces result build on a workshop table"
+    },
+    {
+      "id": "r_str_10",
+      "title": "Build a wide-foot tower",
+      "i_can_statement": "I can build a simple tower that stays upright when nudged gently.",
+      "primary_family": "structures",
+      "level": 2,
+      "dependencies": [
+        "r_str_01"
+      ],
+      "materials": [
+        "card tubes",
+        "base card",
+        "tape",
+        "weights"
+      ],
+      "success_condition": "The tower stands and survives three gentle nudges.",
+      "debug_prompts": [
+        "Is the base wide enough?",
+        "Is the heavy part too high?"
+      ],
+      "stretch_challenge": "Make the tower taller without making it easier to tip.",
+      "possible_integrations": [
+        "r_int_03",
+        "r_int_21"
+      ],
+      "supporting_families": [
+        "materials_fabrication"
+      ],
+      "classification_rationale": "Primary learning is basic stability; materials choices support the build.",
+      "result_image": "assets/power-card-results/r_str_10.svg",
+      "result_alt": "Build a wide-foot tower result build on a workshop table"
+    },
+    {
+      "id": "r_str_11",
+      "title": "Brace a bending bridge",
+      "i_can_statement": "I can add braces to make a bridge carry more load.",
+      "primary_family": "structures",
+      "level": 3,
+      "dependencies": [
+        "r_str_02"
+      ],
+      "materials": [
+        "card bridge",
+        "bracing strips",
+        "coins",
+        "tape"
+      ],
+      "success_condition": "The braced bridge carries more load or bends less than before.",
+      "debug_prompts": [
+        "Where is it sagging?",
+        "Does the brace make a triangle?"
+      ],
+      "stretch_challenge": "Compare a top brace and a side brace.",
+      "possible_integrations": [
+        "r_int_05",
+        "r_int_21"
+      ],
+      "supporting_families": [
+        "debugging_testing"
+      ],
+      "classification_rationale": "Primary learning is improving structural strength through bracing.",
+      "result_image": "assets/power-card-results/r_str_11.svg",
+      "result_alt": "Brace a bending bridge result build on a workshop table"
+    },
+    {
+      "id": "r_str_12",
+      "title": "Mount a motor without wobble",
+      "i_can_statement": "I can make a mount that holds a motor steady while it runs.",
+      "primary_family": "structures",
+      "level": 5,
+      "dependencies": [
+        "r_str_04",
+        "r_mov_02"
+      ],
+      "materials": [
+        "motor",
+        "card mount",
+        "cable tie",
+        "chassis"
+      ],
+      "success_condition": "The motor runs without shaking loose or twisting the frame.",
+      "debug_prompts": [
+        "Where does the motor push on the frame?",
+        "Can the mount be removed for repair?"
+      ],
+      "stretch_challenge": "Add access for changing the motor without rebuilding the chassis.",
+      "possible_integrations": [
+        "r_int_07",
+        "r_int_20"
+      ],
+      "supporting_families": [
+        "movement",
+        "materials_fabrication"
+      ],
+      "classification_rationale": "Primary learning is coordinating frame, mount, and access around a load.",
+      "result_image": "assets/power-card-results/r_str_12.svg",
+      "result_alt": "Mount a motor without wobble result build on a workshop table"
+    },
+    {
+      "id": "r_pow_09",
+      "title": "Sort cells and holders safely",
+      "i_can_statement": "I can match cells, holders, and polarity marks before connecting power.",
+      "primary_family": "power",
+      "level": 1,
+      "dependencies": [],
+      "materials": [
+        "AA cells",
+        "coin cell holder",
+        "battery pack",
+        "polarity cards"
+      ],
+      "success_condition": "Power parts are sorted by type and orientation without making a circuit.",
+      "debug_prompts": [
+        "Where are positive and negative marked?",
+        "Which holder fits the cell?"
+      ],
+      "stretch_challenge": "Choose the safest holder for a moving model.",
+      "possible_integrations": [
+        "r_int_16",
+        "r_int_19"
+      ],
+      "supporting_families": [],
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_pow_09.svg",
+      "result_alt": "Sort cells and holders safely result build on a workshop table"
+    },
+    {
+      "id": "r_pow_10",
+      "title": "Light an LED strip safely",
+      "i_can_statement": "I can power a small LED strip with the correct polarity and limit.",
+      "primary_family": "power",
+      "level": 2,
+      "dependencies": [
+        "r_pow_01"
+      ],
+      "materials": [
+        "LED strip",
+        "battery pack",
+        "switch",
+        "leads"
+      ],
+      "success_condition": "The LEDs light without warm wires or reversed polarity.",
+      "debug_prompts": [
+        "Is positive connected to positive?",
+        "Is the strip rated for this pack?"
+      ],
+      "stretch_challenge": "Add a switch so the strip can be turned off easily.",
+      "possible_integrations": [
+        "r_int_02",
+        "r_int_19"
+      ],
+      "supporting_families": [
+        "control_input"
+      ],
+      "classification_rationale": "Primary learning is powering one safe load.",
+      "result_image": "assets/power-card-results/r_pow_10.svg",
+      "result_alt": "Light an LED strip safely result build on a workshop table"
+    },
+    {
+      "id": "r_pow_11",
+      "title": "Measure battery drop",
+      "i_can_statement": "I can notice when a battery voltage drops under load.",
+      "primary_family": "power",
+      "level": 3,
+      "dependencies": [
+        "r_pow_02"
+      ],
+      "materials": [
+        "battery pack",
+        "motor",
+        "multimeter",
+        "test leads"
+      ],
+      "success_condition": "A measurement shows how voltage changes when the motor runs.",
+      "debug_prompts": [
+        "Are the meter leads in the right sockets?",
+        "Does the reading change only when the load runs?"
+      ],
+      "stretch_challenge": "Compare a fresh pack and a tired pack.",
+      "possible_integrations": [
+        "r_int_20",
+        "r_int_30"
+      ],
+      "supporting_families": [
+        "debugging_testing"
+      ],
+      "classification_rationale": "Primary learning is measuring safe supplied power.",
+      "result_image": "assets/power-card-results/r_pow_11.svg",
+      "result_alt": "Measure battery drop result build on a workshop table"
+    },
+    {
+      "id": "r_pow_12",
+      "title": "Choose a pack for a motor",
+      "i_can_statement": "I can choose a power pack that suits a motor and its job.",
+      "primary_family": "power",
+      "level": 4,
+      "dependencies": [
+        "r_pow_02",
+        "r_mov_02"
+      ],
+      "materials": [
+        "two battery packs",
+        "motor",
+        "wheel load",
+        "switch"
+      ],
+      "success_condition": "The chosen pack runs the motor reliably without unsafe heat or strain.",
+      "debug_prompts": [
+        "Does the motor start under load?",
+        "Do any parts get warm?"
+      ],
+      "stretch_challenge": "Explain why the other pack was not chosen.",
+      "possible_integrations": [
+        "r_int_16",
+        "r_int_20"
+      ],
+      "supporting_families": [
+        "movement"
+      ],
+      "classification_rationale": "Primary learning is applying power choice to a real load.",
+      "result_image": "assets/power-card-results/r_pow_12.svg",
+      "result_alt": "Choose a pack for a motor result build on a workshop table"
+    },
+    {
+      "id": "r_mat_09",
+      "title": "Pick a material for a job",
+      "i_can_statement": "I can choose a material because it bends, holds, slides, or protects.",
+      "primary_family": "materials_fabrication",
+      "level": 1,
+      "dependencies": [],
+      "materials": [
+        "cardboard",
+        "foam",
+        "felt",
+        "plastic sheet"
+      ],
+      "success_condition": "A material is chosen for a named property and job.",
+      "debug_prompts": [
+        "What does this part need to do?",
+        "Should it bend, stay stiff, grip, or slide?"
+      ],
+      "stretch_challenge": "Find a second material that could do the job differently.",
+      "possible_integrations": [
+        "r_int_05",
+        "r_int_21"
+      ],
+      "supporting_families": [
+        "design_iteration"
+      ],
+      "classification_rationale": "Primary learning is recognising material properties for making.",
+      "result_image": "assets/power-card-results/r_mat_09.svg",
+      "result_alt": "Pick a material for a job result build on a workshop table"
+    },
+    {
+      "id": "r_mat_10",
+      "title": "Make a clean cardboard hinge",
+      "i_can_statement": "I can cut, fold, and tape a cardboard hinge that opens smoothly.",
+      "primary_family": "materials_fabrication",
+      "level": 2,
+      "dependencies": [
+        "r_mat_01"
+      ],
+      "materials": [
+        "corrugated card",
+        "tape",
+        "ruler",
+        "safe cutter"
+      ],
+      "success_condition": "The hinge opens and closes ten times without tearing.",
+      "debug_prompts": [
+        "Is the fold scored in the right place?",
+        "Is the tape stopping the hinge from moving?"
+      ],
+      "stretch_challenge": "Try a fabric or paper hinge and compare it.",
+      "possible_integrations": [
+        "r_int_08",
+        "r_int_11"
+      ],
+      "supporting_families": [
+        "movement"
+      ],
+      "classification_rationale": "Primary learning is fabricating a simple moving joint.",
+      "result_image": "assets/power-card-results/r_mat_10.svg",
+      "result_alt": "Make a clean cardboard hinge result build on a workshop table"
+    },
+    {
+      "id": "r_mat_11",
+      "title": "Make two matching parts",
+      "i_can_statement": "I can use a template to make two parts the same size.",
+      "primary_family": "materials_fabrication",
+      "level": 3,
+      "dependencies": [
+        "r_mat_02"
+      ],
+      "materials": [
+        "template",
+        "card sheet",
+        "pencil",
+        "safe cutter"
+      ],
+      "success_condition": "Two parts line up closely enough to assemble as a pair.",
+      "debug_prompts": [
+        "Did the template move?",
+        "Which edge is the reference edge?"
+      ],
+      "stretch_challenge": "Make four matching parts and stack-check them.",
+      "possible_integrations": [
+        "r_int_05",
+        "r_int_21"
+      ],
+      "supporting_families": [
+        "debugging_testing"
+      ],
+      "classification_rationale": "Primary learning is improving fabrication repeatability.",
+      "result_image": "assets/power-card-results/r_mat_11.svg",
+      "result_alt": "Make two matching parts result build on a workshop table"
+    },
+    {
+      "id": "r_mat_12",
+      "title": "Assemble a removable cover",
+      "i_can_statement": "I can make a cover that protects a build but can be opened for repair.",
+      "primary_family": "materials_fabrication",
+      "level": 5,
+      "dependencies": [
+        "r_mat_04",
+        "r_str_04"
+      ],
+      "materials": [
+        "card enclosure",
+        "tabs",
+        "split pins",
+        "tape"
+      ],
+      "success_condition": "The cover stays on during use and can be removed without tearing the build.",
+      "debug_prompts": [
+        "Where does access need to happen?",
+        "What part should be permanent and what part should open?"
+      ],
+      "stretch_challenge": "Add a cable route or battery door.",
+      "possible_integrations": [
+        "r_int_20",
+        "r_int_30"
+      ],
+      "supporting_families": [
+        "structures",
+        "design_iteration"
+      ],
+      "classification_rationale": "Primary learning is coordinating parts and assemblies for access.",
+      "result_image": "assets/power-card-results/r_mat_12.svg",
+      "result_alt": "Assemble a removable cover result build on a workshop table"
+    },
+    {
+      "id": "r_log_09",
+      "title": "Put action steps in order",
+      "i_can_statement": "I can arrange start, action, wait, and stop steps in a sensible order.",
+      "primary_family": "logic_sequencing",
+      "level": 1,
+      "dependencies": [],
+      "materials": [
+        "step cards",
+        "timer token",
+        "action tokens"
+      ],
+      "success_condition": "The sequence can be acted out from start to finish without missing a step.",
+      "debug_prompts": [
+        "What has to happen first?",
+        "Where does the action stop?"
+      ],
+      "stretch_challenge": "Add a repeat step and act it out again.",
+      "possible_integrations": [
+        "r_int_12",
+        "r_int_23"
+      ],
+      "supporting_families": [],
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_log_09.svg",
+      "result_alt": "Put action steps in order result build on a workshop table"
+    },
+    {
+      "id": "r_log_10",
+      "title": "Make a timer sequence",
+      "i_can_statement": "I can make an output turn on, wait, then turn off.",
+      "primary_family": "logic_sequencing",
+      "level": 2,
+      "dependencies": [
+        "r_log_01"
+      ],
+      "materials": [
+        "timer board",
+        "LED",
+        "button",
+        "step cards"
+      ],
+      "success_condition": "The output follows the on-wait-off order three times.",
+      "debug_prompts": [
+        "Which step is happening now?",
+        "Is the wait too short to notice?"
+      ],
+      "stretch_challenge": "Change the wait time and compare the behaviour.",
+      "possible_integrations": [
+        "r_int_02",
+        "r_int_24"
+      ],
+      "supporting_families": [
+        "control_input"
+      ],
+      "classification_rationale": "Primary learning is activating a simple sequence.",
+      "result_image": "assets/power-card-results/r_log_10.svg",
+      "result_alt": "Make a timer sequence result build on a workshop table"
+    },
+    {
+      "id": "r_log_11",
+      "title": "Use if-then in a prop",
+      "i_can_statement": "I can make a prop do one action if a condition is true.",
+      "primary_family": "logic_sequencing",
+      "level": 4,
+      "dependencies": [
+        "r_log_03",
+        "r_sen_02"
+      ],
+      "materials": [
+        "sensor",
+        "LED or motor",
+        "condition cards",
+        "prop body"
+      ],
+      "success_condition": "The prop acts only when the chosen condition is met.",
+      "debug_prompts": [
+        "What is the if part?",
+        "What should happen when it is not true?"
+      ],
+      "stretch_challenge": "Add a different action for the else case.",
+      "possible_integrations": [
+        "r_int_12",
+        "r_int_25"
+      ],
+      "supporting_families": [
+        "sensing"
+      ],
+      "classification_rationale": "Primary learning is applying logic to a real object.",
+      "result_image": "assets/power-card-results/r_log_11.svg",
+      "result_alt": "Use if-then in a prop result build on a workshop table"
+    },
+    {
+      "id": "r_log_12",
+      "title": "Coordinate start, wait, stop",
+      "i_can_statement": "I can coordinate several timed steps so a mini machine behaves predictably.",
+      "primary_family": "logic_sequencing",
+      "level": 5,
+      "dependencies": [
+        "r_log_04",
+        "r_mov_06"
+      ],
+      "materials": [
+        "timer board",
+        "motor",
+        "servo",
+        "indicator"
+      ],
+      "success_condition": "The machine follows the same timed pattern for three runs.",
+      "debug_prompts": [
+        "Which step overlaps?",
+        "Where does the timing need a pause?"
+      ],
+      "stretch_challenge": "Add a second wait to make the action clearer.",
+      "possible_integrations": [
+        "r_int_10",
+        "r_int_23"
+      ],
+      "supporting_families": [
+        "movement"
+      ],
+      "classification_rationale": "Primary learning is coordinating related timed actions.",
+      "result_image": "assets/power-card-results/r_log_12.svg",
+      "result_alt": "Coordinate start, wait, stop result build on a workshop table"
+    },
+    {
+      "id": "r_com_09",
+      "title": "Match signals to messages",
+      "i_can_statement": "I can match a light, sound, movement, or radio signal to a simple message.",
+      "primary_family": "communication",
+      "level": 1,
+      "dependencies": [],
+      "materials": [
+        "LED",
+        "buzzer",
+        "flag",
+        "radio module sample"
+      ],
+      "success_condition": "Signals are matched to messages such as ready, stop, found, or help.",
+      "debug_prompts": [
+        "Who needs to notice the message?",
+        "Can the message be seen or heard from far enough away?"
+      ],
+      "stretch_challenge": "Choose a signal for a noisy room and explain why.",
+      "possible_integrations": [
+        "r_int_02",
+        "r_int_14"
+      ],
+      "supporting_families": [
+        "design_iteration"
+      ],
+      "classification_rationale": "Primary learning is recognising communication channels.",
+      "result_image": "assets/power-card-results/r_com_09.svg",
+      "result_alt": "Match signals to messages result build on a workshop table"
+    },
+    {
+      "id": "r_com_10",
+      "title": "Make an alert pattern",
+      "i_can_statement": "I can make a light or sound pattern that means one clear thing.",
+      "primary_family": "communication",
+      "level": 3,
+      "dependencies": [
+        "r_com_02"
+      ],
+      "materials": [
+        "LED",
+        "buzzer",
+        "timer board",
+        "pattern cards"
+      ],
+      "success_condition": "Another person can tell which alert pattern means the chosen message.",
+      "debug_prompts": [
+        "Is the pattern too fast?",
+        "Does it look different from the other signal?"
+      ],
+      "stretch_challenge": "Create a second pattern for a different message.",
+      "possible_integrations": [
+        "r_int_02",
+        "r_int_12"
+      ],
+      "supporting_families": [
+        "logic_sequencing"
+      ],
+      "classification_rationale": "Primary learning is adjusting a signal to carry meaning.",
+      "result_image": "assets/power-card-results/r_com_10.svg",
+      "result_alt": "Make an alert pattern result build on a workshop table"
+    },
+    {
+      "id": "r_com_11",
+      "title": "Send a message across a table",
+      "i_can_statement": "I can send a simple message from one model to another nearby model.",
+      "primary_family": "communication",
+      "level": 4,
+      "dependencies": [
+        "r_com_03"
+      ],
+      "materials": [
+        "sender board",
+        "receiver board",
+        "LED",
+        "button"
+      ],
+      "success_condition": "A receiver reacts when the sender sends the chosen message.",
+      "debug_prompts": [
+        "Are sender and receiver using the same channel?",
+        "Is the receiver powered and listening?"
+      ],
+      "stretch_challenge": "Move the receiver further away and test reliability.",
+      "possible_integrations": [
+        "r_int_14",
+        "r_int_23"
+      ],
+      "supporting_families": [
+        "control_input",
+        "power"
+      ],
+      "classification_rationale": "Primary learning is applying communication between objects.",
+      "result_image": "assets/power-card-results/r_com_11.svg",
+      "result_alt": "Send a message across a table result build on a workshop table"
+    },
+    {
+      "id": "r_com_12",
+      "title": "Coordinate sender and receiver",
+      "i_can_statement": "I can make a sender and receiver share clear roles in a linked build.",
+      "primary_family": "communication",
+      "level": 5,
+      "dependencies": [
+        "r_com_04",
+        "r_ctl_06"
+      ],
+      "materials": [
+        "two boards",
+        "button",
+        "indicator",
+        "radio link"
+      ],
+      "success_condition": "Each side has a clear job and the linked action works repeatedly.",
+      "debug_prompts": [
+        "Which side starts the message?",
+        "What should the receiver show back?"
+      ],
+      "stretch_challenge": "Add an acknowledgement signal.",
+      "possible_integrations": [
+        "r_int_14",
+        "r_int_23"
+      ],
+      "supporting_families": [
+        "control_input"
+      ],
+      "classification_rationale": "Primary learning is coordinating communication roles.",
+      "result_image": "assets/power-card-results/r_com_12.svg",
+      "result_alt": "Coordinate sender and receiver result build on a workshop table"
+    },
+    {
+      "id": "r_dbg_09",
+      "title": "Name the symptom",
+      "i_can_statement": "I can describe what a broken build is doing before guessing why.",
+      "primary_family": "debugging_testing",
+      "level": 1,
+      "dependencies": [],
+      "materials": [
+        "test build",
+        "observation tokens",
+        "magnifier"
+      ],
+      "success_condition": "The symptom is described as an observation, not a guess.",
+      "debug_prompts": [
+        "What do you see or hear?",
+        "What changed from the working example?"
+      ],
+      "stretch_challenge": "Write two possible causes after naming the symptom.",
+      "possible_integrations": [
+        "r_int_24",
+        "r_int_30"
+      ],
+      "supporting_families": [],
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_dbg_09.svg",
+      "result_alt": "Name the symptom result build on a workshop table"
+    },
+    {
+      "id": "r_dbg_10",
+      "title": "Test one connection",
+      "i_can_statement": "I can test one connection before changing the whole build.",
+      "primary_family": "debugging_testing",
+      "level": 2,
+      "dependencies": [
+        "r_dbg_01"
+      ],
+      "materials": [
+        "test leads",
+        "battery pack",
+        "LED",
+        "connector"
+      ],
+      "success_condition": "One connection is confirmed working or not working with a simple test.",
+      "debug_prompts": [
+        "What are you testing right now?",
+        "What result would prove the connection works?"
+      ],
+      "stretch_challenge": "Mark the tested connection and move to the next one.",
+      "possible_integrations": [
+        "r_int_24",
+        "r_int_30"
+      ],
+      "supporting_families": [
+        "power"
+      ],
+      "classification_rationale": "Primary learning is a focused test; power parts make the test visible.",
+      "result_image": "assets/power-card-results/r_dbg_10.svg",
+      "result_alt": "Test one connection result build on a workshop table"
+    },
+    {
+      "id": "r_dbg_11",
+      "title": "Change one thing at a time",
+      "i_can_statement": "I can change one part of a build and compare the result.",
+      "primary_family": "debugging_testing",
+      "level": 3,
+      "dependencies": [
+        "r_dbg_02"
+      ],
+      "materials": [
+        "test build",
+        "swap part",
+        "result notes"
+      ],
+      "success_condition": "The result is linked to one named change.",
+      "debug_prompts": [
+        "What stayed the same?",
+        "What changed between the two tests?"
+      ],
+      "stretch_challenge": "Run the original test again to confirm the difference.",
+      "possible_integrations": [
+        "r_int_24",
+        "r_int_30"
+      ],
+      "supporting_families": [
+        "design_iteration"
+      ],
+      "classification_rationale": "Primary learning is controlled comparison.",
+      "result_image": "assets/power-card-results/r_dbg_11.svg",
+      "result_alt": "Change one thing at a time result build on a workshop table"
+    },
+    {
+      "id": "r_dbg_12",
+      "title": "Build a repeatable test rig",
+      "i_can_statement": "I can make a simple test rig that gives comparable results each time.",
+      "primary_family": "debugging_testing",
+      "level": 5,
+      "dependencies": [
+        "r_dbg_04",
+        "r_str_04"
+      ],
+      "materials": [
+        "test ramp",
+        "stop block",
+        "measure strip",
+        "prototype"
+      ],
+      "success_condition": "Three test runs can be compared because the setup stays the same.",
+      "debug_prompts": [
+        "What part of the test must not move?",
+        "How will you record the result?"
+      ],
+      "stretch_challenge": "Use the rig to compare two prototypes fairly.",
+      "possible_integrations": [
+        "r_int_20",
+        "r_int_30"
+      ],
+      "supporting_families": [
+        "structures"
+      ],
+      "classification_rationale": "Primary learning is coordinating evidence collection with a repeatable setup.",
+      "result_image": "assets/power-card-results/r_dbg_12.svg",
+      "result_alt": "Build a repeatable test rig result build on a workshop table"
+    },
+    {
+      "id": "r_des_09",
+      "title": "Choose a user and job",
+      "i_can_statement": "I can name who a build is for and what job it should help with.",
+      "primary_family": "design_iteration",
+      "level": 1,
+      "dependencies": [],
+      "materials": [
+        "user cards",
+        "job cards",
+        "prototype samples"
+      ],
+      "success_condition": "A user and job are named before choosing a solution.",
+      "debug_prompts": [
+        "Who will use it?",
+        "What are they trying to do?"
+      ],
+      "stretch_challenge": "Name one thing that would make the job easier or harder.",
+      "possible_integrations": [
+        "r_int_21",
+        "r_int_29"
+      ],
+      "supporting_families": [],
+      "classification_rationale": "",
+      "result_image": "assets/power-card-results/r_des_09.svg",
+      "result_alt": "Choose a user and job result build on a workshop table"
+    },
+    {
+      "id": "r_des_10",
+      "title": "Sketch two quick ideas",
+      "i_can_statement": "I can sketch two different ideas before choosing one to build.",
+      "primary_family": "design_iteration",
+      "level": 2,
+      "dependencies": [
+        "r_des_01"
+      ],
+      "materials": [
+        "paper",
+        "pencil",
+        "prototype parts"
+      ],
+      "success_condition": "Two ideas are visibly different and one is chosen for a reason.",
+      "debug_prompts": [
+        "What is different about idea two?",
+        "Which one is easier to test quickly?"
+      ],
+      "stretch_challenge": "Combine the best part of both ideas.",
+      "possible_integrations": [
+        "r_int_21",
+        "r_int_29"
+      ],
+      "supporting_families": [
+        "materials_fabrication"
+      ],
+      "classification_rationale": "Primary learning is making design choices visible before building.",
+      "result_image": "assets/power-card-results/r_des_10.svg",
+      "result_alt": "Sketch two quick ideas result build on a workshop table"
+    },
+    {
+      "id": "r_des_11",
+      "title": "Test comfort with a handle",
+      "i_can_statement": "I can test whether a handle, button, or grip is comfortable to use.",
+      "primary_family": "design_iteration",
+      "level": 3,
+      "dependencies": [
+        "r_des_02"
+      ],
+      "materials": [
+        "card handle",
+        "button",
+        "feedback tokens"
+      ],
+      "success_condition": "Feedback leads to one change in size, position, or shape.",
+      "debug_prompts": [
+        "Where did the user hesitate?",
+        "What felt awkward to hold or press?"
+      ],
+      "stretch_challenge": "Compare comfort for two different hand sizes.",
+      "possible_integrations": [
+        "r_int_24",
+        "r_int_29"
+      ],
+      "supporting_families": [
+        "control_input",
+        "materials_fabrication"
+      ],
+      "classification_rationale": "Primary learning is using feedback to adjust a human-facing feature.",
+      "result_image": "assets/power-card-results/r_des_11.svg",
+      "result_alt": "Test comfort with a handle result build on a workshop table"
+    },
+    {
+      "id": "r_des_12",
+      "title": "Make a prototype fit a real place",
+      "i_can_statement": "I can adapt a prototype so it fits the space where it will be used.",
+      "primary_family": "design_iteration",
+      "level": 4,
+      "dependencies": [
+        "r_des_03",
+        "r_mat_02"
+      ],
+      "materials": [
+        "prototype",
+        "measuring strip",
+        "space template",
+        "card parts"
+      ],
+      "success_condition": "The prototype fits the chosen space and still performs its job.",
+      "debug_prompts": [
+        "What is the tightest space?",
+        "What changed when the size changed?"
+      ],
+      "stretch_challenge": "Make a smaller version without losing the main function.",
+      "possible_integrations": [
+        "r_int_21",
+        "r_int_29"
+      ],
+      "supporting_families": [
+        "materials_fabrication",
+        "structures"
+      ],
+      "classification_rationale": "Primary learning is applying design constraints to a real context.",
+      "result_image": "assets/power-card-results/r_des_12.svg",
+      "result_alt": "Make a prototype fit a real place result build on a workshop table"
     }
   ]
 };

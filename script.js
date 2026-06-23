@@ -81,6 +81,7 @@ if (scrollSpinLoops.length) {
 if (curriculumData && powerCardResults) {
   const familiesById = new Map(curriculumData.families.map((family) => [family.id, family]));
   const powerCardsById = new Map(curriculumData.powerCards.map((card) => [card.id, card]));
+  const initialCardParams = new URLSearchParams(window.location.search);
   let selectedFamilyId = null;
   let selectedLevel = null;
 
@@ -88,8 +89,7 @@ if (curriculumData && powerCardResults) {
     r_mov_01: {
       title: "Meet things that move",
       mission: "Find the part that makes something move. Try a motor, a servo and a push-pull part.",
-      earned: "You can point to what moves and describe how it moves.",
-      adultSetup: "Set out a motor, a servo and a push-pull sample. Keep fingers clear of moving parts."
+      earned: "You can point to what moves and describe how it moves."
     },
     r_ctl_01: {
       title: "Meet ways to control things",
@@ -186,8 +186,7 @@ if (curriculumData && powerCardResults) {
       mission: override.mission || sentenceFromICan(card.i_can_statement),
       materials: override.materials || formatList(card.materials || []),
       earned: override.earned || card.success_condition,
-      tryNext: override.tryNext || card.stretch_challenge,
-      adultSetup: override.adultSetup || `Prepare ${formatList((card.materials || []).slice(0, 3)).toLowerCase()}. Keep the setup safe and use the prompt questions if the child gets stuck.`
+      tryNext: override.tryNext || card.stretch_challenge
     };
   };
 
@@ -243,6 +242,18 @@ if (curriculumData && powerCardResults) {
 
       addText(article, "p", "power-card-meta", `Level ${card.level} · ${familyLabel}`);
       addText(article, "h3", "", copy.title);
+
+      if (card.result_image) {
+        const figure = document.createElement("figure");
+        figure.className = "power-card-result";
+        const image = document.createElement("img");
+        image.src = card.result_image;
+        image.alt = card.result_alt || `${copy.title} result build`;
+        image.loading = "lazy";
+        figure.append(image);
+        article.append(figure);
+      }
+
       addCardSection(article, "Your mission", copy.mission, "mission-section");
       addCardSection(article, "You’ll use", copy.materials);
       addCardSection(article, "You’ve earned this power when", copy.earned);
@@ -256,14 +267,6 @@ if (curriculumData && powerCardResults) {
       }
 
       addCardSection(article, "Try next", copy.tryNext, "try-next-section");
-
-      const adultNote = document.createElement("details");
-      adultNote.className = "grown-up-note";
-      const summary = document.createElement("summary");
-      summary.textContent = "Grown-up setup";
-      adultNote.append(summary);
-      addText(adultNote, "p", "", copy.adultSetup);
-      article.append(adultNote);
 
       powerCardResults.append(article);
     });
@@ -286,6 +289,15 @@ if (curriculumData && powerCardResults) {
       scrollToSection("#power-cards");
     });
   });
+
+  const initialFamilyId = initialCardParams.get("family");
+  const initialLevel = Number(initialCardParams.get("level"));
+  if (familiesById.has(initialFamilyId)) {
+    selectedFamilyId = initialFamilyId;
+  }
+  if (Number.isInteger(initialLevel) && initialLevel >= 1 && initialLevel <= 6) {
+    selectedLevel = initialLevel;
+  }
 
   renderPowerCards();
 }
