@@ -16,6 +16,7 @@ The canonical source owns Skill Cards, Power Cards, Integration Cards, Invention
 - `curriculum-data.js` is a generated website-compatible mirror for the current static site API.
 - `curriculum/generated/*` contains generated review/build artefacts and should not be edited by hand.
 - `curriculum/generated/pilot-kit-list.json` is a generated packing and ordering aid for the current Level 1-2 pilot kit scope. It should not be hand-authored.
+- `curriculum/generated/pilot-run-cards/index.md` is a generated operational facilitator aid for the current 20 pilot Power Cards. It renders existing `activity_flow`, kit metadata, safety metadata, preload notes, and diagram semantics for print/review before a pilot session. It is distinct from final lesson plans and is not consumed by the website.
 - `curriculum/generated/lesson-plans/*` is experimental generated facilitator output. Treat these files as planning aids only; review safety, materials, age fit, and support assumptions before use.
 - `reports/validation-results.json` is generated validation output.
 - `reports/power-card-level-audit.md` is generated validation output listing Power Cards that need human review against the level model.
@@ -36,6 +37,10 @@ For this phase:
 ## Pilot Kit Asset Model
 
 The pilot kit model covers only the current Level 1-2 Power Cards in Movement, Control/Input, Sensing, Power, and Structures. Do not add `required_assets` to other Power Cards unless the pilot scope is deliberately expanded.
+
+Pilot facilitator run cards use the same scope. They are generated from existing Power Card `activity_flow` entries plus the physical asset inventory. They should not introduce new curriculum wording, extra assets, different levels, or additional pilot cards. If a run card needs better instructions, edit the canonical `activity_flow` data first, then rebuild.
+
+Run cards are operational aids for adults preparing or facilitating a pilot session. They include card identity, I-can statement, success condition, kit pick list, setup/start/build/test/debug/reset steps, safety and supervision notes, preload profile notes, and diagram references or semantics. They deliberately do not include final lesson-plan structure such as timings, assessment rubrics, extension activities, or broad pedagogy prose.
 
 Physical assets use two identifiers:
 
@@ -92,16 +97,24 @@ Pilot preload profiles are adult-flashed and locked: they use `programming_state
    python3 tools/build_curriculum.py
    ```
 
-3. Regenerate experimental lesson plans only when needed:
+3. Regenerate pilot run cards directly only when inspecting that output in isolation:
+
+   ```bash
+   python3 tools/generate_pilot_run_cards.py
+   ```
+
+   The normal build command also regenerates `curriculum/generated/pilot-run-cards/index.md`.
+
+4. Regenerate experimental lesson plans only when needed:
 
    ```bash
    python3 tools/generate_lesson_plans.py
    ```
 
-4. Validate source and generated outputs:
+5. Validate source and generated outputs:
 
    ```bash
    python3 tools/validate_curriculum.py --source curriculum/source/curriculum.v1.json --curriculum-dir curriculum/generated --output reports/validation-results.json
    ```
 
-Do not hand-author `curriculum/generated/*`, root `curriculum-data.js`, or generated lesson-plan files.
+Do not hand-author `curriculum/generated/*`, root `curriculum-data.js`, generated pilot run-card files, or generated lesson-plan files.

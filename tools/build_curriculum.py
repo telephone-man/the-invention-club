@@ -15,12 +15,15 @@ import shutil
 from pathlib import Path
 from typing import Any
 
+import generate_pilot_run_cards
+
 
 ROOT = Path(__file__).resolve().parents[1]
 SOURCE_PATH = ROOT / "curriculum/source/curriculum.v1.json"
 GENERATED_DIR = ROOT / "curriculum/generated"
 BROWSER_DIR = GENERATED_DIR / "browser"
 LESSON_DIR = GENERATED_DIR / "lesson-plans"
+RUN_CARD_DIR = GENERATED_DIR / "pilot-run-cards"
 GENERATED_NOTICE = [
     "GENERATED FILE - DO NOT EDIT BY HAND.",
     "Source: curriculum/source/curriculum.v1.json",
@@ -619,6 +622,7 @@ def write_browser_bundle(path: Path, global_name: str, payload: Any) -> None:
 def build_outputs(source: dict[str, Any], *, mirror_root: bool = True) -> None:
     BROWSER_DIR.mkdir(parents=True, exist_ok=True)
     GENERATED_DIR.mkdir(parents=True, exist_ok=True)
+    RUN_CARD_DIR.mkdir(parents=True, exist_ok=True)
 
     browser_payload = browser_curriculum_payload(source)
     browser_curriculum_path = BROWSER_DIR / "curriculum-data.js"
@@ -641,6 +645,10 @@ def build_outputs(source: dict[str, Any], *, mirror_root: bool = True) -> None:
     write_json(GENERATED_DIR / "asset-inventory.json", source["asset_inventory"])
     write_json(GENERATED_DIR / "preload-manifest.json", {"profiles": source["preload_profiles"]})
     write_json(GENERATED_DIR / "pilot-kit-list.json", build_pilot_kit_list(source))
+    (RUN_CARD_DIR / "index.md").write_text(
+        generate_pilot_run_cards.expected_pilot_run_cards_markdown(source),
+        encoding="utf-8",
+    )
 
 
 def main() -> int:

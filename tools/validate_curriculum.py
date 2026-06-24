@@ -10,6 +10,8 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
+import generate_pilot_run_cards
+
 
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE = ROOT / "curriculum/source/curriculum.v1.json"
@@ -117,6 +119,26 @@ SAFETY_SENSITIVE_CATEGORIES = {
     "programmable_board",
     "programmable_board_accessory",
     "wire",
+}
+RUN_CARD_SAFETY_METADATA_CATEGORIES = {
+    "power_source",
+    "programmable_board",
+    "programmable_board_accessory",
+    "wire",
+    "load",
+}
+RUN_CARD_REQUIRED_HEADINGS = {
+    "##### Kit Pick List",
+    "##### Safety and Prep",
+    "##### Preload Profile Notes",
+    "##### Adult Setup",
+    "##### Child Start State",
+    "##### Build Steps",
+    "##### Test Steps",
+    "##### Debug Steps",
+    "##### Reset and Pack-Away",
+    "##### Facilitator Notes",
+    "##### Diagram Semantics",
 }
 ELECTRICAL_LIMIT_ASSET_IDS = {
     "part_aa_battery_pack",
@@ -1601,6 +1623,91 @@ def validate_profiles_and_audit(source: dict[str, Any], errors: list[str], warni
         warnings.append("Audit caution retained: validation reports known intent-sensitive boundaries instead of treating clean metrics as final proof.")
 
 
+def card_text_section(markdown: str, power_card_id: str) -> str:
+    pattern = rf"^#### {re.escape(power_card_id)} - .*$"
+    match = re.search(pattern, markdown, flags=re.MULTILINE)
+    if not match:
+        return ""
+    next_match = re.search(r"^#### r_[a-z]+_\d+ - .*$", markdown[match.end() :], flags=re.MULTILINE)
+    if not next_match:
+        return markdown[match.start() :]
+    return markdown[match.start() : match.end() + next_match.start()]
+
+
+def validate_pilot_run_card_records(records: list[dict[str, Any]], errors: list[str]) -> None:
+    for record in records:
+        power_id = record.get("power_card_id", "<missing-id>")
+        assets = record.get("assets", [])
+        for asset in assets:
+            if not isinstance(asset, dict):
+                errors.append(f"pilot run-card {power_id}: asset row must be an object")
+                continue
+            for field in ("kit_code", "short_label", "quantity", "quantity_basis", "preparation_state"):
+                value = asset.get(field)
+                if value is None or str(value).strip() == "":
+                    errors.append(f"pilot run-card {power_id}: asset {asset.get('asset_id')} missing {field}")
+            storage = asset.get("storage", {}) if isinstance(asset.get("storage"), dict) else {}
+            if not str(storage.get("bin_id", "")).strip():
+                errors.append(f"pilot run-card {power_id}: asset {asset.get('asset_id')} missing storage bin_id")
+
+            needs_safety_metadata = (
+                asset.get("supervision_level") in {"direct", "adult_controlled", "demo_only"}
+                or asset.get("category") in RUN_CARD_SAFETY_METADATA_CATEGORIES
+            )
+            if needs_safety_metadata:
+                if not asset.get("safety_flags"):
+                    errors.append(f"pilot run-card {power_id}: asset {asset.get('asset_id')} missing safety_flags")
+                if not str(asset.get("supervision_level", "")).strip():
+                    errors.append(f"pilot run-card {power_id}: asset {asset.get('asset_id')} missing supervision_level")
+
+            if asset.get("preparation_state") == "preloaded" or asset.get("preload_profile_id"):
+                if not str(asset.get("preload_profile_id", "")).strip():
+                    errors.append(f"pilot run-card {power_id}: preloaded asset {asset.get('asset_id')} missing preload_profile_id")
+                if not str(asset.get("preload_profile_label", "")).strip():
+                    errors.append(f"pilot run-card {power_id}: preloaded asset {asset.get('asset_id')} missing preload_profile_label")
+
+
+def validate_pilot_run_card_pack(source: dict[str, Any], generated_dir: Path, errors: list[str]) -> None:
+    run_card_path = generated_dir / "pilot-run-cards/index.md"
+    if "lesson-plans" in run_card_path.parts:
+        errors.append(f"pilot run-card output must not be under lesson-plans: {run_card_path}")
+
+    records = generate_pilot_run_cards.pilot_run_card_records(source)
+    validate_pilot_run_card_records(records, errors)
+    expected_ids = [str(record.get("power_card_id")) for record in records]
+
+    if not run_card_path.exists():
+        errors.append(f"Missing generated pilot run-card pack: {run_card_path}")
+        return
+
+    actual = run_card_path.read_text(encoding="utf-8")
+    expected = generate_pilot_run_cards.render_pilot_run_cards_markdown(records)
+    if actual != expected:
+        errors.append("generated pilot run-card pack does not match canonical source")
+
+    actual_ids = re.findall(r"^#### (r_[a-z]+_\d+) - ", actual, flags=re.MULTILINE)
+    if actual_ids != expected_ids:
+        missing = sorted(set(expected_ids) - set(actual_ids))
+        extra = sorted(set(actual_ids) - set(expected_ids))
+        errors.append(
+            f"generated pilot run-card pack has wrong Power Card scope/order; missing={missing}, extra={extra}"
+        )
+
+    for power_id in expected_ids:
+        section = card_text_section(actual, power_id)
+        if not section:
+            errors.append(f"generated pilot run-card pack missing section for {power_id}")
+            continue
+        for heading in sorted(RUN_CARD_REQUIRED_HEADINGS):
+            if heading not in section:
+                errors.append(f"generated pilot run-card {power_id} missing heading {heading}")
+        for snippet in ("- Success condition:", "Prep Notes", "Supervision Notes"):
+            if snippet not in section:
+                errors.append(f"generated pilot run-card {power_id} missing required output snippet {snippet!r}")
+        if "##### Diagram Semantics" in section and "Diagram placeholder" not in section and "| Node | Asset | Role | Label |" not in section:
+            errors.append(f"generated pilot run-card {power_id} missing diagram semantics table or placeholder")
+
+
 def validate_generated_outputs(source: dict[str, Any], generated_dir: Path, errors: list[str]) -> None:
     browser_curriculum = extract_window_json(
         generated_dir / "browser/curriculum-data.js",
@@ -1645,6 +1752,8 @@ def validate_generated_outputs(source: dict[str, Any], generated_dir: Path, erro
         payload = load_json(path, errors)
         if payload and payload != expected_payload:
             errors.append(f"generated artefact {filename} does not structurally match canonical source")
+
+    validate_pilot_run_card_pack(source, generated_dir, errors)
 
 
 def compute_metrics(source: dict[str, Any], power_by_id: dict[str, dict[str, Any]]) -> dict[str, Any]:
