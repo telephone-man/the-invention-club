@@ -9,42 +9,96 @@ window.INVENTION_CLUB_CURRICULUM = {
       "name": "Encounter",
       "child_facing_summary": "Recognise it and use it safely.",
       "facilitator_definition": "Recognise parts, signals, inputs, materials, expected behaviour, and safe setup before trying to control or alter them.",
-      "coding_expectation": "No code required; children recognise parts, signals, inputs, and safe setup."
+      "coding_expectation": "No code.",
+      "dimensions": {
+        "adult_support": "Adult chooses safe parts, sets boundaries, and models observation language.",
+        "child_independence": "Child recognises, sorts, points, describes, and handles parts within prepared choices.",
+        "kit_state": "Loose sample parts, unplugged demos, or safely preassembled examples; no child-made circuit or mechanism required.",
+        "coding_expectation": "No code.",
+        "physical_build_complexity": "No construction beyond handling, sorting, placing, or attaching obvious parts.",
+        "debugging_evidence_expectation": "Notice and name what happens; no systematic debugging required.",
+        "integration_readiness": "Not integration-ready; builds vocabulary and safe familiarity for later Power Cards."
+      }
     },
     {
       "id": 2,
       "name": "Activate",
       "child_facing_summary": "Make the basic thing happen.",
       "facilitator_definition": "Make one simple output, input, sequence, message, test, or design move work in a controlled setup.",
-      "coding_expectation": "Use direct wiring, unplugged logic, or a provided starter program without needing to edit code."
+      "coding_expectation": "No child-authored code; preloaded or plug-and-play code is allowed.",
+      "dimensions": {
+        "adult_support": "Adult provides the setup or wiring route and supervises safe operation.",
+        "child_independence": "Child follows a known setup to make one basic thing happen.",
+        "kit_state": "Preselected parts, direct wiring, preloaded board, servo tester, template, or plug-and-play module.",
+        "coding_expectation": "No child-authored code; preloaded or plug-and-play code is allowed.",
+        "physical_build_complexity": "One actuator, input, sensor, join, material, message, or test setup with minimal assembly.",
+        "debugging_evidence_expectation": "Check whether the expected basic output/input appears; use simple yes/no evidence.",
+        "integration_readiness": "Can support a very simple Integration Card when paired with another Level 2 power."
+      }
     },
     {
       "id": 3,
       "name": "Adjust",
       "child_facing_summary": "Change how it behaves.",
       "facilitator_definition": "Change one variable such as speed, range, threshold, timing, mapping, material fit, test method, or criterion.",
-      "coding_expectation": "Adjust one parameter, threshold, timing value, mapping, or condition in a known pattern."
+      "coding_expectation": "Adjust one parameter, setting, threshold, timing value, or mode in a known pattern.",
+      "dimensions": {
+        "adult_support": "Adult gives a known working setup and helps isolate the one variable to change.",
+        "child_independence": "Child changes one setting, parameter, threshold, timing value, mode, material property, or mapping and observes the result.",
+        "kit_state": "Working starter setup with one adjustable element.",
+        "coding_expectation": "Adjust one parameter, setting, threshold, timing value, or mode in a known pattern.",
+        "physical_build_complexity": "One subsystem with one controlled variation; comparison between before and after is expected.",
+        "debugging_evidence_expectation": "Record or explain how the single change affected behaviour.",
+        "integration_readiness": "Ready to feed a controlled variable into a simple combined challenge."
+      }
     },
     {
       "id": 4,
       "name": "Apply",
       "child_facing_summary": "Use it in a new context.",
       "facilitator_definition": "Transfer a known skill to a different build, user, material, environment, subsystem, or constraint.",
-      "coding_expectation": "Adapt a known code or logic pattern to a new physical context with facilitator support."
+      "coding_expectation": "Guided adaptation of a known code or logic pattern.",
+      "dimensions": {
+        "adult_support": "Adult provides a familiar pattern and prompts transfer to a new context.",
+        "child_independence": "Child adapts a known approach for a different user, material, environment, mechanism, message, or constraint.",
+        "kit_state": "Starter pattern plus a new physical context or constraint.",
+        "coding_expectation": "Guided adaptation of a known code or logic pattern.",
+        "physical_build_complexity": "One subsystem transferred into a new build context, with fit, mounting, access, or use constraints.",
+        "debugging_evidence_expectation": "Test whether the known pattern still works in the new context and name needed changes.",
+        "integration_readiness": "Ready for Integration Cards that depend on one adapted subsystem."
+      }
     },
     {
       "id": 5,
       "name": "Coordinate",
       "child_facing_summary": "Make related things work together.",
       "facilitator_definition": "Coordinate multiple related elements inside the same primary family, while keeping other families supporting rather than primary.",
-      "coding_expectation": "Coordinate multiple inputs, outputs, states, messages, or subsystems; child can explain event or state flow."
+      "coding_expectation": "Coordinate multiple inputs, outputs, states, messages, or subsystems.",
+      "dimensions": {
+        "adult_support": "Adult helps plan order, interfaces, and conflict points across parts.",
+        "child_independence": "Child coordinates multiple elements so each has a clear role.",
+        "kit_state": "Multiple prepared subsystems, controls, sensors, states, messages, moving parts, structural elements, or material choices.",
+        "coding_expectation": "Coordinate multiple inputs, outputs, states, messages, or subsystems.",
+        "physical_build_complexity": "Multiple elements must work together without collision, conflict, overload, confusion, or unclear sequencing.",
+        "debugging_evidence_expectation": "Use trials or a simple checklist to show the coordinated system works as intended.",
+        "integration_readiness": "Strong preparation for Integration Cards; may be ready to combine across families."
+      }
     },
     {
       "id": 6,
       "name": "Improve",
       "child_facing_summary": "Test, refine and explain trade-offs.",
       "facilitator_definition": "Debug, refine, optimise, or explain trade-offs in the family object of study; only make Debugging/Testing primary when the diagnostic method is the learning target.",
-      "coding_expectation": "Debug, simplify, compare, or justify code, logic, and physical trade-offs; older learners may write short programs, but coding is not the only route."
+      "coding_expectation": "Debug, optimise, compare, or justify trade-offs in code, logic, or physical behaviour.",
+      "dimensions": {
+        "adult_support": "Adult supports fair testing, safety limits, and trade-off discussion.",
+        "child_independence": "Child identifies a weakness, chooses a fix or comparison, and justifies the trade-off.",
+        "kit_state": "Existing working or partly working build with evidence to compare before and after.",
+        "coding_expectation": "Debug, optimise, compare, or justify trade-offs in code, logic, or physical behaviour.",
+        "physical_build_complexity": "Refinement can involve mechanism, structure, power, materials, controls, sensing, communication, logic, or user fit, but the primary family remains the learning focus.",
+        "debugging_evidence_expectation": "Use before/after evidence, repeated trials, measurements, or user feedback to justify improvement.",
+        "integration_readiness": "Ready for more demanding Integration or Invention Cards when safety and support needs are clear."
+      }
     }
   ],
   "families": [
@@ -462,6 +516,26 @@ window.INVENTION_CLUB_CURRICULUM = {
         "servo",
         "solenoid samples"
       ],
+      "required_assets": [
+        {
+          "asset_id": "part_dc_motor",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Unwired sample for recognising rotation."
+        },
+        {
+          "asset_id": "part_micro_servo",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Unpowered sample for recognising angle motion."
+        },
+        {
+          "asset_id": "part_solenoid_sample",
+          "quantity": 1,
+          "preparation_state": "prebuilt",
+          "preparation_notes": "Adult-prepared push-pull demo sample; child observes only."
+        }
+      ],
       "success_condition": "Actuator types are matched to rotation, angle, or push-pull motion.",
       "debug_prompts": [
         "What part moves?",
@@ -491,6 +565,26 @@ window.INVENTION_CLUB_CURRICULUM = {
         "battery pack",
         "leads"
       ],
+      "required_assets": [
+        {
+          "asset_id": "part_dc_motor",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Ready for direct low-voltage motor test."
+        },
+        {
+          "asset_id": "part_aa_battery_pack",
+          "quantity": 1,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Adult inserts cells and checks the pack is switched off before handout."
+        },
+        {
+          "asset_id": "part_croc_clip_lead",
+          "quantity": 2,
+          "preparation_state": "loose",
+          "preparation_notes": "Use short leads with intact insulation."
+        }
+      ],
       "success_condition": "Motor spins while wires and fingers stay safe.",
       "debug_prompts": [
         "Is there a complete power path?",
@@ -519,6 +613,33 @@ window.INVENTION_CLUB_CURRICULUM = {
         "servo",
         "servo tester or board",
         "horn"
+      ],
+      "required_assets": [
+        {
+          "asset_id": "part_micro_servo",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Servo is ready to plug into the labelled breakout pins."
+        },
+        {
+          "asset_id": "part_servo_horn",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Loose horn for marking visible positions."
+        },
+        {
+          "asset_id": "part_microbit_board",
+          "quantity": 1,
+          "preparation_state": "preloaded",
+          "preparation_notes": "Board is flashed before session; children select positions but do not edit code.",
+          "preload_profile_id": "preload_microbit_servo_positions"
+        },
+        {
+          "asset_id": "part_microbit_breakout",
+          "quantity": 1,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Adult attaches board and labels servo pins before session."
+        }
       ],
       "success_condition": "Servo moves to at least two chosen positions.",
       "debug_prompts": [
@@ -555,7 +676,7 @@ window.INVENTION_CLUB_CURRICULUM = {
         "Which gear is driving?",
         "Is anything slipping?"
       ],
-      "stretch_challenge": "Explain the trade-off between speed and pulling force.",
+      "stretch_challenge": "Say which setup is faster and which setup pulls harder.",
       "possible_integrations": [
         "r_int_07",
         "r_int_20"
@@ -696,6 +817,32 @@ window.INVENTION_CLUB_CURRICULUM = {
         "potentiometer",
         "joystick"
       ],
+      "required_assets": [
+        {
+          "asset_id": "part_button_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Loose sample for press input sorting."
+        },
+        {
+          "asset_id": "part_toggle_switch",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Loose sample for toggle input sorting."
+        },
+        {
+          "asset_id": "part_potentiometer_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Loose sample for turn input sorting."
+        },
+        {
+          "asset_id": "part_joystick_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Loose sample for direction input sorting."
+        }
+      ],
       "success_condition": "Inputs are sorted by press, toggle, turn, or direction.",
       "debug_prompts": [
         "What does a person do to it?",
@@ -724,6 +871,33 @@ window.INVENTION_CLUB_CURRICULUM = {
         "button",
         "input board",
         "indicator"
+      ],
+      "required_assets": [
+        {
+          "asset_id": "part_button_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Ready to connect to the labelled input."
+        },
+        {
+          "asset_id": "part_microbit_board",
+          "quantity": 1,
+          "preparation_state": "preloaded",
+          "preparation_notes": "Board is flashed to show button state through an indicator.",
+          "preload_profile_id": "preload_microbit_button_indicator"
+        },
+        {
+          "asset_id": "part_microbit_breakout",
+          "quantity": 1,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Adult attaches board and labels button/indicator pins before session."
+        },
+        {
+          "asset_id": "part_led_indicator_module",
+          "quantity": 1,
+          "preparation_state": "prebuilt",
+          "preparation_notes": "Indicator module is ready to show input state."
+        }
       ],
       "success_condition": "Indicator changes only with button state.",
       "debug_prompts": [
@@ -754,12 +928,39 @@ window.INVENTION_CLUB_CURRICULUM = {
         "input board",
         "display"
       ],
+      "required_assets": [
+        {
+          "asset_id": "part_potentiometer_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Ready to connect to the labelled analog input."
+        },
+        {
+          "asset_id": "part_microbit_board",
+          "quantity": 1,
+          "preparation_state": "preloaded",
+          "preparation_notes": "Board is flashed to display analog readings without child-authored code.",
+          "preload_profile_id": "preload_microbit_analog_display"
+        },
+        {
+          "asset_id": "part_microbit_breakout",
+          "quantity": 1,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Adult attaches board and labels power, ground, and signal pins."
+        },
+        {
+          "asset_id": "part_numeric_display_module",
+          "quantity": 1,
+          "preparation_state": "prebuilt",
+          "preparation_notes": "Display module is ready to show changing values."
+        }
+      ],
       "success_condition": "Displayed value changes smoothly as the knob turns.",
       "debug_prompts": [
         "Are all three pins connected?",
         "Does the value jump or move smoothly?"
       ],
-      "stretch_challenge": "Map the knob to slow, medium, and fast zones.",
+      "stretch_challenge": "Point to low, middle, and high readings as the knob turns.",
       "possible_integrations": [
         "r_int_18"
       ],
@@ -932,6 +1133,32 @@ window.INVENTION_CLUB_CURRICULUM = {
         "tilt sensor",
         "distance sensor"
       ],
+      "required_assets": [
+        {
+          "asset_id": "part_light_sensor_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Loose sample for light sensing recognition."
+        },
+        {
+          "asset_id": "part_tilt_sensor_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Loose sample for tilt sensing recognition."
+        },
+        {
+          "asset_id": "part_distance_sensor_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Loose sample for distance sensing recognition."
+        },
+        {
+          "asset_id": "part_touch_sensor_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Loose sample for contact sensing recognition."
+        }
+      ],
       "success_condition": "Sensors are matched to light, tilt, distance, or contact.",
       "debug_prompts": [
         "What changes in the world?",
@@ -960,6 +1187,39 @@ window.INVENTION_CLUB_CURRICULUM = {
         "light sensor",
         "board",
         "display"
+      ],
+      "required_assets": [
+        {
+          "asset_id": "part_light_sensor_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Ready to connect to the labelled sensor input."
+        },
+        {
+          "asset_id": "part_microbit_board",
+          "quantity": 1,
+          "preparation_state": "preloaded",
+          "preparation_notes": "Board is flashed to display sensor readings without child-authored code.",
+          "preload_profile_id": "preload_microbit_analog_display"
+        },
+        {
+          "asset_id": "part_microbit_breakout",
+          "quantity": 1,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Adult attaches board and labels sensor pins before session."
+        },
+        {
+          "asset_id": "part_numeric_display_module",
+          "quantity": 1,
+          "preparation_state": "prebuilt",
+          "preparation_notes": "Display module is ready to show light readings."
+        },
+        {
+          "asset_id": "part_torch",
+          "quantity": 1,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Adult checks torch works and sets brightness expectations."
+        }
       ],
       "success_condition": "Displayed value changes when light is covered or uncovered.",
       "debug_prompts": [
@@ -1161,6 +1421,26 @@ window.INVENTION_CLUB_CURRICULUM = {
         "weights",
         "craft sticks"
       ],
+      "required_assets": [
+        {
+          "asset_id": "part_sample_frame",
+          "quantity": 2,
+          "preparation_state": "prebuilt",
+          "preparation_notes": "Provide one stable and one weaker frame sample."
+        },
+        {
+          "asset_id": "part_small_weight",
+          "quantity": 1,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Adult chooses a low test weight suitable for observation."
+        },
+        {
+          "asset_id": "part_craft_stick",
+          "quantity": 4,
+          "preparation_state": "blank",
+          "preparation_notes": "Blank loose sticks for pointing out beams and joints."
+        }
+      ],
       "success_condition": "Child points to where load travels and where a joint may fail.",
       "debug_prompts": [
         "Where is the weight pushing?",
@@ -1190,6 +1470,32 @@ window.INVENTION_CLUB_CURRICULUM = {
         "card",
         "tape",
         "small weight"
+      ],
+      "required_assets": [
+        {
+          "asset_id": "part_craft_stick",
+          "quantity": 8,
+          "preparation_state": "blank",
+          "preparation_notes": "Blank sticks for a simple frame build."
+        },
+        {
+          "asset_id": "part_card_stock",
+          "quantity": 2,
+          "preparation_state": "blank",
+          "preparation_notes": "Blank card pieces for gussets or base support."
+        },
+        {
+          "asset_id": "part_masking_tape",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Tearable tape roll or prepared short strips."
+        },
+        {
+          "asset_id": "part_small_weight",
+          "quantity": 1,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Adult chooses a target load and checks it is safe."
+        }
       ],
       "success_condition": "Frame holds the target load for 30 seconds.",
       "debug_prompts": [
@@ -1400,6 +1706,32 @@ window.INVENTION_CLUB_CURRICULUM = {
         "battery holder",
         "polarity labels"
       ],
+      "required_assets": [
+        {
+          "asset_id": "part_aa_cell",
+          "quantity": 2,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Adult checks cells and keeps them out of unsupervised circuits."
+        },
+        {
+          "asset_id": "part_coin_cell",
+          "quantity": 1,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Adult handles distribution and return of coin cells."
+        },
+        {
+          "asset_id": "part_battery_holder",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Empty holder for polarity inspection."
+        },
+        {
+          "asset_id": "part_polarity_cards",
+          "quantity": 1,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Cards are sorted and ready for positive/negative matching."
+        }
+      ],
       "success_condition": "Child identifies polarity and one safety limit for each source.",
       "debug_prompts": [
         "Which end is positive?",
@@ -1428,6 +1760,32 @@ window.INVENTION_CLUB_CURRICULUM = {
         "battery pack",
         "LED module or motor",
         "leads"
+      ],
+      "required_assets": [
+        {
+          "asset_id": "part_aa_battery_pack",
+          "quantity": 1,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Adult inserts cells and checks switch state before handout."
+        },
+        {
+          "asset_id": "part_led_module",
+          "quantity": 1,
+          "preparation_state": "prebuilt",
+          "preparation_notes": "Low-power LED module selected as the safe first load."
+        },
+        {
+          "asset_id": "part_dc_motor",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Optional alternate load kept available for comparison only."
+        },
+        {
+          "asset_id": "part_croc_clip_lead",
+          "quantity": 2,
+          "preparation_state": "loose",
+          "preparation_notes": "Use short leads with intact insulation."
+        }
       ],
       "success_condition": "Load powers on without overheating, shorting, or reversed polarity.",
       "debug_prompts": [
@@ -2383,7 +2741,7 @@ window.INVENTION_CLUB_CURRICULUM = {
         "fault checklist",
         "broken model"
       ],
-      "success_condition": "Checklist narrows the fault to one subsystem or part.",
+      "success_condition": "Checklist narrows the fault to one likely place, part, or step.",
       "debug_prompts": [
         "Which checks passed?",
         "Which check first failed?"
@@ -2785,6 +3143,26 @@ window.INVENTION_CLUB_CURRICULUM = {
         "cardboard flap",
         "slider sample"
       ],
+      "required_assets": [
+        {
+          "asset_id": "part_wheel_sample",
+          "quantity": 1,
+          "preparation_state": "prebuilt",
+          "preparation_notes": "Wheel sample is ready to spin by hand."
+        },
+        {
+          "asset_id": "part_cardboard_flap_sample",
+          "quantity": 1,
+          "preparation_state": "prebuilt",
+          "preparation_notes": "Flap sample is hinged before session."
+        },
+        {
+          "asset_id": "part_slider_sample",
+          "quantity": 1,
+          "preparation_state": "prebuilt",
+          "preparation_notes": "Slider sample is assembled before session."
+        }
+      ],
       "success_condition": "Three moving samples are matched to spin, swing, or slide motion.",
       "debug_prompts": [
         "What path does the part follow?",
@@ -2911,6 +3289,32 @@ window.INVENTION_CLUB_CURRICULUM = {
         "knob",
         "joystick"
       ],
+      "required_assets": [
+        {
+          "asset_id": "part_button_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Loose button sample for start/trigger matching."
+        },
+        {
+          "asset_id": "part_toggle_switch",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Loose switch sample for stay-on matching."
+        },
+        {
+          "asset_id": "part_potentiometer_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Loose knob sample for amount matching."
+        },
+        {
+          "asset_id": "part_joystick_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Loose joystick sample for steering matching."
+        }
+      ],
       "success_condition": "Each control is matched to a sensible job such as start, stay on, choose amount, or steer.",
       "debug_prompts": [
         "Does the job need one press, two states, a range, or a direction?",
@@ -3036,6 +3440,32 @@ window.INVENTION_CLUB_CURRICULUM = {
         "tilt sensor",
         "distance sensor"
       ],
+      "required_assets": [
+        {
+          "asset_id": "part_light_sensor_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Loose sample for light category sorting."
+        },
+        {
+          "asset_id": "part_touch_sensor_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Loose sample for contact category sorting."
+        },
+        {
+          "asset_id": "part_tilt_sensor_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Loose sample for tilt category sorting."
+        },
+        {
+          "asset_id": "part_distance_sensor_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Loose sample for distance category sorting."
+        }
+      ],
       "success_condition": "Sensor samples are grouped by the thing each one notices.",
       "debug_prompts": [
         "What changes around the sensor?",
@@ -3064,6 +3494,33 @@ window.INVENTION_CLUB_CURRICULUM = {
         "tilt sensor",
         "input board",
         "indicator"
+      ],
+      "required_assets": [
+        {
+          "asset_id": "part_tilt_sensor_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Ready to connect to the labelled tilt input."
+        },
+        {
+          "asset_id": "part_microbit_board",
+          "quantity": 1,
+          "preparation_state": "preloaded",
+          "preparation_notes": "Board is flashed to show tilt state through an indicator.",
+          "preload_profile_id": "preload_microbit_tilt_indicator"
+        },
+        {
+          "asset_id": "part_microbit_breakout",
+          "quantity": 1,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Adult attaches board and labels tilt sensor pins before session."
+        },
+        {
+          "asset_id": "part_led_indicator_module",
+          "quantity": 1,
+          "preparation_state": "prebuilt",
+          "preparation_notes": "Indicator module is ready to show tilt state."
+        }
       ],
       "success_condition": "The indicator changes when the sensor tips past a clear point.",
       "debug_prompts": [
@@ -3160,6 +3617,32 @@ window.INVENTION_CLUB_CURRICULUM = {
         "tape",
         "triangle samples"
       ],
+      "required_assets": [
+        {
+          "asset_id": "part_sample_frame",
+          "quantity": 2,
+          "preparation_state": "prebuilt",
+          "preparation_notes": "Provide stable and wobbly card frame examples."
+        },
+        {
+          "asset_id": "part_triangle_frame_sample",
+          "quantity": 1,
+          "preparation_state": "prebuilt",
+          "preparation_notes": "Triangle sample is ready for comparison."
+        },
+        {
+          "asset_id": "part_straw",
+          "quantity": 6,
+          "preparation_state": "blank",
+          "preparation_notes": "Blank straws for pointing out brace options."
+        },
+        {
+          "asset_id": "part_masking_tape",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Tearable tape roll or prepared short strips."
+        }
+      ],
       "success_condition": "Stable and wobbly sample frames are sorted with a reason.",
       "debug_prompts": [
         "Where can the shape squash sideways?",
@@ -3189,6 +3672,32 @@ window.INVENTION_CLUB_CURRICULUM = {
         "base card",
         "tape",
         "weights"
+      ],
+      "required_assets": [
+        {
+          "asset_id": "part_card_tube",
+          "quantity": 3,
+          "preparation_state": "blank",
+          "preparation_notes": "Blank tubes for tower legs or columns."
+        },
+        {
+          "asset_id": "part_base_card",
+          "quantity": 1,
+          "preparation_state": "blank",
+          "preparation_notes": "Blank base card for wide-foot tower testing."
+        },
+        {
+          "asset_id": "part_masking_tape",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Tearable tape roll or prepared short strips."
+        },
+        {
+          "asset_id": "part_small_weight",
+          "quantity": 1,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Adult keeps test weights ready for gentle nudge trials."
+        }
       ],
       "success_condition": "The tower stands and survives three gentle nudges.",
       "debug_prompts": [
@@ -3286,6 +3795,32 @@ window.INVENTION_CLUB_CURRICULUM = {
         "battery pack",
         "polarity cards"
       ],
+      "required_assets": [
+        {
+          "asset_id": "part_aa_cell",
+          "quantity": 2,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Adult checks cells before sorting activity."
+        },
+        {
+          "asset_id": "part_coin_cell_holder",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Holder is empty for orientation matching."
+        },
+        {
+          "asset_id": "part_aa_battery_pack",
+          "quantity": 1,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Pack is assembled but switched off for safe recognition."
+        },
+        {
+          "asset_id": "part_polarity_cards",
+          "quantity": 1,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Cards are sorted and ready for orientation prompts."
+        }
+      ],
       "success_condition": "Power parts are sorted by type and orientation without making a circuit.",
       "debug_prompts": [
         "Where are positive and negative marked?",
@@ -3315,6 +3850,32 @@ window.INVENTION_CLUB_CURRICULUM = {
         "battery pack",
         "switch",
         "leads"
+      ],
+      "required_assets": [
+        {
+          "asset_id": "part_led_strip",
+          "quantity": 1,
+          "preparation_state": "prebuilt",
+          "preparation_notes": "Low-voltage strip is checked for safe current draw."
+        },
+        {
+          "asset_id": "part_aa_battery_pack",
+          "quantity": 1,
+          "preparation_state": "adult-prepared",
+          "preparation_notes": "Adult inserts cells and checks switch state before handout."
+        },
+        {
+          "asset_id": "part_switch_module",
+          "quantity": 1,
+          "preparation_state": "loose",
+          "preparation_notes": "Switch is ready to place in the simple circuit."
+        },
+        {
+          "asset_id": "part_croc_clip_lead",
+          "quantity": 2,
+          "preparation_state": "loose",
+          "preparation_notes": "Use short leads with intact insulation."
+        }
       ],
       "success_condition": "The LEDs light without warm wires or reversed polarity.",
       "debug_prompts": [
@@ -3733,7 +4294,7 @@ window.INVENTION_CLUB_CURRICULUM = {
         "Are sender and receiver using the same channel?",
         "Is the receiver powered and listening?"
       ],
-      "stretch_challenge": "Move the receiver further away and test reliability.",
+      "stretch_challenge": "Try one nearby and one slightly farther position and notice whether the message still arrives.",
       "possible_integrations": [
         "r_int_14",
         "r_int_23"
@@ -3948,7 +4509,7 @@ window.INVENTION_CLUB_CURRICULUM = {
         "What is different about idea two?",
         "Which one is easier to test quickly?"
       ],
-      "stretch_challenge": "Combine the best part of both ideas.",
+      "stretch_challenge": "Circle one promising feature in each sketch before choosing what to test.",
       "possible_integrations": [
         "r_int_21",
         "r_int_29"
@@ -5068,7 +5629,7 @@ window.INVENTION_CLUB_CURRICULUM = {
     }
   ],
   "assetInventory": {
-    "version": 1,
+    "version": 2,
     "assets": [
       {
         "id": "hero_workshop",
@@ -6619,7 +7180,480 @@ window.INVENTION_CLUB_CURRICULUM = {
         "Existing SVG result assets remain the rendered baseline.",
         "Scene assignments are validated so a future renderer can be introduced without changing card content."
       ]
-    }
+    },
+    "physical_assets": [
+      {
+        "id": "part_dc_motor",
+        "label": "DC motor",
+        "category": "actuator",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-MOV-01",
+          "bin_label": "Movement actuators"
+        },
+        "default_preparation_state": "loose",
+        "session_notes": "Store motors unplugged with shafts clear of loose wire."
+      },
+      {
+        "id": "part_micro_servo",
+        "label": "Micro servo",
+        "category": "actuator",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-MOV-01",
+          "bin_label": "Movement actuators"
+        },
+        "default_preparation_state": "loose",
+        "session_notes": "Keep horns and screws in the same tray section."
+      },
+      {
+        "id": "part_solenoid_sample",
+        "label": "Solenoid sample",
+        "category": "actuator",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-MOV-01",
+          "bin_label": "Movement actuators"
+        },
+        "default_preparation_state": "prebuilt",
+        "session_notes": "Demo sample only; adult checks voltage/current limit before use."
+      },
+      {
+        "id": "part_servo_horn",
+        "label": "Servo horn",
+        "category": "connector",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-MOV-01",
+          "bin_label": "Movement actuators"
+        },
+        "default_preparation_state": "loose"
+      },
+      {
+        "id": "part_wheel_sample",
+        "label": "Wheel sample",
+        "category": "motion_sample",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-MOV-02",
+          "bin_label": "Movement samples"
+        },
+        "default_preparation_state": "prebuilt"
+      },
+      {
+        "id": "part_cardboard_flap_sample",
+        "label": "Cardboard flap sample",
+        "category": "motion_sample",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-MOV-02",
+          "bin_label": "Movement samples"
+        },
+        "default_preparation_state": "prebuilt"
+      },
+      {
+        "id": "part_slider_sample",
+        "label": "Slider sample",
+        "category": "motion_sample",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-MOV-02",
+          "bin_label": "Movement samples"
+        },
+        "default_preparation_state": "prebuilt"
+      },
+      {
+        "id": "part_button_module",
+        "label": "Button module",
+        "category": "control",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-CTRL-01",
+          "bin_label": "Input controls"
+        },
+        "default_preparation_state": "loose"
+      },
+      {
+        "id": "part_toggle_switch",
+        "label": "Toggle switch",
+        "category": "control",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-CTRL-01",
+          "bin_label": "Input controls"
+        },
+        "default_preparation_state": "loose"
+      },
+      {
+        "id": "part_potentiometer_module",
+        "label": "Potentiometer module",
+        "category": "control",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-CTRL-01",
+          "bin_label": "Input controls"
+        },
+        "default_preparation_state": "loose"
+      },
+      {
+        "id": "part_joystick_module",
+        "label": "Joystick module",
+        "category": "control",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-CTRL-01",
+          "bin_label": "Input controls"
+        },
+        "default_preparation_state": "loose"
+      },
+      {
+        "id": "part_light_sensor_module",
+        "label": "Light sensor module",
+        "category": "sensor",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-SEN-01",
+          "bin_label": "Sensor modules"
+        },
+        "default_preparation_state": "loose"
+      },
+      {
+        "id": "part_tilt_sensor_module",
+        "label": "Tilt sensor module",
+        "category": "sensor",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-SEN-01",
+          "bin_label": "Sensor modules"
+        },
+        "default_preparation_state": "loose"
+      },
+      {
+        "id": "part_distance_sensor_module",
+        "label": "Distance sensor module",
+        "category": "sensor",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-SEN-01",
+          "bin_label": "Sensor modules"
+        },
+        "default_preparation_state": "loose"
+      },
+      {
+        "id": "part_touch_sensor_module",
+        "label": "Touch sensor module",
+        "category": "sensor",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-SEN-01",
+          "bin_label": "Sensor modules"
+        },
+        "default_preparation_state": "loose"
+      },
+      {
+        "id": "part_torch",
+        "label": "Small torch",
+        "category": "test_stimulus",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-SEN-02",
+          "bin_label": "Sensor test stimuli"
+        },
+        "default_preparation_state": "adult-prepared",
+        "session_notes": "Adult checks batteries before session."
+      },
+      {
+        "id": "part_microbit_board",
+        "label": "Micro:bit board",
+        "category": "programmable_board",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-BOARD-01",
+          "bin_label": "Preloaded boards and breakouts"
+        },
+        "default_preparation_state": "preloaded",
+        "session_notes": "Store flashed boards separately from blank boards."
+      },
+      {
+        "id": "part_microbit_breakout",
+        "label": "Micro:bit breakout",
+        "category": "programmable_board_accessory",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-BOARD-01",
+          "bin_label": "Preloaded boards and breakouts"
+        },
+        "default_preparation_state": "adult-prepared",
+        "session_notes": "Adult attaches board and labels pins before children connect modules."
+      },
+      {
+        "id": "part_led_indicator_module",
+        "label": "LED indicator module",
+        "category": "output",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-BOARD-02",
+          "bin_label": "Indicators and displays"
+        },
+        "default_preparation_state": "prebuilt"
+      },
+      {
+        "id": "part_numeric_display_module",
+        "label": "Numeric display module",
+        "category": "output",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-BOARD-02",
+          "bin_label": "Indicators and displays"
+        },
+        "default_preparation_state": "prebuilt"
+      },
+      {
+        "id": "part_sample_frame",
+        "label": "Sample frame",
+        "category": "structure_sample",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-STRUCT-01",
+          "bin_label": "Structure samples"
+        },
+        "default_preparation_state": "prebuilt"
+      },
+      {
+        "id": "part_triangle_frame_sample",
+        "label": "Triangle frame sample",
+        "category": "structure_sample",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-STRUCT-01",
+          "bin_label": "Structure samples"
+        },
+        "default_preparation_state": "prebuilt"
+      },
+      {
+        "id": "part_craft_stick",
+        "label": "Craft stick",
+        "category": "structure_material",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-STRUCT-02",
+          "bin_label": "Blank build materials"
+        },
+        "default_preparation_state": "blank"
+      },
+      {
+        "id": "part_straw",
+        "label": "Paper straw",
+        "category": "structure_material",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-STRUCT-02",
+          "bin_label": "Blank build materials"
+        },
+        "default_preparation_state": "blank"
+      },
+      {
+        "id": "part_card_stock",
+        "label": "Card stock",
+        "category": "structure_material",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-STRUCT-02",
+          "bin_label": "Blank build materials"
+        },
+        "default_preparation_state": "blank"
+      },
+      {
+        "id": "part_masking_tape",
+        "label": "Masking tape",
+        "category": "fastener",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-STRUCT-02",
+          "bin_label": "Blank build materials"
+        },
+        "default_preparation_state": "loose"
+      },
+      {
+        "id": "part_small_weight",
+        "label": "Small test weight",
+        "category": "load",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-STRUCT-03",
+          "bin_label": "Weights and load testers"
+        },
+        "default_preparation_state": "adult-prepared",
+        "session_notes": "Adult confirms weights are low enough for the session group."
+      },
+      {
+        "id": "part_card_tube",
+        "label": "Card tube",
+        "category": "structure_material",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-STRUCT-02",
+          "bin_label": "Blank build materials"
+        },
+        "default_preparation_state": "blank"
+      },
+      {
+        "id": "part_base_card",
+        "label": "Base card",
+        "category": "structure_material",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-STRUCT-02",
+          "bin_label": "Blank build materials"
+        },
+        "default_preparation_state": "blank"
+      },
+      {
+        "id": "part_aa_cell",
+        "label": "AA cell",
+        "category": "power_source",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-POWER-01",
+          "bin_label": "Cells and holders"
+        },
+        "default_preparation_state": "adult-prepared",
+        "session_notes": "Adult checks cells are intact and kept out of loose pockets."
+      },
+      {
+        "id": "part_coin_cell",
+        "label": "Coin cell",
+        "category": "power_source",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-POWER-01",
+          "bin_label": "Cells and holders"
+        },
+        "default_preparation_state": "adult-prepared",
+        "session_notes": "Adult handles distribution and return."
+      },
+      {
+        "id": "part_battery_holder",
+        "label": "Battery holder",
+        "category": "power_connector",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-POWER-01",
+          "bin_label": "Cells and holders"
+        },
+        "default_preparation_state": "loose"
+      },
+      {
+        "id": "part_coin_cell_holder",
+        "label": "Coin cell holder",
+        "category": "power_connector",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-POWER-01",
+          "bin_label": "Cells and holders"
+        },
+        "default_preparation_state": "loose"
+      },
+      {
+        "id": "part_aa_battery_pack",
+        "label": "AA battery pack",
+        "category": "power_source",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-POWER-01",
+          "bin_label": "Cells and holders"
+        },
+        "default_preparation_state": "adult-prepared",
+        "session_notes": "Adult inserts cells and checks switch state before handout."
+      },
+      {
+        "id": "part_polarity_cards",
+        "label": "Polarity cards",
+        "category": "safety_prompt",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-POWER-02",
+          "bin_label": "Power safety prompts"
+        },
+        "default_preparation_state": "adult-prepared",
+        "session_notes": "Cards are printed and sorted positive/negative before session."
+      },
+      {
+        "id": "part_croc_clip_lead",
+        "label": "Crocodile clip lead",
+        "category": "wire",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-POWER-03",
+          "bin_label": "Leads and switching"
+        },
+        "default_preparation_state": "loose"
+      },
+      {
+        "id": "part_led_module",
+        "label": "LED module",
+        "category": "load",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-POWER-03",
+          "bin_label": "Leads and switching"
+        },
+        "default_preparation_state": "prebuilt"
+      },
+      {
+        "id": "part_led_strip",
+        "label": "LED strip",
+        "category": "load",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-POWER-03",
+          "bin_label": "Leads and switching"
+        },
+        "default_preparation_state": "prebuilt",
+        "session_notes": "Use low-voltage classroom strip only."
+      },
+      {
+        "id": "part_switch_module",
+        "label": "Switch module",
+        "category": "control",
+        "storage": {
+          "zone": "pilot-kit",
+          "bin_id": "BIN-POWER-03",
+          "bin_label": "Leads and switching"
+        },
+        "default_preparation_state": "loose"
+      }
+    ],
+    "programmable_preload_profiles": [
+      {
+        "id": "preload_microbit_servo_positions",
+        "label": "Servo position tester",
+        "board_asset_id": "part_microbit_board",
+        "description": "Preloaded board sends fixed servo positions from labelled buttons or pads; children do not edit code.",
+        "adult_preparation_notes": "Flash before session, connect breakout, and verify at least two safe servo positions."
+      },
+      {
+        "id": "preload_microbit_button_indicator",
+        "label": "Button-to-indicator reader",
+        "board_asset_id": "part_microbit_board",
+        "description": "Preloaded board changes an indicator when a button input changes state.",
+        "adult_preparation_notes": "Flash before session and verify normally-open button behaviour with the selected indicator."
+      },
+      {
+        "id": "preload_microbit_analog_display",
+        "label": "Analog value display",
+        "board_asset_id": "part_microbit_board",
+        "description": "Preloaded board displays a changing value from a knob or analog sensor.",
+        "adult_preparation_notes": "Flash before session and verify low, middle, and high readings with the selected module."
+      },
+      {
+        "id": "preload_microbit_tilt_indicator",
+        "label": "Tilt-to-indicator reader",
+        "board_asset_id": "part_microbit_board",
+        "description": "Preloaded board changes an indicator when a tilt sensor crosses a prepared orientation.",
+        "adult_preparation_notes": "Flash before session and verify the indicator changes at a clear, safe tilt point."
+      }
+    ]
   },
   "preloadProfiles": [
     {

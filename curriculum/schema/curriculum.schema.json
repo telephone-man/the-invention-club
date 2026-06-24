@@ -75,13 +75,36 @@
     "level": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["id", "name", "child_facing_summary", "facilitator_definition", "coding_expectation"],
+      "required": ["id", "name", "child_facing_summary", "facilitator_definition", "coding_expectation", "dimensions"],
       "properties": {
         "id": { "type": "integer", "minimum": 1, "maximum": 6 },
         "name": { "type": "string", "minLength": 1 },
         "child_facing_summary": { "type": "string", "minLength": 1 },
         "facilitator_definition": { "type": "string", "minLength": 1 },
-        "coding_expectation": { "type": "string", "minLength": 1 }
+        "coding_expectation": { "type": "string", "minLength": 1 },
+        "dimensions": { "$ref": "#/$defs/level_dimensions" }
+      }
+    },
+    "level_dimensions": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "adult_support",
+        "child_independence",
+        "kit_state",
+        "coding_expectation",
+        "physical_build_complexity",
+        "debugging_evidence_expectation",
+        "integration_readiness"
+      ],
+      "properties": {
+        "adult_support": { "type": "string", "minLength": 1 },
+        "child_independence": { "type": "string", "minLength": 1 },
+        "kit_state": { "type": "string", "minLength": 1 },
+        "coding_expectation": { "type": "string", "minLength": 1 },
+        "physical_build_complexity": { "type": "string", "minLength": 1 },
+        "debugging_evidence_expectation": { "type": "string", "minLength": 1 },
+        "integration_readiness": { "type": "string", "minLength": 1 }
       }
     },
     "skill_card": {
@@ -156,7 +179,11 @@
         "supporting_families": { "type": "array", "items": { "type": "string" } },
         "classification_rationale": { "type": "string" },
         "result_image": { "type": "string", "minLength": 1 },
-        "result_alt": { "type": "string", "minLength": 1 }
+        "result_alt": { "type": "string", "minLength": 1 },
+        "required_assets": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/required_asset" }
+        }
       }
     },
     "integration_card": {
@@ -221,6 +248,14 @@
             }
           }
         },
+        "physical_assets": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/physical_asset" }
+        },
+        "programmable_preload_profiles": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/programmable_preload_profile" }
+        },
         "scene_assignments": {
           "type": "array",
           "items": {
@@ -234,6 +269,57 @@
             }
           }
         }
+      }
+    },
+    "storage_location": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["zone", "bin_id", "bin_label"],
+      "properties": {
+        "zone": { "type": "string", "minLength": 1 },
+        "bin_id": { "type": "string", "minLength": 1 },
+        "bin_label": { "type": "string", "minLength": 1 }
+      }
+    },
+    "physical_asset": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "label", "category", "storage", "default_preparation_state"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1 },
+        "category": { "type": "string", "minLength": 1 },
+        "storage": { "$ref": "#/$defs/storage_location" },
+        "default_preparation_state": {
+          "enum": ["blank", "preloaded", "loose", "prebuilt", "adult-prepared"]
+        },
+        "session_notes": { "type": "string" }
+      }
+    },
+    "programmable_preload_profile": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["id", "label", "board_asset_id", "description", "adult_preparation_notes"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1 },
+        "board_asset_id": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 1 },
+        "adult_preparation_notes": { "type": "string", "minLength": 1 }
+      }
+    },
+    "required_asset": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": ["asset_id", "quantity", "preparation_state", "preparation_notes"],
+      "properties": {
+        "asset_id": { "type": "string", "minLength": 1 },
+        "quantity": { "type": "integer", "minimum": 1 },
+        "preparation_state": {
+          "enum": ["blank", "preloaded", "loose", "prebuilt", "adult-prepared"]
+        },
+        "preparation_notes": { "type": "string", "minLength": 1 },
+        "preload_profile_id": { "type": "string", "minLength": 1 }
       }
     },
     "preload_profile": {

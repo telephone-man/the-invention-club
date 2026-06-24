@@ -27,6 +27,9 @@ GENERATED_NOTICE = [
     "Rebuild: python3 tools/build_curriculum.py",
 ]
 
+PILOT_KIT_FAMILIES = {"movement", "control_input", "sensing", "power", "structures"}
+PILOT_KIT_LEVELS = {1, 2}
+
 SKILL_ICON_BY_FAMILY = {
     "movement": "assets/skill-icons/make-it-move.jpg",
     "control_input": "assets/skill-icons/make-it-obey.jpg",
@@ -59,42 +62,96 @@ GLOBAL_LEVELS = [
         "name": "Encounter",
         "child_facing_summary": "Recognise it and use it safely.",
         "facilitator_definition": "Recognise parts, signals, inputs, materials, expected behaviour, and safe setup before trying to control or alter them.",
-        "coding_expectation": "No code required; children recognise parts, signals, inputs, and safe setup.",
+        "coding_expectation": "No code.",
+        "dimensions": {
+            "adult_support": "Adult chooses safe parts, sets boundaries, and models observation language.",
+            "child_independence": "Child recognises, sorts, points, describes, and handles parts within prepared choices.",
+            "kit_state": "Loose sample parts, unplugged demos, or safely preassembled examples; no child-made circuit or mechanism required.",
+            "coding_expectation": "No code.",
+            "physical_build_complexity": "No construction beyond handling, sorting, placing, or attaching obvious parts.",
+            "debugging_evidence_expectation": "Notice and name what happens; no systematic debugging required.",
+            "integration_readiness": "Not integration-ready; builds vocabulary and safe familiarity for later Power Cards.",
+        },
     },
     {
         "id": 2,
         "name": "Activate",
         "child_facing_summary": "Make the basic thing happen.",
         "facilitator_definition": "Make one simple output, input, sequence, message, test, or design move work in a controlled setup.",
-        "coding_expectation": "Use direct wiring, unplugged logic, or a provided starter program without needing to edit code.",
+        "coding_expectation": "No child-authored code; preloaded or plug-and-play code is allowed.",
+        "dimensions": {
+            "adult_support": "Adult provides the setup or wiring route and supervises safe operation.",
+            "child_independence": "Child follows a known setup to make one basic thing happen.",
+            "kit_state": "Preselected parts, direct wiring, preloaded board, servo tester, template, or plug-and-play module.",
+            "coding_expectation": "No child-authored code; preloaded or plug-and-play code is allowed.",
+            "physical_build_complexity": "One actuator, input, sensor, join, material, message, or test setup with minimal assembly.",
+            "debugging_evidence_expectation": "Check whether the expected basic output/input appears; use simple yes/no evidence.",
+            "integration_readiness": "Can support a very simple Integration Card when paired with another Level 2 power.",
+        },
     },
     {
         "id": 3,
         "name": "Adjust",
         "child_facing_summary": "Change how it behaves.",
         "facilitator_definition": "Change one variable such as speed, range, threshold, timing, mapping, material fit, test method, or criterion.",
-        "coding_expectation": "Adjust one parameter, threshold, timing value, mapping, or condition in a known pattern.",
+        "coding_expectation": "Adjust one parameter, setting, threshold, timing value, or mode in a known pattern.",
+        "dimensions": {
+            "adult_support": "Adult gives a known working setup and helps isolate the one variable to change.",
+            "child_independence": "Child changes one setting, parameter, threshold, timing value, mode, material property, or mapping and observes the result.",
+            "kit_state": "Working starter setup with one adjustable element.",
+            "coding_expectation": "Adjust one parameter, setting, threshold, timing value, or mode in a known pattern.",
+            "physical_build_complexity": "One subsystem with one controlled variation; comparison between before and after is expected.",
+            "debugging_evidence_expectation": "Record or explain how the single change affected behaviour.",
+            "integration_readiness": "Ready to feed a controlled variable into a simple combined challenge.",
+        },
     },
     {
         "id": 4,
         "name": "Apply",
         "child_facing_summary": "Use it in a new context.",
         "facilitator_definition": "Transfer a known skill to a different build, user, material, environment, subsystem, or constraint.",
-        "coding_expectation": "Adapt a known code or logic pattern to a new physical context with facilitator support.",
+        "coding_expectation": "Guided adaptation of a known code or logic pattern.",
+        "dimensions": {
+            "adult_support": "Adult provides a familiar pattern and prompts transfer to a new context.",
+            "child_independence": "Child adapts a known approach for a different user, material, environment, mechanism, message, or constraint.",
+            "kit_state": "Starter pattern plus a new physical context or constraint.",
+            "coding_expectation": "Guided adaptation of a known code or logic pattern.",
+            "physical_build_complexity": "One subsystem transferred into a new build context, with fit, mounting, access, or use constraints.",
+            "debugging_evidence_expectation": "Test whether the known pattern still works in the new context and name needed changes.",
+            "integration_readiness": "Ready for Integration Cards that depend on one adapted subsystem.",
+        },
     },
     {
         "id": 5,
         "name": "Coordinate",
         "child_facing_summary": "Make related things work together.",
         "facilitator_definition": "Coordinate multiple related elements inside the same primary family, while keeping other families supporting rather than primary.",
-        "coding_expectation": "Coordinate multiple inputs, outputs, states, messages, or subsystems; child can explain event or state flow.",
+        "coding_expectation": "Coordinate multiple inputs, outputs, states, messages, or subsystems.",
+        "dimensions": {
+            "adult_support": "Adult helps plan order, interfaces, and conflict points across parts.",
+            "child_independence": "Child coordinates multiple elements so each has a clear role.",
+            "kit_state": "Multiple prepared subsystems, controls, sensors, states, messages, moving parts, structural elements, or material choices.",
+            "coding_expectation": "Coordinate multiple inputs, outputs, states, messages, or subsystems.",
+            "physical_build_complexity": "Multiple elements must work together without collision, conflict, overload, confusion, or unclear sequencing.",
+            "debugging_evidence_expectation": "Use trials or a simple checklist to show the coordinated system works as intended.",
+            "integration_readiness": "Strong preparation for Integration Cards; may be ready to combine across families.",
+        },
     },
     {
         "id": 6,
         "name": "Improve",
         "child_facing_summary": "Test, refine and explain trade-offs.",
         "facilitator_definition": "Debug, refine, optimise, or explain trade-offs in the family object of study; only make Debugging/Testing primary when the diagnostic method is the learning target.",
-        "coding_expectation": "Debug, simplify, compare, or justify code, logic, and physical trade-offs; older learners may write short programs, but coding is not the only route.",
+        "coding_expectation": "Debug, optimise, compare, or justify trade-offs in code, logic, or physical behaviour.",
+        "dimensions": {
+            "adult_support": "Adult supports fair testing, safety limits, and trade-off discussion.",
+            "child_independence": "Child identifies a weakness, chooses a fix or comparison, and justifies the trade-off.",
+            "kit_state": "Existing working or partly working build with evidence to compare before and after.",
+            "coding_expectation": "Debug, optimise, compare, or justify trade-offs in code, logic, or physical behaviour.",
+            "physical_build_complexity": "Refinement can involve mechanism, structure, power, materials, controls, sensing, communication, logic, or user fit, but the primary family remains the learning focus.",
+            "debugging_evidence_expectation": "Use before/after evidence, repeated trials, measurements, or user feedback to justify improvement.",
+            "integration_readiness": "Ready for more demanding Integration or Invention Cards when safety and support needs are clear.",
+        },
     },
 ]
 
@@ -306,6 +363,132 @@ def build_preload_profiles(asset_inventory: dict[str, Any]) -> list[dict[str, An
     ]
 
 
+def pilot_kit_cards(source: dict[str, Any]) -> list[dict[str, Any]]:
+    return [
+        card
+        for card in source.get("power_cards", [])
+        if card.get("primary_family") in PILOT_KIT_FAMILIES and card.get("level") in PILOT_KIT_LEVELS
+    ]
+
+
+def pilot_asset_detail(
+    requirement: dict[str, Any],
+    physical_assets_by_id: dict[str, dict[str, Any]],
+    preload_profiles_by_id: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    asset = physical_assets_by_id.get(requirement.get("asset_id"), {})
+    detail = {
+        "asset_id": requirement.get("asset_id"),
+        "label": asset.get("label", ""),
+        "category": asset.get("category", ""),
+        "quantity": requirement.get("quantity"),
+        "preparation_state": requirement.get("preparation_state"),
+        "preparation_notes": requirement.get("preparation_notes", ""),
+        "storage": asset.get("storage", {}),
+    }
+    preload_profile_id = requirement.get("preload_profile_id")
+    if preload_profile_id:
+        preload_profile = preload_profiles_by_id.get(preload_profile_id, {})
+        detail["preload_profile_id"] = preload_profile_id
+        detail["preload_profile_label"] = preload_profile.get("label", "")
+    return detail
+
+
+def aggregate_pilot_assets(asset_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    aggregated: dict[tuple[str, str, str], dict[str, Any]] = {}
+    for row in asset_rows:
+        key = (
+            str(row.get("asset_id", "")),
+            str(row.get("preparation_state", "")),
+            str(row.get("preload_profile_id", "")),
+        )
+        if key not in aggregated:
+            aggregated[key] = {
+                "asset_id": row.get("asset_id"),
+                "label": row.get("label", ""),
+                "category": row.get("category", ""),
+                "total_quantity": 0,
+                "preparation_state": row.get("preparation_state"),
+                "storage": row.get("storage", {}),
+                "used_by_power_cards": [],
+            }
+            if row.get("preload_profile_id"):
+                aggregated[key]["preload_profile_id"] = row.get("preload_profile_id")
+                aggregated[key]["preload_profile_label"] = row.get("preload_profile_label", "")
+        aggregated[key]["total_quantity"] += int(row.get("quantity") or 0)
+        used_by = row.get("power_card_id")
+        if used_by and used_by not in aggregated[key]["used_by_power_cards"]:
+            aggregated[key]["used_by_power_cards"].append(used_by)
+    return sorted(
+        aggregated.values(),
+        key=lambda item: (str(item.get("storage", {}).get("bin_id", "")), str(item.get("asset_id", ""))),
+    )
+
+
+def build_pilot_kit_list(source: dict[str, Any]) -> dict[str, Any]:
+    inventory = source.get("asset_inventory", {})
+    physical_assets_by_id = {
+        asset.get("id"): asset
+        for asset in inventory.get("physical_assets", [])
+        if isinstance(asset, dict)
+    }
+    preload_profiles_by_id = {
+        profile.get("id"): profile
+        for profile in inventory.get("programmable_preload_profiles", [])
+        if isinstance(profile, dict)
+    }
+    families_by_id = {
+        family.get("id"): family
+        for family in source.get("skill_cards", [])
+        if isinstance(family, dict)
+    }
+
+    by_power_card: list[dict[str, Any]] = []
+    family_rows: dict[str, list[dict[str, Any]]] = {}
+    for card in pilot_kit_cards(source):
+        assets = []
+        for requirement in card.get("required_assets", []):
+            if not isinstance(requirement, dict):
+                continue
+            detail = pilot_asset_detail(requirement, physical_assets_by_id, preload_profiles_by_id)
+            assets.append(detail)
+            family_row = dict(detail)
+            family_row["power_card_id"] = card.get("id")
+            family_rows.setdefault(card.get("primary_family", ""), []).append(family_row)
+        by_power_card.append(
+            {
+                "power_card_id": card.get("id"),
+                "title": card.get("title"),
+                "skill_card_id": card.get("primary_family"),
+                "level": card.get("level"),
+                "assets": assets,
+            }
+        )
+
+    by_skill_card = []
+    for family_id in sorted(family_rows):
+        family = families_by_id.get(family_id, {})
+        family_cards = [card for card in by_power_card if card.get("skill_card_id") == family_id]
+        by_skill_card.append(
+            {
+                "skill_card_id": family_id,
+                "label": family.get("label") or family.get("name", ""),
+                "power_card_ids": [card["power_card_id"] for card in family_cards],
+                "assets": aggregate_pilot_assets(family_rows[family_id]),
+            }
+        )
+
+    return {
+        "pilot_scope": {
+            "levels": sorted(PILOT_KIT_LEVELS),
+            "skill_card_ids": sorted(PILOT_KIT_FAMILIES),
+            "power_card_ids": [card["power_card_id"] for card in by_power_card],
+        },
+        "by_power_card": by_power_card,
+        "by_skill_card": by_skill_card,
+    }
+
+
 def lesson_plan_profiles() -> list[dict[str, Any]]:
     return [
         {
@@ -412,6 +595,7 @@ def build_outputs(source: dict[str, Any], *, mirror_root: bool = True) -> None:
     write_json(GENERATED_DIR / "red_team_cases.yaml", {"cases": source["red_team_cases"]})
     write_json(GENERATED_DIR / "asset-inventory.json", source["asset_inventory"])
     write_json(GENERATED_DIR / "preload-manifest.json", {"profiles": source["preload_profiles"]})
+    write_json(GENERATED_DIR / "pilot-kit-list.json", build_pilot_kit_list(source))
 
 
 def main() -> int:

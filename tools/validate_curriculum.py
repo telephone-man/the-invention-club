@@ -5,6 +5,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
@@ -13,6 +14,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE = ROOT / "curriculum/source/curriculum.v1.json"
 DEFAULT_GENERATED_DIR = ROOT / "curriculum/generated"
+DEFAULT_LEVEL_AUDIT_OUTPUT = ROOT / "reports/power-card-level-audit.md"
 SCHEMA_PATH = ROOT / "curriculum/schema/curriculum.schema.json"
 
 REQUIRED_TOP_LEVEL = {
@@ -72,6 +74,103 @@ WEAK_BOUNDARY_WARNING_IDS = {
     "metrics_overstate_certainty",
 }
 
+LEVEL_DIMENSION_FIELDS = {
+    "adult_support",
+    "child_independence",
+    "kit_state",
+    "coding_expectation",
+    "physical_build_complexity",
+    "debugging_evidence_expectation",
+    "integration_readiness",
+}
+
+PILOT_KIT_FAMILIES = {"movement", "control_input", "sensing", "power", "structures"}
+PILOT_KIT_LEVELS = {1, 2}
+PREPARATION_STATES = {"blank", "preloaded", "loose", "prebuilt", "adult-prepared"}
+
+EXPECTED_CODING_BOUNDARY = {
+    1: "No code.",
+    2: "No child-authored code; preloaded or plug-and-play code is allowed.",
+    3: "Adjust one parameter, setting, threshold, timing value, or mode in a known pattern.",
+    4: "Guided adaptation of a known code or logic pattern.",
+    5: "Coordinate multiple inputs, outputs, states, messages, or subsystems.",
+    6: "Debug, optimise, compare, or justify trade-offs in code, logic, or physical behaviour.",
+}
+
+LEVEL_REVIEW_RULES = [
+    {
+        "id": "child_authored_code_boundary",
+        "minimum_level": 3,
+        "label": "child-authored code or program editing",
+        "rationale": "Level 1 has no code and Level 2 allows only preloaded or plug-and-play code.",
+        "patterns": [
+            r"\b(write|edit|author|create|modify|change)\s+(code|a program|program|script)\b",
+            r"\b(code|program|script)\s+from\s+scratch\b",
+        ],
+    },
+    {
+        "id": "adjust_one_variable_boundary",
+        "minimum_level": 3,
+        "label": "adjusting a setting, threshold, timing value, or mode",
+        "rationale": "Level 3 is the first level where the child adjusts one variable in a known setup.",
+        "patterns": [
+            r"\b(adjust|tune|calibrate|debounce)\b",
+            r"\b(change|set|map)\s+(a|an|the|one|second|different|chosen)?\s*(threshold|timing|parameter|setting|mode|range|zone|speed|mapping|command)\b",
+            r"\b(threshold|timing|parameter|setting|mode|zones?)\b",
+        ],
+    },
+    {
+        "id": "guided_adaptation_boundary",
+        "minimum_level": 4,
+        "label": "adapting a known pattern to a new context",
+        "rationale": "Level 4 is the first level where the child applies or adapts a known pattern in a new context.",
+        "patterns": [
+            r"\b(adapt|apply|transfer)\b",
+            r"\b(new|different)\s+(context|setting|place|user|material|environment|challenge|build)\b",
+            r"\bfit\s+(a\s+)?real\b",
+        ],
+    },
+    {
+        "id": "coordination_boundary",
+        "minimum_level": 5,
+        "label": "coordinating multiple elements or subsystems",
+        "rationale": "Level 5 is the first level where multiple inputs, outputs, states, messages, or subsystems are coordinated.",
+        "patterns": [
+            r"\bcoordinate\b",
+            r"\bcombine\b",
+            r"\bmultiple\b",
+            r"\bseveral\b",
+            r"\btwo\s+(actuators|controls|inputs|sensors|senders|receivers|boards|servos|subsystems)\b",
+            r"\bsubsystems?\b",
+        ],
+    },
+    {
+        "id": "improvement_tradeoff_boundary",
+        "minimum_level": 6,
+        "label": "debugging, optimisation, or trade-off justification",
+        "rationale": "Level 6 is the first level where the child debugs, optimises, compares, or justifies trade-offs.",
+        "patterns": [
+            r"\bdebug\b",
+            r"\bimprove\b",
+            r"\boptimise\b",
+            r"\boptimize\b",
+            r"\btrade[- ]offs?\b",
+            r"\bjustify\b",
+            r"\bfailure\s+rate\b",
+            r"\breliability\b",
+        ],
+    },
+]
+
+POWER_CARD_CORE_AUDIT_FIELDS = (
+    "title",
+    "i_can_statement",
+    "success_condition",
+    "debug_prompts",
+)
+
+POWER_CARD_STRETCH_AUDIT_FIELDS = ("stretch_challenge",)
+
 
 def json_text(path: Path) -> str:
     text = path.read_text(encoding="utf-8")
@@ -103,6 +202,134 @@ def expected_browser_curriculum_payload(source: dict[str, Any]) -> dict[str, Any
         "inventionCards": source.get("invention_cards", []),
         "assetInventory": source.get("asset_inventory", {}),
         "preloadProfiles": source.get("preload_profiles", []),
+    }
+
+
+def pilot_kit_cards(source: dict[str, Any]) -> list[dict[str, Any]]:
+    return [
+        card
+        for card in source.get("power_cards", [])
+        if isinstance(card, dict)
+        and card.get("primary_family") in PILOT_KIT_FAMILIES
+        and card.get("level") in PILOT_KIT_LEVELS
+    ]
+
+
+def pilot_asset_detail(
+    requirement: dict[str, Any],
+    physical_assets_by_id: dict[str, dict[str, Any]],
+    preload_profiles_by_id: dict[str, dict[str, Any]],
+) -> dict[str, Any]:
+    asset = physical_assets_by_id.get(requirement.get("asset_id"), {})
+    detail = {
+        "asset_id": requirement.get("asset_id"),
+        "label": asset.get("label", ""),
+        "category": asset.get("category", ""),
+        "quantity": requirement.get("quantity"),
+        "preparation_state": requirement.get("preparation_state"),
+        "preparation_notes": requirement.get("preparation_notes", ""),
+        "storage": asset.get("storage", {}),
+    }
+    preload_profile_id = requirement.get("preload_profile_id")
+    if preload_profile_id:
+        preload_profile = preload_profiles_by_id.get(preload_profile_id, {})
+        detail["preload_profile_id"] = preload_profile_id
+        detail["preload_profile_label"] = preload_profile.get("label", "")
+    return detail
+
+
+def aggregate_pilot_assets(asset_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    aggregated: dict[tuple[str, str, str], dict[str, Any]] = {}
+    for row in asset_rows:
+        key = (
+            str(row.get("asset_id", "")),
+            str(row.get("preparation_state", "")),
+            str(row.get("preload_profile_id", "")),
+        )
+        if key not in aggregated:
+            aggregated[key] = {
+                "asset_id": row.get("asset_id"),
+                "label": row.get("label", ""),
+                "category": row.get("category", ""),
+                "total_quantity": 0,
+                "preparation_state": row.get("preparation_state"),
+                "storage": row.get("storage", {}),
+                "used_by_power_cards": [],
+            }
+            if row.get("preload_profile_id"):
+                aggregated[key]["preload_profile_id"] = row.get("preload_profile_id")
+                aggregated[key]["preload_profile_label"] = row.get("preload_profile_label", "")
+        aggregated[key]["total_quantity"] += int(row.get("quantity") or 0)
+        used_by = row.get("power_card_id")
+        if used_by and used_by not in aggregated[key]["used_by_power_cards"]:
+            aggregated[key]["used_by_power_cards"].append(used_by)
+    return sorted(
+        aggregated.values(),
+        key=lambda item: (str(item.get("storage", {}).get("bin_id", "")), str(item.get("asset_id", ""))),
+    )
+
+
+def expected_pilot_kit_list(source: dict[str, Any]) -> dict[str, Any]:
+    inventory = source.get("asset_inventory", {})
+    physical_assets_by_id = {
+        asset.get("id"): asset
+        for asset in inventory.get("physical_assets", [])
+        if isinstance(asset, dict)
+    }
+    preload_profiles_by_id = {
+        profile.get("id"): profile
+        for profile in inventory.get("programmable_preload_profiles", [])
+        if isinstance(profile, dict)
+    }
+    families_by_id = {
+        family.get("id"): family
+        for family in source.get("skill_cards", [])
+        if isinstance(family, dict)
+    }
+
+    by_power_card: list[dict[str, Any]] = []
+    family_rows: dict[str, list[dict[str, Any]]] = {}
+    for card in pilot_kit_cards(source):
+        assets = []
+        for requirement in card.get("required_assets", []):
+            if not isinstance(requirement, dict):
+                continue
+            detail = pilot_asset_detail(requirement, physical_assets_by_id, preload_profiles_by_id)
+            assets.append(detail)
+            family_row = dict(detail)
+            family_row["power_card_id"] = card.get("id")
+            family_rows.setdefault(card.get("primary_family", ""), []).append(family_row)
+        by_power_card.append(
+            {
+                "power_card_id": card.get("id"),
+                "title": card.get("title"),
+                "skill_card_id": card.get("primary_family"),
+                "level": card.get("level"),
+                "assets": assets,
+            }
+        )
+
+    by_skill_card = []
+    for family_id in sorted(family_rows):
+        family = families_by_id.get(family_id, {})
+        family_cards = [card for card in by_power_card if card.get("skill_card_id") == family_id]
+        by_skill_card.append(
+            {
+                "skill_card_id": family_id,
+                "label": family.get("label") or family.get("name", ""),
+                "power_card_ids": [card["power_card_id"] for card in family_cards],
+                "assets": aggregate_pilot_assets(family_rows[family_id]),
+            }
+        )
+
+    return {
+        "pilot_scope": {
+            "levels": sorted(PILOT_KIT_LEVELS),
+            "skill_card_ids": sorted(PILOT_KIT_FAMILIES),
+            "power_card_ids": [card["power_card_id"] for card in by_power_card],
+        },
+        "by_power_card": by_power_card,
+        "by_skill_card": by_skill_card,
     }
 
 
@@ -214,6 +441,28 @@ def validate_levels(source: dict[str, Any], errors: list[str]) -> set[int]:
         for field in ("id", "name", "child_facing_summary", "facilitator_definition", "coding_expectation"):
             if not str(level.get(field, "")).strip():
                 errors.append(f"levels: level {level_id!r} missing non-empty {field}")
+        dimensions = level.get("dimensions")
+        if not isinstance(dimensions, dict):
+            errors.append(f"levels: level {level_id!r} missing dimensions object")
+        else:
+            missing_dimensions = sorted(LEVEL_DIMENSION_FIELDS - set(dimensions))
+            if missing_dimensions:
+                errors.append(f"levels: level {level_id!r} missing dimensions {missing_dimensions}")
+            extra_dimensions = sorted(set(dimensions) - LEVEL_DIMENSION_FIELDS)
+            if extra_dimensions:
+                errors.append(f"levels: level {level_id!r} has unknown dimensions {extra_dimensions}")
+            for dimension in sorted(LEVEL_DIMENSION_FIELDS):
+                if not str(dimensions.get(dimension, "")).strip():
+                    errors.append(f"levels: level {level_id!r} dimension {dimension} must be non-empty")
+            if dimensions.get("coding_expectation") != level.get("coding_expectation"):
+                errors.append(
+                    f"levels: level {level_id!r} coding_expectation must match dimensions.coding_expectation"
+                )
+        expected_coding = EXPECTED_CODING_BOUNDARY.get(level_id)
+        if expected_coding and level.get("coding_expectation") != expected_coding:
+            errors.append(
+                f"levels: level {level_id!r} coding_expectation {level.get('coding_expectation')!r} does not match required boundary {expected_coding!r}"
+            )
     if level_ids != {1, 2, 3, 4, 5, 6}:
         errors.append(f"levels: expected ids [1, 2, 3, 4, 5, 6], found {sorted(level_ids)}")
     return {level_id for level_id in level_ids if isinstance(level_id, int)}
@@ -340,6 +589,149 @@ def validate_dependency_cycles(power_by_id: dict[str, dict[str, Any]], errors: l
     return cycles
 
 
+def iter_card_field_text(card: dict[str, Any], fields: tuple[str, ...]) -> list[tuple[str, str]]:
+    values: list[tuple[str, str]] = []
+    for field in fields:
+        value = card.get(field)
+        if isinstance(value, list):
+            values.extend((field, str(item)) for item in value if str(item).strip())
+        elif str(value or "").strip():
+            values.append((field, str(value)))
+    return values
+
+
+def find_rule_match(
+    card: dict[str, Any],
+    rule: dict[str, Any],
+    fields: tuple[str, ...],
+) -> tuple[str, str] | None:
+    for field, text in iter_card_field_text(card, fields):
+        for pattern in rule["patterns"]:
+            if re.search(pattern, text, flags=re.IGNORECASE):
+                return field, text
+    return None
+
+
+def audit_power_card_levels(power_by_id: dict[str, dict[str, Any]]) -> dict[str, Any]:
+    items: list[dict[str, Any]] = []
+    for power_id in sorted(power_by_id):
+        card = power_by_id[power_id]
+        current_level = card.get("level")
+        if not isinstance(current_level, int):
+            continue
+        for rule in LEVEL_REVIEW_RULES:
+            minimum_level = int(rule["minimum_level"])
+            if current_level >= minimum_level:
+                continue
+            match = find_rule_match(card, rule, POWER_CARD_CORE_AUDIT_FIELDS)
+            scope = "core"
+            if match is None:
+                match = find_rule_match(card, rule, POWER_CARD_STRETCH_AUDIT_FIELDS)
+                scope = "stretch"
+            if match is None:
+                continue
+            field, evidence = match
+            items.append(
+                {
+                    "card_id": power_id,
+                    "title": card.get("title", ""),
+                    "primary_family": card.get("primary_family", ""),
+                    "current_level": current_level,
+                    "suggested_minimum_level": minimum_level,
+                    "rule_id": rule["id"],
+                    "rule_label": rule["label"],
+                    "scope": scope,
+                    "field": field,
+                    "evidence": evidence,
+                    "rationale": rule["rationale"],
+                }
+            )
+    return {
+        "rules": [
+            {
+                "id": rule["id"],
+                "minimum_level": rule["minimum_level"],
+                "label": rule["label"],
+                "rationale": rule["rationale"],
+            }
+            for rule in LEVEL_REVIEW_RULES
+        ],
+        "items": items,
+        "cards_needing_review": sorted({item["card_id"] for item in items}),
+    }
+
+
+def add_level_audit_warnings(level_audit: dict[str, Any], warnings: list[str]) -> None:
+    items = level_audit.get("items", [])
+    cards = level_audit.get("cards_needing_review", [])
+    if not items:
+        warnings.append("level_audit: no Power Cards matched current level-exceedance heuristics.")
+        return
+    warnings.append(
+        f"level_audit: {len(cards)} Power Cards need human level-boundary review; see reports/power-card-level-audit.md."
+    )
+    for item in items:
+        warnings.append(
+            "level_audit: "
+            f"{item['card_id']} level {item['current_level']} may exceed its level via {item['rule_id']} "
+            f"(suggested minimum level {item['suggested_minimum_level']}, {item['scope']} field {item['field']})."
+        )
+
+
+def markdown_escape(value: Any) -> str:
+    return str(value).replace("|", "\\|").replace("\n", " ").strip()
+
+
+def write_level_audit_report(path: Path, level_audit: dict[str, Any]) -> None:
+    path.parent.mkdir(parents=True, exist_ok=True)
+    items = level_audit.get("items", [])
+    cards = level_audit.get("cards_needing_review", [])
+    lines = [
+        "<!-- GENERATED FILE - DO NOT EDIT BY HAND.",
+        "Source: curriculum/source/curriculum.v1.json",
+        "Rebuild: python3 tools/validate_curriculum.py --source curriculum/source/curriculum.v1.json --curriculum-dir curriculum/generated --output reports/validation-results.json",
+        "Status: heuristic review aid; warnings require human judgement before changing card levels. -->",
+        "",
+        "# Power Card Level Audit",
+        "",
+        f"- Cards needing human review: {len(cards)}",
+        f"- Review items: {len(items)}",
+        "",
+        "This report flags cards whose wording appears to exceed the current level model. It does not prove the card is wrong; it identifies places for human review.",
+        "",
+        "## Rules",
+        "",
+        "| Rule | First Allowed Level | Reason |",
+        "| --- | ---: | --- |",
+    ]
+    for rule in level_audit.get("rules", []):
+        lines.append(
+            f"| {markdown_escape(rule['label'])} | {rule['minimum_level']} | {markdown_escape(rule['rationale'])} |"
+        )
+    lines.extend(["", "## Review Items", ""])
+    if not items:
+        lines.append("No Power Cards matched the current level-exceedance heuristics.")
+    else:
+        lines.extend(
+            [
+                "| Card | Current Level | Suggested Minimum | Rule | Scope | Field | Evidence |",
+                "| --- | ---: | ---: | --- | --- | --- | --- |",
+            ]
+        )
+        for item in items:
+            lines.append(
+                "| "
+                f"{markdown_escape(item['card_id'])} - {markdown_escape(item['title'])} | "
+                f"{item['current_level']} | "
+                f"{item['suggested_minimum_level']} | "
+                f"{markdown_escape(item['rule_label'])} | "
+                f"{markdown_escape(item['scope'])} | "
+                f"{markdown_escape(item['field'])} | "
+                f"{markdown_escape(item['evidence'])} |"
+            )
+    path.write_text("\n".join(lines) + "\n", encoding="utf-8")
+
+
 def validate_integrations(
     source: dict[str, Any],
     family_ids: set[str],
@@ -436,6 +828,63 @@ def validate_assets(
         if not (ROOT / path).exists():
             errors.append(f"asset_inventory.assets: asset {asset_id} path does not exist: {path}")
 
+    physical_assets = require_list(inventory.get("physical_assets"), "asset_inventory.physical_assets", errors)
+    physical_asset_ids = duplicate_ids(
+        [asset for asset in physical_assets if isinstance(asset, dict)],
+        "asset_inventory.physical_assets",
+        errors,
+    )
+    physical_assets_by_id = {asset.get("id"): asset for asset in physical_assets if isinstance(asset, dict)}
+    for asset in physical_assets:
+        if not isinstance(asset, dict):
+            errors.append("asset_inventory.physical_assets: each asset must be an object")
+            continue
+        asset_id = asset.get("id", "<missing-id>")
+        for field in ("label", "category"):
+            if not str(asset.get(field, "")).strip():
+                errors.append(f"asset_inventory.physical_assets: asset {asset_id} missing non-empty {field}")
+        state = asset.get("default_preparation_state")
+        if state not in PREPARATION_STATES:
+            errors.append(
+                f"asset_inventory.physical_assets: asset {asset_id} has invalid default_preparation_state {state!r}"
+            )
+        storage = asset.get("storage")
+        if not isinstance(storage, dict):
+            errors.append(f"asset_inventory.physical_assets: asset {asset_id} missing storage object")
+        else:
+            for field in ("zone", "bin_id", "bin_label"):
+                if not str(storage.get(field, "")).strip():
+                    errors.append(f"asset_inventory.physical_assets: asset {asset_id} storage missing {field}")
+
+    programmable_preload_profiles = require_list(
+        inventory.get("programmable_preload_profiles"),
+        "asset_inventory.programmable_preload_profiles",
+        errors,
+    )
+    preload_profile_ids = duplicate_ids(
+        [profile for profile in programmable_preload_profiles if isinstance(profile, dict)],
+        "asset_inventory.programmable_preload_profiles",
+        errors,
+    )
+    preload_profiles_by_id = {
+        profile.get("id"): profile for profile in programmable_preload_profiles if isinstance(profile, dict)
+    }
+    for profile in programmable_preload_profiles:
+        if not isinstance(profile, dict):
+            errors.append("asset_inventory.programmable_preload_profiles: each profile must be an object")
+            continue
+        profile_id = profile.get("id", "<missing-id>")
+        for field in ("label", "description", "adult_preparation_notes"):
+            if not str(profile.get(field, "")).strip():
+                errors.append(
+                    f"asset_inventory.programmable_preload_profiles: profile {profile_id} missing non-empty {field}"
+                )
+        board_asset_id = profile.get("board_asset_id")
+        if board_asset_id not in physical_asset_ids:
+            errors.append(
+                f"asset_inventory.programmable_preload_profiles: profile {profile_id} references unknown board asset {board_asset_id}"
+            )
+
     result_asset_cards = {
         asset.get("card_id")
         for asset in assets
@@ -457,6 +906,55 @@ def validate_assets(
             continue
         if not assignment.get("template"):
             errors.append(f"asset_inventory.scene_assignments: card {power_id} missing template")
+
+    pilot_card_ids = {card.get("id") for card in pilot_kit_cards(source)}
+    for power_id, power in power_by_id.items():
+        required_assets = power.get("required_assets")
+        in_pilot_scope = power_id in pilot_card_ids
+        if in_pilot_scope and not isinstance(required_assets, list):
+            errors.append(f"power_cards: pilot card {power_id} missing required_assets list")
+            continue
+        if not in_pilot_scope and required_assets:
+            errors.append(f"power_cards: card {power_id} has required_assets outside the current pilot scope")
+        if required_assets is None:
+            continue
+        if not isinstance(required_assets, list):
+            errors.append(f"power_cards: card {power_id} required_assets must be a list")
+            continue
+        if in_pilot_scope and not required_assets:
+            errors.append(f"power_cards: pilot card {power_id} required_assets must not be empty")
+        for index, requirement in enumerate(required_assets, start=1):
+            if not isinstance(requirement, dict):
+                errors.append(f"power_cards: card {power_id} required_assets[{index}] must be an object")
+                continue
+            asset_id = requirement.get("asset_id")
+            if asset_id not in physical_asset_ids:
+                errors.append(f"power_cards: card {power_id} required_assets[{index}] references unknown asset {asset_id}")
+            quantity = requirement.get("quantity")
+            if not isinstance(quantity, int) or quantity < 1:
+                errors.append(f"power_cards: card {power_id} required_assets[{index}] missing positive integer quantity")
+            state = requirement.get("preparation_state")
+            if state not in PREPARATION_STATES:
+                errors.append(
+                    f"power_cards: card {power_id} required_assets[{index}] has invalid preparation_state {state!r}"
+                )
+            if not str(requirement.get("preparation_notes", "")).strip():
+                errors.append(f"power_cards: card {power_id} required_assets[{index}] missing preparation_notes")
+            preload_profile_id = requirement.get("preload_profile_id")
+            if preload_profile_id:
+                profile = preload_profiles_by_id.get(preload_profile_id)
+                if profile is None:
+                    errors.append(
+                        f"power_cards: card {power_id} required_assets[{index}] references unknown preload profile {preload_profile_id}"
+                    )
+                elif profile.get("board_asset_id") != asset_id:
+                    errors.append(
+                        f"power_cards: card {power_id} required_assets[{index}] preload profile {preload_profile_id} is for {profile.get('board_asset_id')}, not {asset_id}"
+                    )
+            elif state == "preloaded":
+                errors.append(
+                    f"power_cards: card {power_id} required_assets[{index}] is preloaded but has no preload_profile_id"
+                )
 
     known_assets = set(asset_ids)
     for profile in require_list(source.get("preload_profiles"), "preload_profiles", errors):
@@ -534,6 +1032,7 @@ def validate_generated_outputs(source: dict[str, Any], generated_dir: Path, erro
         "red_team_cases.yaml": {"cases": source.get("red_team_cases", [])},
         "asset-inventory.json": source.get("asset_inventory", {}),
         "preload-manifest.json": {"profiles": source.get("preload_profiles", [])},
+        "pilot-kit-list.json": expected_pilot_kit_list(source),
     }
     for filename, expected_payload in expected_generated_payloads.items():
         path = generated_dir / filename
@@ -561,6 +1060,11 @@ def compute_metrics(source: dict[str, Any], power_by_id: dict[str, dict[str, Any
             "invention_cards": len(source.get("invention_cards", [])),
             "red_team_cases": len(source.get("red_team_cases", [])),
             "assets": len(source.get("asset_inventory", {}).get("assets", [])),
+            "physical_assets": len(source.get("asset_inventory", {}).get("physical_assets", [])),
+            "programmable_preload_profiles": len(
+                source.get("asset_inventory", {}).get("programmable_preload_profiles", [])
+            ),
+            "pilot_cards_with_required_assets": sum(1 for power in powers if power.get("required_assets")),
             "preload_profiles": len(source.get("preload_profiles", [])),
         },
         "power_cards_by_family_level": {
@@ -589,6 +1093,8 @@ def validate_source(source_path: Path, generated_dir: Path, validate_generated: 
     level_ids = validate_levels(source, errors)
     family_ids = validate_skill_cards(source, level_ids, errors)
     power_by_id = validate_power_cards(source, family_ids, level_ids, errors)
+    level_audit = audit_power_card_levels(power_by_id)
+    add_level_audit_warnings(level_audit, warnings)
     validate_integrations(source, family_ids, power_by_id, errors)
     validate_inventions(source, family_ids, errors)
     validate_assets(source, power_by_id, errors)
@@ -602,6 +1108,7 @@ def validate_source(source_path: Path, generated_dir: Path, validate_generated: 
         "generated_dir": str(generated_dir.relative_to(ROOT) if generated_dir.is_relative_to(ROOT) else generated_dir),
         "validation_strategy": validation_strategy,
         "metrics": compute_metrics(source, power_by_id),
+        "level_audit": level_audit,
         "errors": errors,
         "warnings": warnings,
     }
@@ -613,6 +1120,7 @@ def main() -> int:
     parser.add_argument("--source", default=str(DEFAULT_SOURCE))
     parser.add_argument("--curriculum-dir", default=str(DEFAULT_GENERATED_DIR))
     parser.add_argument("--output", required=True)
+    parser.add_argument("--level-audit-output", default=str(DEFAULT_LEVEL_AUDIT_OUTPUT))
     parser.add_argument("--skip-generated", action="store_true")
     args = parser.parse_args()
 
@@ -620,6 +1128,8 @@ def main() -> int:
     output_path = Path(args.output)
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    if args.level_audit_output:
+        write_level_audit_report(Path(args.level_audit_output), result.get("level_audit", {"items": [], "rules": []}))
     return exit_code
 
 
