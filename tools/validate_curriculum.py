@@ -307,6 +307,7 @@ def expected_browser_curriculum_payload(source: dict[str, Any]) -> dict[str, Any
         "inventionCards": source.get("invention_cards", []),
         "assetInventory": source.get("asset_inventory", {}),
         "preloadProfiles": source.get("preload_profiles", []),
+        "pilotMicroPacks": source.get("pilot_micro_packs", []),
     }
 
 

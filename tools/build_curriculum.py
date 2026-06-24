@@ -630,6 +630,7 @@ def browser_curriculum_payload(source: dict[str, Any]) -> dict[str, Any]:
         "inventionCards": source["invention_cards"],
         "assetInventory": source["asset_inventory"],
         "preloadProfiles": source["preload_profiles"],
+        "pilotMicroPacks": source.get("pilot_micro_packs", []),
     }
 
 
