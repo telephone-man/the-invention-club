@@ -377,15 +377,34 @@ def pilot_asset_detail(
     preload_profiles_by_id: dict[str, dict[str, Any]],
 ) -> dict[str, Any]:
     asset = physical_assets_by_id.get(requirement.get("asset_id"), {})
+    safety = asset.get("safety", {}) if isinstance(asset.get("safety"), dict) else {}
+    stock = asset.get("stock", {}) if isinstance(asset.get("stock"), dict) else {}
     detail = {
         "asset_id": requirement.get("asset_id"),
+        "kit_code": asset.get("kit_code", ""),
         "label": asset.get("label", ""),
+        "short_label": asset.get("short_label") or asset.get("label", ""),
         "category": asset.get("category", ""),
         "quantity": requirement.get("quantity"),
+        "quantity_basis": requirement.get("quantity_basis"),
         "preparation_state": requirement.get("preparation_state"),
         "preparation_notes": requirement.get("preparation_notes", ""),
+        "programming_state": requirement.get("programming_state"),
         "storage": asset.get("storage", {}),
+        "safety_flags": safety.get("hazards", []),
+        "supervision_level": safety.get("supervision_level", ""),
+        "age_floor": safety.get("age_floor"),
+        "inspection_check": safety.get("inspection_check", ""),
+        "return_check": safety.get("return_check", ""),
+        "stock": {
+            "reusable": stock.get("reusable"),
+            "consumable": stock.get("consumable"),
+            "reorder_unit": stock.get("reorder_unit", ""),
+            "reorder_trigger": stock.get("reorder_trigger", ""),
+        },
     }
+    if detail["programming_state"] is None:
+        detail.pop("programming_state")
     preload_profile_id = requirement.get("preload_profile_id")
     if preload_profile_id:
         preload_profile = preload_profiles_by_id.get(preload_profile_id, {})
@@ -395,23 +414,36 @@ def pilot_asset_detail(
 
 
 def aggregate_pilot_assets(asset_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    aggregated: dict[tuple[str, str, str], dict[str, Any]] = {}
+    aggregated: dict[tuple[str, str, str, str, str], dict[str, Any]] = {}
     for row in asset_rows:
         key = (
             str(row.get("asset_id", "")),
+            str(row.get("quantity_basis", "")),
             str(row.get("preparation_state", "")),
             str(row.get("preload_profile_id", "")),
+            str(row.get("programming_state", "")),
         )
         if key not in aggregated:
             aggregated[key] = {
                 "asset_id": row.get("asset_id"),
+                "kit_code": row.get("kit_code", ""),
                 "label": row.get("label", ""),
+                "short_label": row.get("short_label", ""),
                 "category": row.get("category", ""),
                 "total_quantity": 0,
+                "quantity_basis": row.get("quantity_basis"),
                 "preparation_state": row.get("preparation_state"),
                 "storage": row.get("storage", {}),
+                "safety_flags": row.get("safety_flags", []),
+                "supervision_level": row.get("supervision_level", ""),
+                "age_floor": row.get("age_floor"),
+                "inspection_check": row.get("inspection_check", ""),
+                "return_check": row.get("return_check", ""),
+                "stock": row.get("stock", {}),
                 "used_by_power_cards": [],
             }
+            if row.get("programming_state"):
+                aggregated[key]["programming_state"] = row.get("programming_state")
             if row.get("preload_profile_id"):
                 aggregated[key]["preload_profile_id"] = row.get("preload_profile_id")
                 aggregated[key]["preload_profile_label"] = row.get("preload_profile_label", "")
@@ -421,7 +453,16 @@ def aggregate_pilot_assets(asset_rows: list[dict[str, Any]]) -> list[dict[str, A
             aggregated[key]["used_by_power_cards"].append(used_by)
     return sorted(
         aggregated.values(),
-        key=lambda item: (str(item.get("storage", {}).get("bin_id", "")), str(item.get("asset_id", ""))),
+        key=lambda item: (
+            str(item.get("storage", {}).get("zone", "")),
+            str(item.get("storage", {}).get("bin_id", "")),
+            int(item.get("storage", {}).get("pack_order") or 0),
+            str(item.get("kit_code", "")),
+            str(item.get("asset_id", "")),
+            str(item.get("quantity_basis", "")),
+            str(item.get("preparation_state", "")),
+            str(item.get("preload_profile_id", "")),
+        ),
     )
 
 
@@ -444,6 +485,7 @@ def build_pilot_kit_list(source: dict[str, Any]) -> dict[str, Any]:
     }
 
     by_power_card: list[dict[str, Any]] = []
+    all_rows: list[dict[str, Any]] = []
     family_rows: dict[str, list[dict[str, Any]]] = {}
     for card in pilot_kit_cards(source):
         assets = []
@@ -452,9 +494,11 @@ def build_pilot_kit_list(source: dict[str, Any]) -> dict[str, Any]:
                 continue
             detail = pilot_asset_detail(requirement, physical_assets_by_id, preload_profiles_by_id)
             assets.append(detail)
-            family_row = dict(detail)
-            family_row["power_card_id"] = card.get("id")
-            family_rows.setdefault(card.get("primary_family", ""), []).append(family_row)
+            aggregate_row = dict(detail)
+            aggregate_row["power_card_id"] = card.get("id")
+            aggregate_row["power_card_title"] = card.get("title")
+            all_rows.append(aggregate_row)
+            family_rows.setdefault(card.get("primary_family", ""), []).append(aggregate_row)
         by_power_card.append(
             {
                 "power_card_id": card.get("id"),
@@ -486,6 +530,7 @@ def build_pilot_kit_list(source: dict[str, Any]) -> dict[str, Any]:
         },
         "by_power_card": by_power_card,
         "by_skill_card": by_skill_card,
+        "global_packing_by_bin": aggregate_pilot_assets(all_rows),
     }
 
 

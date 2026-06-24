@@ -543,19 +543,22 @@
           "asset_id": "part_dc_motor",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Unwired sample for recognising rotation."
+          "preparation_notes": "Unwired sample for recognising rotation.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_micro_servo",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Unpowered sample for recognising angle motion."
+          "preparation_notes": "Unpowered sample for recognising angle motion.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_solenoid_sample",
           "quantity": 1,
           "preparation_state": "prebuilt",
-          "preparation_notes": "Adult-prepared push-pull demo sample; child observes only."
+          "preparation_notes": "Adult-prepared push-pull demo sample; child observes only.",
+          "quantity_basis": "demo_only"
         }
       ],
       "success_condition": "Actuator types are matched to rotation, angle, or push-pull motion.",
@@ -592,19 +595,22 @@
           "asset_id": "part_dc_motor",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Ready for direct low-voltage motor test."
+          "preparation_notes": "Ready for direct low-voltage motor test.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_aa_battery_pack",
           "quantity": 1,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Adult inserts cells and checks the pack is switched off before handout."
+          "preparation_notes": "Adult inserts cells and checks the pack is switched off before handout.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_croc_clip_lead",
           "quantity": 2,
           "preparation_state": "loose",
-          "preparation_notes": "Use short leads with intact insulation."
+          "preparation_notes": "Use short leads with intact insulation.",
+          "quantity_basis": "per_pair"
         }
       ],
       "success_condition": "Motor spins while wires and fingers stay safe.",
@@ -641,26 +647,31 @@
           "asset_id": "part_micro_servo",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Servo is ready to plug into the labelled breakout pins."
+          "preparation_notes": "Servo is ready to plug into the labelled breakout pins.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_servo_horn",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Loose horn for marking visible positions."
+          "preparation_notes": "Loose horn for marking visible positions.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_microbit_board",
           "quantity": 1,
           "preparation_state": "preloaded",
           "preparation_notes": "Board is flashed before session; children select positions but do not edit code.",
-          "preload_profile_id": "preload_microbit_servo_positions"
+          "preload_profile_id": "preload_microbit_servo_positions",
+          "quantity_basis": "per_pair",
+          "programming_state": "preloaded_locked"
         },
         {
           "asset_id": "part_microbit_breakout",
           "quantity": 1,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Adult attaches board and labels servo pins before session."
+          "preparation_notes": "Adult attaches board and labels servo pins before session.",
+          "quantity_basis": "per_pair"
         }
       ],
       "success_condition": "Servo moves to at least two chosen positions.",
@@ -844,25 +855,29 @@
           "asset_id": "part_button_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Loose sample for press input sorting."
+          "preparation_notes": "Loose sample for press input sorting.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_toggle_switch",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Loose sample for toggle input sorting."
+          "preparation_notes": "Loose sample for toggle input sorting.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_potentiometer_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Loose sample for turn input sorting."
+          "preparation_notes": "Loose sample for turn input sorting.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_joystick_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Loose sample for direction input sorting."
+          "preparation_notes": "Loose sample for direction input sorting.",
+          "quantity_basis": "per_table"
         }
       ],
       "success_condition": "Inputs are sorted by press, toggle, turn, or direction.",
@@ -899,26 +914,31 @@
           "asset_id": "part_button_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Ready to connect to the labelled input."
+          "preparation_notes": "Ready to connect to the labelled input.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_microbit_board",
           "quantity": 1,
           "preparation_state": "preloaded",
           "preparation_notes": "Board is flashed to show button state through an indicator.",
-          "preload_profile_id": "preload_microbit_button_indicator"
+          "preload_profile_id": "preload_microbit_button_indicator",
+          "quantity_basis": "per_pair",
+          "programming_state": "preloaded_locked"
         },
         {
           "asset_id": "part_microbit_breakout",
           "quantity": 1,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Adult attaches board and labels button/indicator pins before session."
+          "preparation_notes": "Adult attaches board and labels button/indicator pins before session.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_led_indicator_module",
           "quantity": 1,
           "preparation_state": "prebuilt",
-          "preparation_notes": "Indicator module is ready to show input state."
+          "preparation_notes": "Indicator module is ready to show input state.",
+          "quantity_basis": "per_pair"
         }
       ],
       "success_condition": "Indicator changes only with button state.",
@@ -955,26 +975,31 @@
           "asset_id": "part_potentiometer_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Ready to connect to the labelled analog input."
+          "preparation_notes": "Ready to connect to the labelled analog input.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_microbit_board",
           "quantity": 1,
           "preparation_state": "preloaded",
           "preparation_notes": "Board is flashed to display analog readings without child-authored code.",
-          "preload_profile_id": "preload_microbit_analog_display"
+          "preload_profile_id": "preload_microbit_analog_display",
+          "quantity_basis": "per_pair",
+          "programming_state": "preloaded_locked"
         },
         {
           "asset_id": "part_microbit_breakout",
           "quantity": 1,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Adult attaches board and labels power, ground, and signal pins."
+          "preparation_notes": "Adult attaches board and labels power, ground, and signal pins.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_numeric_display_module",
           "quantity": 1,
           "preparation_state": "prebuilt",
-          "preparation_notes": "Display module is ready to show changing values."
+          "preparation_notes": "Display module is ready to show changing values.",
+          "quantity_basis": "per_pair"
         }
       ],
       "success_condition": "Displayed value changes smoothly as the knob turns.",
@@ -1160,25 +1185,29 @@
           "asset_id": "part_light_sensor_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Loose sample for light sensing recognition."
+          "preparation_notes": "Loose sample for light sensing recognition.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_tilt_sensor_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Loose sample for tilt sensing recognition."
+          "preparation_notes": "Loose sample for tilt sensing recognition.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_distance_sensor_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Loose sample for distance sensing recognition."
+          "preparation_notes": "Loose sample for distance sensing recognition.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_touch_sensor_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Loose sample for contact sensing recognition."
+          "preparation_notes": "Loose sample for contact sensing recognition.",
+          "quantity_basis": "per_table"
         }
       ],
       "success_condition": "Sensors are matched to light, tilt, distance, or contact.",
@@ -1215,32 +1244,38 @@
           "asset_id": "part_light_sensor_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Ready to connect to the labelled sensor input."
+          "preparation_notes": "Ready to connect to the labelled sensor input.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_microbit_board",
           "quantity": 1,
           "preparation_state": "preloaded",
           "preparation_notes": "Board is flashed to display sensor readings without child-authored code.",
-          "preload_profile_id": "preload_microbit_analog_display"
+          "preload_profile_id": "preload_microbit_analog_display",
+          "quantity_basis": "per_pair",
+          "programming_state": "preloaded_locked"
         },
         {
           "asset_id": "part_microbit_breakout",
           "quantity": 1,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Adult attaches board and labels sensor pins before session."
+          "preparation_notes": "Adult attaches board and labels sensor pins before session.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_numeric_display_module",
           "quantity": 1,
           "preparation_state": "prebuilt",
-          "preparation_notes": "Display module is ready to show light readings."
+          "preparation_notes": "Display module is ready to show light readings.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_torch",
           "quantity": 1,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Adult checks torch works and sets brightness expectations."
+          "preparation_notes": "Adult checks torch works and sets brightness expectations.",
+          "quantity_basis": "per_table"
         }
       ],
       "success_condition": "Displayed value changes when light is covered or uncovered.",
@@ -1448,19 +1483,22 @@
           "asset_id": "part_sample_frame",
           "quantity": 2,
           "preparation_state": "prebuilt",
-          "preparation_notes": "Provide one stable and one weaker frame sample."
+          "preparation_notes": "Provide one stable and one weaker frame sample.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_small_weight",
           "quantity": 1,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Adult chooses a low test weight suitable for observation."
+          "preparation_notes": "Adult chooses a low test weight suitable for observation.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_craft_stick",
           "quantity": 4,
           "preparation_state": "blank",
-          "preparation_notes": "Blank loose sticks for pointing out beams and joints."
+          "preparation_notes": "Blank loose sticks for pointing out beams and joints.",
+          "quantity_basis": "per_table"
         }
       ],
       "success_condition": "Child points to where load travels and where a joint may fail.",
@@ -1498,25 +1536,29 @@
           "asset_id": "part_craft_stick",
           "quantity": 8,
           "preparation_state": "blank",
-          "preparation_notes": "Blank sticks for a simple frame build."
+          "preparation_notes": "Blank sticks for a simple frame build.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_card_stock",
           "quantity": 2,
           "preparation_state": "blank",
-          "preparation_notes": "Blank card pieces for gussets or base support."
+          "preparation_notes": "Blank card pieces for gussets or base support.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_masking_tape",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Tearable tape roll or prepared short strips."
+          "preparation_notes": "Tearable tape roll or prepared short strips.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_small_weight",
           "quantity": 1,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Adult chooses a target load and checks it is safe."
+          "preparation_notes": "Adult chooses a target load and checks it is safe.",
+          "quantity_basis": "per_table"
         }
       ],
       "success_condition": "Frame holds the target load for 30 seconds.",
@@ -1733,25 +1775,29 @@
           "asset_id": "part_aa_cell",
           "quantity": 2,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Adult checks cells and keeps them out of unsupervised circuits."
+          "preparation_notes": "Adult checks cells and keeps them out of unsupervised circuits.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_coin_cell",
           "quantity": 1,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Adult handles distribution and return of coin cells."
+          "preparation_notes": "Adult handles distribution and return of coin cells.",
+          "quantity_basis": "demo_only"
         },
         {
           "asset_id": "part_battery_holder",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Empty holder for polarity inspection."
+          "preparation_notes": "Empty holder for polarity inspection.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_polarity_cards",
           "quantity": 1,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Cards are sorted and ready for positive/negative matching."
+          "preparation_notes": "Cards are sorted and ready for positive/negative matching.",
+          "quantity_basis": "per_table"
         }
       ],
       "success_condition": "Child identifies polarity and one safety limit for each source.",
@@ -1788,25 +1834,29 @@
           "asset_id": "part_aa_battery_pack",
           "quantity": 1,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Adult inserts cells and checks switch state before handout."
+          "preparation_notes": "Adult inserts cells and checks switch state before handout.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_led_module",
           "quantity": 1,
           "preparation_state": "prebuilt",
-          "preparation_notes": "Low-power LED module selected as the safe first load."
+          "preparation_notes": "Low-power LED module selected as the safe first load.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_dc_motor",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Optional alternate load kept available for comparison only."
+          "preparation_notes": "Optional alternate load kept available for comparison only.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_croc_clip_lead",
           "quantity": 2,
           "preparation_state": "loose",
-          "preparation_notes": "Use short leads with intact insulation."
+          "preparation_notes": "Use short leads with intact insulation.",
+          "quantity_basis": "per_pair"
         }
       ],
       "success_condition": "Load powers on without overheating, shorting, or reversed polarity.",
@@ -3170,19 +3220,22 @@
           "asset_id": "part_wheel_sample",
           "quantity": 1,
           "preparation_state": "prebuilt",
-          "preparation_notes": "Wheel sample is ready to spin by hand."
+          "preparation_notes": "Wheel sample is ready to spin by hand.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_cardboard_flap_sample",
           "quantity": 1,
           "preparation_state": "prebuilt",
-          "preparation_notes": "Flap sample is hinged before session."
+          "preparation_notes": "Flap sample is hinged before session.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_slider_sample",
           "quantity": 1,
           "preparation_state": "prebuilt",
-          "preparation_notes": "Slider sample is assembled before session."
+          "preparation_notes": "Slider sample is assembled before session.",
+          "quantity_basis": "per_table"
         }
       ],
       "success_condition": "Three moving samples are matched to spin, swing, or slide motion.",
@@ -3316,25 +3369,29 @@
           "asset_id": "part_button_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Loose button sample for start/trigger matching."
+          "preparation_notes": "Loose button sample for start/trigger matching.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_toggle_switch",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Loose switch sample for stay-on matching."
+          "preparation_notes": "Loose switch sample for stay-on matching.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_potentiometer_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Loose knob sample for amount matching."
+          "preparation_notes": "Loose knob sample for amount matching.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_joystick_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Loose joystick sample for steering matching."
+          "preparation_notes": "Loose joystick sample for steering matching.",
+          "quantity_basis": "per_table"
         }
       ],
       "success_condition": "Each control is matched to a sensible job such as start, stay on, choose amount, or steer.",
@@ -3467,25 +3524,29 @@
           "asset_id": "part_light_sensor_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Loose sample for light category sorting."
+          "preparation_notes": "Loose sample for light category sorting.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_touch_sensor_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Loose sample for contact category sorting."
+          "preparation_notes": "Loose sample for contact category sorting.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_tilt_sensor_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Loose sample for tilt category sorting."
+          "preparation_notes": "Loose sample for tilt category sorting.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_distance_sensor_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Loose sample for distance category sorting."
+          "preparation_notes": "Loose sample for distance category sorting.",
+          "quantity_basis": "per_table"
         }
       ],
       "success_condition": "Sensor samples are grouped by the thing each one notices.",
@@ -3522,26 +3583,31 @@
           "asset_id": "part_tilt_sensor_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Ready to connect to the labelled tilt input."
+          "preparation_notes": "Ready to connect to the labelled tilt input.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_microbit_board",
           "quantity": 1,
           "preparation_state": "preloaded",
           "preparation_notes": "Board is flashed to show tilt state through an indicator.",
-          "preload_profile_id": "preload_microbit_tilt_indicator"
+          "preload_profile_id": "preload_microbit_tilt_indicator",
+          "quantity_basis": "per_pair",
+          "programming_state": "preloaded_locked"
         },
         {
           "asset_id": "part_microbit_breakout",
           "quantity": 1,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Adult attaches board and labels tilt sensor pins before session."
+          "preparation_notes": "Adult attaches board and labels tilt sensor pins before session.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_led_indicator_module",
           "quantity": 1,
           "preparation_state": "prebuilt",
-          "preparation_notes": "Indicator module is ready to show tilt state."
+          "preparation_notes": "Indicator module is ready to show tilt state.",
+          "quantity_basis": "per_pair"
         }
       ],
       "success_condition": "The indicator changes when the sensor tips past a clear point.",
@@ -3644,25 +3710,29 @@
           "asset_id": "part_sample_frame",
           "quantity": 2,
           "preparation_state": "prebuilt",
-          "preparation_notes": "Provide stable and wobbly card frame examples."
+          "preparation_notes": "Provide stable and wobbly card frame examples.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_triangle_frame_sample",
           "quantity": 1,
           "preparation_state": "prebuilt",
-          "preparation_notes": "Triangle sample is ready for comparison."
+          "preparation_notes": "Triangle sample is ready for comparison.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_straw",
           "quantity": 6,
           "preparation_state": "blank",
-          "preparation_notes": "Blank straws for pointing out brace options."
+          "preparation_notes": "Blank straws for pointing out brace options.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_masking_tape",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Tearable tape roll or prepared short strips."
+          "preparation_notes": "Tearable tape roll or prepared short strips.",
+          "quantity_basis": "per_table"
         }
       ],
       "success_condition": "Stable and wobbly sample frames are sorted with a reason.",
@@ -3700,25 +3770,29 @@
           "asset_id": "part_card_tube",
           "quantity": 3,
           "preparation_state": "blank",
-          "preparation_notes": "Blank tubes for tower legs or columns."
+          "preparation_notes": "Blank tubes for tower legs or columns.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_base_card",
           "quantity": 1,
           "preparation_state": "blank",
-          "preparation_notes": "Blank base card for wide-foot tower testing."
+          "preparation_notes": "Blank base card for wide-foot tower testing.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_masking_tape",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Tearable tape roll or prepared short strips."
+          "preparation_notes": "Tearable tape roll or prepared short strips.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_small_weight",
           "quantity": 1,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Adult keeps test weights ready for gentle nudge trials."
+          "preparation_notes": "Adult keeps test weights ready for gentle nudge trials.",
+          "quantity_basis": "per_table"
         }
       ],
       "success_condition": "The tower stands and survives three gentle nudges.",
@@ -3822,25 +3896,29 @@
           "asset_id": "part_aa_cell",
           "quantity": 2,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Adult checks cells before sorting activity."
+          "preparation_notes": "Adult checks cells before sorting activity.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_coin_cell_holder",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Holder is empty for orientation matching."
+          "preparation_notes": "Holder is empty for orientation matching.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_aa_battery_pack",
           "quantity": 1,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Pack is assembled but switched off for safe recognition."
+          "preparation_notes": "Pack is assembled but switched off for safe recognition.",
+          "quantity_basis": "per_table"
         },
         {
           "asset_id": "part_polarity_cards",
           "quantity": 1,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Cards are sorted and ready for orientation prompts."
+          "preparation_notes": "Cards are sorted and ready for orientation prompts.",
+          "quantity_basis": "per_table"
         }
       ],
       "success_condition": "Power parts are sorted by type and orientation without making a circuit.",
@@ -3878,25 +3956,29 @@
           "asset_id": "part_led_strip",
           "quantity": 1,
           "preparation_state": "prebuilt",
-          "preparation_notes": "Low-voltage strip is checked for safe current draw."
+          "preparation_notes": "Low-voltage strip is checked for safe current draw.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_aa_battery_pack",
           "quantity": 1,
           "preparation_state": "adult-prepared",
-          "preparation_notes": "Adult inserts cells and checks switch state before handout."
+          "preparation_notes": "Adult inserts cells and checks switch state before handout.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_switch_module",
           "quantity": 1,
           "preparation_state": "loose",
-          "preparation_notes": "Switch is ready to place in the simple circuit."
+          "preparation_notes": "Switch is ready to place in the simple circuit.",
+          "quantity_basis": "per_pair"
         },
         {
           "asset_id": "part_croc_clip_lead",
           "quantity": 2,
           "preparation_state": "loose",
-          "preparation_notes": "Use short leads with intact insulation."
+          "preparation_notes": "Use short leads with intact insulation.",
+          "quantity_basis": "per_pair"
         }
       ],
       "success_condition": "The LEDs light without warm wires or reversed polarity.",
@@ -7206,444 +7288,1399 @@
     "physical_assets": [
       {
         "id": "part_dc_motor",
+        "kit_code": "A001",
         "label": "DC motor",
+        "short_label": "DC motor",
         "category": "actuator",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-MOV-01",
-          "bin_label": "Movement actuators"
+          "bin_label": "Movement actuators",
+          "compartment": "MOV-01A",
+          "return_location": "BIN-MOV-01 / MOV-01A",
+          "pack_order": 1
         },
         "default_preparation_state": "loose",
+        "safety": {
+          "hazards": [
+            "moving_shaft",
+            "low_voltage_electrical",
+            "snagging"
+          ],
+          "supervision_level": "direct",
+          "age_floor": 6,
+          "inspection_check": "Check shaft spins freely and wires are intact before handout.",
+          "return_check": "Return unplugged with no wire wrapped around the shaft.",
+          "electrical_limits": {
+            "max_voltage_v": 3,
+            "max_current_ma": 500,
+            "notes": "Use only prepared low-voltage battery packs."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        },
         "session_notes": "Store motors unplugged with shafts clear of loose wire."
       },
       {
         "id": "part_micro_servo",
+        "kit_code": "A002",
         "label": "Micro servo",
+        "short_label": "Servo",
         "category": "actuator",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-MOV-01",
-          "bin_label": "Movement actuators"
+          "bin_label": "Movement actuators",
+          "compartment": "MOV-01B",
+          "return_location": "BIN-MOV-01 / MOV-01B",
+          "pack_order": 2
         },
         "default_preparation_state": "loose",
+        "safety": {
+          "hazards": [
+            "moving_horn",
+            "pinch_point",
+            "low_voltage_electrical"
+          ],
+          "supervision_level": "direct",
+          "age_floor": 6,
+          "inspection_check": "Check lead, plug, horn fit, and travel before use.",
+          "return_check": "Return with horn removed or parked and screws in compartment.",
+          "electrical_limits": {
+            "max_voltage_v": 5,
+            "max_current_ma": 700,
+            "notes": "Use with prepared board or servo tester only."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        },
         "session_notes": "Keep horns and screws in the same tray section."
       },
       {
         "id": "part_solenoid_sample",
+        "kit_code": "A003",
         "label": "Solenoid sample",
+        "short_label": "Solenoid demo",
         "category": "actuator",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-MOV-01",
-          "bin_label": "Movement actuators"
+          "bin_label": "Movement actuators",
+          "compartment": "MOV-01C",
+          "return_location": "BIN-MOV-01 / MOV-01C",
+          "pack_order": 3
         },
         "default_preparation_state": "prebuilt",
+        "safety": {
+          "hazards": [
+            "pinch_point",
+            "heat_or_current_draw",
+            "demo_only_electrical"
+          ],
+          "supervision_level": "demo_only",
+          "age_floor": 8,
+          "inspection_check": "Adult checks voltage, current limit, and movement before demonstration.",
+          "return_check": "Adult returns the demo sample immediately after observation.",
+          "electrical_limits": {
+            "max_voltage_v": 5,
+            "max_current_ma": 500,
+            "notes": "Adult demonstration only; no free wiring by children."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        },
         "session_notes": "Demo sample only; adult checks voltage/current limit before use."
       },
       {
         "id": "part_servo_horn",
+        "kit_code": "A004",
         "label": "Servo horn",
+        "short_label": "Servo horn",
         "category": "connector",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-MOV-01",
-          "bin_label": "Movement actuators"
+          "bin_label": "Movement actuators",
+          "compartment": "MOV-01D",
+          "return_location": "BIN-MOV-01 / MOV-01D",
+          "pack_order": 4
         },
-        "default_preparation_state": "loose"
+        "default_preparation_state": "loose",
+        "safety": {
+          "hazards": [
+            "small_part",
+            "pointed_edges"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 6,
+          "inspection_check": "Check for cracked horns or loose screws.",
+          "return_check": "Count horns and screws back into the servo compartment."
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_wheel_sample",
+        "kit_code": "A005",
         "label": "Wheel sample",
+        "short_label": "Wheel sample",
         "category": "motion_sample",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-MOV-02",
-          "bin_label": "Movement samples"
+          "bin_label": "Movement samples",
+          "compartment": "MOV-02A",
+          "return_location": "BIN-MOV-02 / MOV-02A",
+          "pack_order": 5
         },
-        "default_preparation_state": "prebuilt"
+        "default_preparation_state": "prebuilt",
+        "safety": {
+          "hazards": [
+            "rolling_part"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 4,
+          "inspection_check": "Check axle and wheel are secure.",
+          "return_check": "Return intact sample to movement samples compartment."
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_cardboard_flap_sample",
+        "kit_code": "A006",
         "label": "Cardboard flap sample",
+        "short_label": "Flap sample",
         "category": "motion_sample",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-MOV-02",
-          "bin_label": "Movement samples"
+          "bin_label": "Movement samples",
+          "compartment": "MOV-02B",
+          "return_location": "BIN-MOV-02 / MOV-02B",
+          "pack_order": 6
         },
-        "default_preparation_state": "prebuilt"
+        "default_preparation_state": "prebuilt",
+        "safety": {
+          "hazards": [
+            "paper_edge",
+            "hinge_pinching"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 4,
+          "inspection_check": "Check hinge tape and edges are intact.",
+          "return_check": "Return flat without bent hinge or torn card."
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_slider_sample",
+        "kit_code": "A007",
         "label": "Slider sample",
+        "short_label": "Slider sample",
         "category": "motion_sample",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-MOV-02",
-          "bin_label": "Movement samples"
+          "bin_label": "Movement samples",
+          "compartment": "MOV-02C",
+          "return_location": "BIN-MOV-02 / MOV-02C",
+          "pack_order": 7
         },
-        "default_preparation_state": "prebuilt"
+        "default_preparation_state": "prebuilt",
+        "safety": {
+          "hazards": [
+            "pinch_point"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 4,
+          "inspection_check": "Check slider moves without sharp or loose parts.",
+          "return_check": "Return with slider seated in its track."
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_button_module",
+        "kit_code": "A008",
         "label": "Button module",
+        "short_label": "Button",
         "category": "control",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-CTRL-01",
-          "bin_label": "Input controls"
+          "bin_label": "Input controls",
+          "compartment": "CTRL-01A",
+          "return_location": "BIN-CTRL-01 / CTRL-01A",
+          "pack_order": 8
         },
-        "default_preparation_state": "loose"
+        "default_preparation_state": "loose",
+        "safety": {
+          "hazards": [
+            "low_voltage_electrical",
+            "small_connectors"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 6,
+          "inspection_check": "Check connector pins are straight and button action is reliable.",
+          "return_check": "Return dry and unplugged to input controls compartment.",
+          "electrical_limits": {
+            "max_voltage_v": 5,
+            "max_current_ma": 100,
+            "notes": "Signal input only; no direct mains or high-current loads."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_toggle_switch",
+        "kit_code": "A009",
         "label": "Toggle switch",
+        "short_label": "Toggle",
         "category": "control",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-CTRL-01",
-          "bin_label": "Input controls"
+          "bin_label": "Input controls",
+          "compartment": "CTRL-01B",
+          "return_location": "BIN-CTRL-01 / CTRL-01B",
+          "pack_order": 9
         },
-        "default_preparation_state": "loose"
+        "default_preparation_state": "loose",
+        "safety": {
+          "hazards": [
+            "low_voltage_electrical",
+            "small_connectors"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 6,
+          "inspection_check": "Check switch action and terminal condition.",
+          "return_check": "Return switched off and unplugged.",
+          "electrical_limits": {
+            "max_voltage_v": 5,
+            "max_current_ma": 500,
+            "notes": "Use only in prepared low-voltage circuits."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_potentiometer_module",
+        "kit_code": "A010",
         "label": "Potentiometer module",
+        "short_label": "Knob",
         "category": "control",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-CTRL-01",
-          "bin_label": "Input controls"
+          "bin_label": "Input controls",
+          "compartment": "CTRL-01C",
+          "return_location": "BIN-CTRL-01 / CTRL-01C",
+          "pack_order": 10
         },
-        "default_preparation_state": "loose"
+        "default_preparation_state": "loose",
+        "safety": {
+          "hazards": [
+            "low_voltage_electrical",
+            "small_connectors"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 6,
+          "inspection_check": "Check knob turns smoothly and pins are not bent.",
+          "return_check": "Return unplugged with knob fitted.",
+          "electrical_limits": {
+            "max_voltage_v": 5,
+            "max_current_ma": 50,
+            "notes": "Signal input only."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_joystick_module",
+        "kit_code": "A011",
         "label": "Joystick module",
+        "short_label": "Joystick",
         "category": "control",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-CTRL-01",
-          "bin_label": "Input controls"
+          "bin_label": "Input controls",
+          "compartment": "CTRL-01D",
+          "return_location": "BIN-CTRL-01 / CTRL-01D",
+          "pack_order": 11
         },
-        "default_preparation_state": "loose"
+        "default_preparation_state": "loose",
+        "safety": {
+          "hazards": [
+            "low_voltage_electrical",
+            "small_connectors"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 6,
+          "inspection_check": "Check joystick returns to centre and pins are not bent.",
+          "return_check": "Return unplugged to input controls compartment.",
+          "electrical_limits": {
+            "max_voltage_v": 5,
+            "max_current_ma": 50,
+            "notes": "Signal input only."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_light_sensor_module",
+        "kit_code": "A012",
         "label": "Light sensor module",
+        "short_label": "Light sensor",
         "category": "sensor",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-SEN-01",
-          "bin_label": "Sensor modules"
+          "bin_label": "Sensor modules",
+          "compartment": "SEN-01A",
+          "return_location": "BIN-SEN-01 / SEN-01A",
+          "pack_order": 12
         },
-        "default_preparation_state": "loose"
+        "default_preparation_state": "loose",
+        "safety": {
+          "hazards": [
+            "low_voltage_electrical",
+            "small_connectors"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 6,
+          "inspection_check": "Check sensor face and connector pins before use.",
+          "return_check": "Return unplugged to sensor modules compartment.",
+          "electrical_limits": {
+            "max_voltage_v": 5,
+            "max_current_ma": 50,
+            "notes": "Signal input only."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_tilt_sensor_module",
+        "kit_code": "A013",
         "label": "Tilt sensor module",
+        "short_label": "Tilt sensor",
         "category": "sensor",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-SEN-01",
-          "bin_label": "Sensor modules"
+          "bin_label": "Sensor modules",
+          "compartment": "SEN-01B",
+          "return_location": "BIN-SEN-01 / SEN-01B",
+          "pack_order": 13
         },
-        "default_preparation_state": "loose"
+        "default_preparation_state": "loose",
+        "safety": {
+          "hazards": [
+            "low_voltage_electrical",
+            "small_connectors"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 6,
+          "inspection_check": "Check module and connector pins before use.",
+          "return_check": "Return unplugged to sensor modules compartment.",
+          "electrical_limits": {
+            "max_voltage_v": 5,
+            "max_current_ma": 50,
+            "notes": "Signal input only."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_distance_sensor_module",
+        "kit_code": "A014",
         "label": "Distance sensor module",
+        "short_label": "Distance sensor",
         "category": "sensor",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-SEN-01",
-          "bin_label": "Sensor modules"
+          "bin_label": "Sensor modules",
+          "compartment": "SEN-01C",
+          "return_location": "BIN-SEN-01 / SEN-01C",
+          "pack_order": 14
         },
-        "default_preparation_state": "loose"
+        "default_preparation_state": "loose",
+        "safety": {
+          "hazards": [
+            "low_voltage_electrical",
+            "small_connectors"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 6,
+          "inspection_check": "Check sensor face and pins are clean and straight.",
+          "return_check": "Return unplugged to sensor modules compartment.",
+          "electrical_limits": {
+            "max_voltage_v": 5,
+            "max_current_ma": 75,
+            "notes": "Signal input only."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_touch_sensor_module",
+        "kit_code": "A015",
         "label": "Touch sensor module",
+        "short_label": "Touch sensor",
         "category": "sensor",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-SEN-01",
-          "bin_label": "Sensor modules"
+          "bin_label": "Sensor modules",
+          "compartment": "SEN-01D",
+          "return_location": "BIN-SEN-01 / SEN-01D",
+          "pack_order": 15
         },
-        "default_preparation_state": "loose"
+        "default_preparation_state": "loose",
+        "safety": {
+          "hazards": [
+            "low_voltage_electrical",
+            "small_connectors"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 6,
+          "inspection_check": "Check touch pad and pins before use.",
+          "return_check": "Return unplugged to sensor modules compartment.",
+          "electrical_limits": {
+            "max_voltage_v": 5,
+            "max_current_ma": 50,
+            "notes": "Signal input only."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_torch",
+        "kit_code": "A016",
         "label": "Small torch",
+        "short_label": "Torch",
         "category": "test_stimulus",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-SEN-02",
-          "bin_label": "Sensor test stimuli"
+          "bin_label": "Sensor test stimuli",
+          "compartment": "SEN-02A",
+          "return_location": "BIN-SEN-02 / SEN-02A",
+          "pack_order": 16
         },
         "default_preparation_state": "adult-prepared",
+        "safety": {
+          "hazards": [
+            "bright_light",
+            "battery_access"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 4,
+          "inspection_check": "Check torch works and battery compartment is secure.",
+          "return_check": "Return switched off to sensor test stimuli compartment."
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        },
         "session_notes": "Adult checks batteries before session."
       },
       {
         "id": "part_microbit_board",
+        "kit_code": "A017",
         "label": "Micro:bit board",
+        "short_label": "Micro:bit",
         "category": "programmable_board",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-BOARD-01",
-          "bin_label": "Preloaded boards and breakouts"
+          "bin_label": "Preloaded boards and breakouts",
+          "compartment": "BOARD-01A",
+          "return_location": "BIN-BOARD-01 / BOARD-01A",
+          "pack_order": 17
         },
         "default_preparation_state": "preloaded",
+        "programmable": {
+          "supported_states": [
+            "blank",
+            "preloaded_locked",
+            "child_editable_template",
+            "child_authored_allowed"
+          ],
+          "default_state": "preloaded_locked",
+          "storage_note": "Store blank, preloaded locked, and child-editable boards as visibly separate sets."
+        },
+        "safety": {
+          "hazards": [
+            "low_voltage_electrical",
+            "firmware_state",
+            "small_connectors"
+          ],
+          "supervision_level": "direct",
+          "age_floor": 6,
+          "inspection_check": "Check flashed profile, power connector, and visible label before handout.",
+          "return_check": "Return powered down; sort preloaded boards separately from blank boards.",
+          "electrical_limits": {
+            "max_voltage_v": 3.3,
+            "max_current_ma": 200,
+            "notes": "Use USB or prepared battery supply only."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        },
         "session_notes": "Store flashed boards separately from blank boards."
       },
       {
         "id": "part_microbit_breakout",
+        "kit_code": "A018",
         "label": "Micro:bit breakout",
+        "short_label": "Breakout",
         "category": "programmable_board_accessory",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-BOARD-01",
-          "bin_label": "Preloaded boards and breakouts"
+          "bin_label": "Preloaded boards and breakouts",
+          "compartment": "BOARD-01B",
+          "return_location": "BIN-BOARD-01 / BOARD-01B",
+          "pack_order": 18
         },
         "default_preparation_state": "adult-prepared",
+        "safety": {
+          "hazards": [
+            "low_voltage_electrical",
+            "miswiring",
+            "small_connectors"
+          ],
+          "supervision_level": "direct",
+          "age_floor": 6,
+          "inspection_check": "Check board seating, pin labels, and no bent connectors.",
+          "return_check": "Return with board removed or parked as the session setup requires.",
+          "electrical_limits": {
+            "max_voltage_v": 5,
+            "max_current_ma": 700,
+            "notes": "Use only with labelled low-voltage modules."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        },
         "session_notes": "Adult attaches board and labels pins before children connect modules."
       },
       {
         "id": "part_led_indicator_module",
+        "kit_code": "A019",
         "label": "LED indicator module",
+        "short_label": "LED indicator",
         "category": "output",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-BOARD-02",
-          "bin_label": "Indicators and displays"
+          "bin_label": "Indicators and displays",
+          "compartment": "BOARD-02A",
+          "return_location": "BIN-BOARD-02 / BOARD-02A",
+          "pack_order": 19
         },
-        "default_preparation_state": "prebuilt"
+        "default_preparation_state": "prebuilt",
+        "safety": {
+          "hazards": [
+            "low_voltage_electrical",
+            "bright_led"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 6,
+          "inspection_check": "Check LED lights at safe brightness and connector is intact.",
+          "return_check": "Return unplugged to indicators compartment.",
+          "electrical_limits": {
+            "max_voltage_v": 5,
+            "max_current_ma": 50,
+            "notes": "Use as an indicator, not as a load test."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_numeric_display_module",
+        "kit_code": "A020",
         "label": "Numeric display module",
+        "short_label": "Number display",
         "category": "output",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-BOARD-02",
-          "bin_label": "Indicators and displays"
+          "bin_label": "Indicators and displays",
+          "compartment": "BOARD-02B",
+          "return_location": "BIN-BOARD-02 / BOARD-02B",
+          "pack_order": 20
         },
-        "default_preparation_state": "prebuilt"
+        "default_preparation_state": "prebuilt",
+        "safety": {
+          "hazards": [
+            "low_voltage_electrical",
+            "small_connectors"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 6,
+          "inspection_check": "Check display and connector before use.",
+          "return_check": "Return unplugged to indicators compartment.",
+          "electrical_limits": {
+            "max_voltage_v": 5,
+            "max_current_ma": 100,
+            "notes": "Use with prepared board output only."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_sample_frame",
+        "kit_code": "A021",
         "label": "Sample frame",
+        "short_label": "Frame sample",
         "category": "structure_sample",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-STRUCT-01",
-          "bin_label": "Structure samples"
+          "bin_label": "Structure samples",
+          "compartment": "STRUCT-01A",
+          "return_location": "BIN-STRUCT-01 / STRUCT-01A",
+          "pack_order": 21
         },
-        "default_preparation_state": "prebuilt"
+        "default_preparation_state": "prebuilt",
+        "safety": {
+          "hazards": [
+            "loose_joint",
+            "projectile_if_overloaded"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 4,
+          "inspection_check": "Check sample frame has no sharp edges or loose pieces.",
+          "return_check": "Return stable and weak samples as a pair."
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_triangle_frame_sample",
+        "kit_code": "A022",
         "label": "Triangle frame sample",
+        "short_label": "Triangle frame",
         "category": "structure_sample",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-STRUCT-01",
-          "bin_label": "Structure samples"
+          "bin_label": "Structure samples",
+          "compartment": "STRUCT-01B",
+          "return_location": "BIN-STRUCT-01 / STRUCT-01B",
+          "pack_order": 22
         },
-        "default_preparation_state": "prebuilt"
+        "default_preparation_state": "prebuilt",
+        "safety": {
+          "hazards": [
+            "loose_joint"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 4,
+          "inspection_check": "Check joints and edges before comparison.",
+          "return_check": "Return intact to structure samples compartment."
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_craft_stick",
+        "kit_code": "A023",
         "label": "Craft stick",
+        "short_label": "Craft sticks",
         "category": "structure_material",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-STRUCT-02",
-          "bin_label": "Blank build materials"
+          "bin_label": "Blank build materials",
+          "compartment": "STRUCT-02A",
+          "return_location": "BIN-STRUCT-02 / STRUCT-02A",
+          "pack_order": 23
         },
-        "default_preparation_state": "blank"
+        "default_preparation_state": "blank",
+        "safety": {
+          "hazards": [
+            "splinter",
+            "consumable_waste"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 4,
+          "inspection_check": "Remove cracked or splintered sticks before packing.",
+          "return_check": "Return clean unused sticks; discard damaged used sticks."
+        },
+        "stock": {
+          "reusable": false,
+          "consumable": true,
+          "reorder_unit": "bundle",
+          "reorder_trigger": "Restock when fewer than 40 clean sticks remain."
+        }
       },
       {
         "id": "part_straw",
+        "kit_code": "A024",
         "label": "Paper straw",
+        "short_label": "Straws",
         "category": "structure_material",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-STRUCT-02",
-          "bin_label": "Blank build materials"
+          "bin_label": "Blank build materials",
+          "compartment": "STRUCT-02B",
+          "return_location": "BIN-STRUCT-02 / STRUCT-02B",
+          "pack_order": 24
         },
-        "default_preparation_state": "blank"
+        "default_preparation_state": "blank",
+        "safety": {
+          "hazards": [
+            "small_cut_piece",
+            "consumable_waste"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 4,
+          "inspection_check": "Check straws are clean and not crushed before use.",
+          "return_check": "Return unused full-length straws; discard damaged cut pieces."
+        },
+        "stock": {
+          "reusable": false,
+          "consumable": true,
+          "reorder_unit": "bundle",
+          "reorder_trigger": "Restock when fewer than 30 straws remain."
+        }
       },
       {
         "id": "part_card_stock",
+        "kit_code": "A025",
         "label": "Card stock",
+        "short_label": "Card stock",
         "category": "structure_material",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-STRUCT-02",
-          "bin_label": "Blank build materials"
+          "bin_label": "Blank build materials",
+          "compartment": "STRUCT-02C",
+          "return_location": "BIN-STRUCT-02 / STRUCT-02C",
+          "pack_order": 25
         },
-        "default_preparation_state": "blank"
+        "default_preparation_state": "blank",
+        "safety": {
+          "hazards": [
+            "paper_edge",
+            "consumable_waste"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 4,
+          "inspection_check": "Check card is clean and free of sharp staples or clips.",
+          "return_check": "Return unused sheets; recycle offcuts after session."
+        },
+        "stock": {
+          "reusable": false,
+          "consumable": true,
+          "reorder_unit": "pack",
+          "reorder_trigger": "Restock when fewer than 20 sheets remain."
+        }
       },
       {
         "id": "part_masking_tape",
+        "kit_code": "A026",
         "label": "Masking tape",
+        "short_label": "Masking tape",
         "category": "fastener",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-STRUCT-02",
-          "bin_label": "Blank build materials"
+          "bin_label": "Blank build materials",
+          "compartment": "STRUCT-02D",
+          "return_location": "BIN-STRUCT-02 / STRUCT-02D",
+          "pack_order": 26
         },
-        "default_preparation_state": "loose"
+        "default_preparation_state": "loose",
+        "safety": {
+          "hazards": [
+            "adhesive",
+            "consumable_waste"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 4,
+          "inspection_check": "Check roll tears cleanly and is not contaminated.",
+          "return_check": "Return roll to compartment; discard loose tangled strips."
+        },
+        "stock": {
+          "reusable": false,
+          "consumable": true,
+          "reorder_unit": "roll",
+          "reorder_trigger": "Restock when fewer than 2 rolls remain."
+        }
       },
       {
         "id": "part_small_weight",
+        "kit_code": "A027",
         "label": "Small test weight",
+        "short_label": "Test weight",
         "category": "load",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-STRUCT-03",
-          "bin_label": "Weights and load testers"
+          "bin_label": "Weights and load testers",
+          "compartment": "STRUCT-03A",
+          "return_location": "BIN-STRUCT-03 / STRUCT-03A",
+          "pack_order": 27
         },
         "default_preparation_state": "adult-prepared",
+        "safety": {
+          "hazards": [
+            "dropped_weight",
+            "overload_test"
+          ],
+          "supervision_level": "direct",
+          "age_floor": 6,
+          "inspection_check": "Check weight mass and smooth edges before testing.",
+          "return_check": "Adult counts weights back into the weight compartment."
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        },
         "session_notes": "Adult confirms weights are low enough for the session group."
       },
       {
         "id": "part_card_tube",
+        "kit_code": "A028",
         "label": "Card tube",
+        "short_label": "Card tubes",
         "category": "structure_material",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-STRUCT-02",
-          "bin_label": "Blank build materials"
+          "bin_label": "Blank build materials",
+          "compartment": "STRUCT-02E",
+          "return_location": "BIN-STRUCT-02 / STRUCT-02E",
+          "pack_order": 28
         },
-        "default_preparation_state": "blank"
+        "default_preparation_state": "blank",
+        "safety": {
+          "hazards": [
+            "paper_edge",
+            "rolling_part"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 4,
+          "inspection_check": "Check tubes are clean and not crushed.",
+          "return_check": "Return unused tubes; recycle badly crushed tubes."
+        },
+        "stock": {
+          "reusable": false,
+          "consumable": true,
+          "reorder_unit": "bundle",
+          "reorder_trigger": "Restock when fewer than 15 tubes remain."
+        }
       },
       {
         "id": "part_base_card",
+        "kit_code": "A029",
         "label": "Base card",
+        "short_label": "Base card",
         "category": "structure_material",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-STRUCT-02",
-          "bin_label": "Blank build materials"
+          "bin_label": "Blank build materials",
+          "compartment": "STRUCT-02F",
+          "return_location": "BIN-STRUCT-02 / STRUCT-02F",
+          "pack_order": 29
         },
-        "default_preparation_state": "blank"
+        "default_preparation_state": "blank",
+        "safety": {
+          "hazards": [
+            "paper_edge",
+            "consumable_waste"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 4,
+          "inspection_check": "Check base cards are flat and clean.",
+          "return_check": "Return unused base cards; recycle damaged builds as appropriate."
+        },
+        "stock": {
+          "reusable": false,
+          "consumable": true,
+          "reorder_unit": "pack",
+          "reorder_trigger": "Restock when fewer than 20 base cards remain."
+        }
       },
       {
         "id": "part_aa_cell",
+        "kit_code": "A030",
         "label": "AA cell",
+        "short_label": "AA cells",
         "category": "power_source",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-POWER-01",
-          "bin_label": "Cells and holders"
+          "bin_label": "Cells and holders",
+          "compartment": "POWER-01A",
+          "return_location": "BIN-POWER-01 / POWER-01A",
+          "pack_order": 30
         },
         "default_preparation_state": "adult-prepared",
+        "safety": {
+          "hazards": [
+            "short_circuit",
+            "chemical_leak",
+            "loose_battery"
+          ],
+          "supervision_level": "adult_controlled",
+          "age_floor": 6,
+          "inspection_check": "Adult checks casing, terminals, and charge condition before session.",
+          "return_check": "Adult counts every cell back into battery stock after use.",
+          "electrical_limits": {
+            "max_voltage_v": 1.5,
+            "max_current_ma": 500,
+            "notes": "Use only in holders or adult-prepared packs; never loose in pockets."
+          }
+        },
+        "stock": {
+          "reusable": false,
+          "consumable": true,
+          "reorder_unit": "pack",
+          "reorder_trigger": "Restock when fewer than 12 checked spare cells remain."
+        },
         "session_notes": "Adult checks cells are intact and kept out of loose pockets."
       },
       {
         "id": "part_coin_cell",
+        "kit_code": "A031",
         "label": "Coin cell",
+        "short_label": "Coin cell",
         "category": "power_source",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-POWER-01",
-          "bin_label": "Cells and holders"
+          "bin_label": "Cells and holders",
+          "compartment": "POWER-01B",
+          "return_location": "BIN-POWER-01 / POWER-01B",
+          "pack_order": 31
         },
         "default_preparation_state": "adult-prepared",
+        "safety": {
+          "hazards": [
+            "button_cell_ingestion",
+            "short_circuit",
+            "chemical_leak"
+          ],
+          "supervision_level": "adult_controlled",
+          "age_floor": 8,
+          "inspection_check": "Adult checks coin cell is intact and handles distribution only if needed.",
+          "return_check": "Adult performs immediate count-back of all coin cells.",
+          "electrical_limits": {
+            "max_voltage_v": 3,
+            "max_current_ma": 50,
+            "notes": "Adult-controlled recognition item; do not hand out unsupervised."
+          }
+        },
+        "stock": {
+          "reusable": false,
+          "consumable": true,
+          "reorder_unit": "pack",
+          "reorder_trigger": "Restock only for adult-managed stock; count before ordering."
+        },
         "session_notes": "Adult handles distribution and return."
       },
       {
         "id": "part_battery_holder",
+        "kit_code": "A032",
         "label": "Battery holder",
+        "short_label": "Battery holder",
         "category": "power_connector",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-POWER-01",
-          "bin_label": "Cells and holders"
+          "bin_label": "Cells and holders",
+          "compartment": "POWER-01C",
+          "return_location": "BIN-POWER-01 / POWER-01C",
+          "pack_order": 32
         },
-        "default_preparation_state": "loose"
+        "default_preparation_state": "loose",
+        "safety": {
+          "hazards": [
+            "short_circuit_if_loaded",
+            "polarity_confusion"
+          ],
+          "supervision_level": "direct",
+          "age_floor": 6,
+          "inspection_check": "Check contacts and polarity markings before use.",
+          "return_check": "Return empty unless adult has explicitly packed a prepared circuit.",
+          "electrical_limits": {
+            "max_voltage_v": 3,
+            "max_current_ma": 500,
+            "notes": "Use empty for recognition unless adult inserts checked cells."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_coin_cell_holder",
+        "kit_code": "A033",
         "label": "Coin cell holder",
+        "short_label": "Coin holder",
         "category": "power_connector",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-POWER-01",
-          "bin_label": "Cells and holders"
+          "bin_label": "Cells and holders",
+          "compartment": "POWER-01D",
+          "return_location": "BIN-POWER-01 / POWER-01D",
+          "pack_order": 33
         },
-        "default_preparation_state": "loose"
+        "default_preparation_state": "loose",
+        "safety": {
+          "hazards": [
+            "button_cell_access",
+            "short_circuit_if_loaded"
+          ],
+          "supervision_level": "adult_controlled",
+          "age_floor": 8,
+          "inspection_check": "Check holder is empty and polarity marks are visible.",
+          "return_check": "Return empty; adult verifies no coin cell remains fitted.",
+          "electrical_limits": {
+            "max_voltage_v": 3,
+            "max_current_ma": 50,
+            "notes": "Use empty for orientation matching unless adult controls the coin cell."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_aa_battery_pack",
+        "kit_code": "A034",
         "label": "AA battery pack",
+        "short_label": "AA pack",
         "category": "power_source",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-POWER-01",
-          "bin_label": "Cells and holders"
+          "bin_label": "Cells and holders",
+          "compartment": "POWER-01E",
+          "return_location": "BIN-POWER-01 / POWER-01E",
+          "pack_order": 34
         },
         "default_preparation_state": "adult-prepared",
+        "safety": {
+          "hazards": [
+            "short_circuit",
+            "warm_wires",
+            "loose_batteries"
+          ],
+          "supervision_level": "adult_controlled",
+          "age_floor": 6,
+          "inspection_check": "Adult inserts checked cells, confirms switch off, and inspects leads before handout.",
+          "return_check": "Return switched off; adult removes or counts cells after session.",
+          "electrical_limits": {
+            "max_voltage_v": 3,
+            "max_current_ma": 500,
+            "notes": "Use only with specified low-power loads and short insulated leads."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        },
         "session_notes": "Adult inserts cells and checks switch state before handout."
       },
       {
         "id": "part_polarity_cards",
+        "kit_code": "A035",
         "label": "Polarity cards",
+        "short_label": "Polarity cards",
         "category": "safety_prompt",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-POWER-02",
-          "bin_label": "Power safety prompts"
+          "bin_label": "Power safety prompts",
+          "compartment": "POWER-02A",
+          "return_location": "BIN-POWER-02 / POWER-02A",
+          "pack_order": 35
         },
         "default_preparation_state": "adult-prepared",
+        "safety": {
+          "hazards": [
+            "misleading_if_mis-sorted"
+          ],
+          "supervision_level": "standard",
+          "age_floor": 4,
+          "inspection_check": "Check positive and negative cards are sorted correctly before activity.",
+          "return_check": "Return full prompt set to power safety prompts compartment."
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        },
         "session_notes": "Cards are printed and sorted positive/negative before session."
       },
       {
         "id": "part_croc_clip_lead",
+        "kit_code": "A036",
         "label": "Crocodile clip lead",
+        "short_label": "Clip leads",
         "category": "wire",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-POWER-03",
-          "bin_label": "Leads and switching"
+          "bin_label": "Leads and switching",
+          "compartment": "POWER-03A",
+          "return_location": "BIN-POWER-03 / POWER-03A",
+          "pack_order": 36
         },
-        "default_preparation_state": "loose"
+        "default_preparation_state": "loose",
+        "safety": {
+          "hazards": [
+            "short_circuit",
+            "damaged_insulation",
+            "snagging"
+          ],
+          "supervision_level": "direct",
+          "age_floor": 6,
+          "inspection_check": "Check insulation, clips, and length before handout.",
+          "return_check": "Return unclipped and untangled; discard damaged leads.",
+          "electrical_limits": {
+            "max_voltage_v": 5,
+            "max_current_ma": 500,
+            "notes": "Use only for classroom low-voltage circuits."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_led_module",
+        "kit_code": "A037",
         "label": "LED module",
+        "short_label": "LED module",
         "category": "load",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-POWER-03",
-          "bin_label": "Leads and switching"
+          "bin_label": "Leads and switching",
+          "compartment": "POWER-03B",
+          "return_location": "BIN-POWER-03 / POWER-03B",
+          "pack_order": 37
         },
-        "default_preparation_state": "prebuilt"
+        "default_preparation_state": "prebuilt",
+        "safety": {
+          "hazards": [
+            "low_voltage_electrical",
+            "polarity_confusion"
+          ],
+          "supervision_level": "direct",
+          "age_floor": 6,
+          "inspection_check": "Check resistor/module protection and polarity labels before use.",
+          "return_check": "Return unplugged to leads and switching compartment.",
+          "electrical_limits": {
+            "max_voltage_v": 3,
+            "max_current_ma": 50,
+            "notes": "Use protected low-power LED module only."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       },
       {
         "id": "part_led_strip",
+        "kit_code": "A038",
         "label": "LED strip",
+        "short_label": "LED strip",
         "category": "load",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-POWER-03",
-          "bin_label": "Leads and switching"
+          "bin_label": "Leads and switching",
+          "compartment": "POWER-03C",
+          "return_location": "BIN-POWER-03 / POWER-03C",
+          "pack_order": 38
         },
         "default_preparation_state": "prebuilt",
+        "safety": {
+          "hazards": [
+            "current_draw",
+            "warm_strip",
+            "polarity_confusion"
+          ],
+          "supervision_level": "direct",
+          "age_floor": 6,
+          "inspection_check": "Check strip rating, lead insulation, and current draw before use.",
+          "return_check": "Return unplugged and cool; adult checks no warm wires remain.",
+          "electrical_limits": {
+            "max_voltage_v": 5,
+            "max_current_ma": 500,
+            "notes": "Use the classroom low-voltage strip selected for the pack."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        },
         "session_notes": "Use low-voltage classroom strip only."
       },
       {
         "id": "part_switch_module",
+        "kit_code": "A039",
         "label": "Switch module",
+        "short_label": "Switch module",
         "category": "control",
         "storage": {
           "zone": "pilot-kit",
           "bin_id": "BIN-POWER-03",
-          "bin_label": "Leads and switching"
+          "bin_label": "Leads and switching",
+          "compartment": "POWER-03D",
+          "return_location": "BIN-POWER-03 / POWER-03D",
+          "pack_order": 39
         },
-        "default_preparation_state": "loose"
+        "default_preparation_state": "loose",
+        "safety": {
+          "hazards": [
+            "low_voltage_electrical",
+            "polarity_or_path_confusion"
+          ],
+          "supervision_level": "direct",
+          "age_floor": 6,
+          "inspection_check": "Check terminals and switch action before use.",
+          "return_check": "Return switched off and unplugged.",
+          "electrical_limits": {
+            "max_voltage_v": 5,
+            "max_current_ma": 500,
+            "notes": "Use only in the specified low-voltage circuit path."
+          }
+        },
+        "stock": {
+          "reusable": true,
+          "consumable": false,
+          "reorder_unit": "each",
+          "reorder_trigger": "Review after each pilot block and replace damaged or missing items."
+        }
       }
     ],
     "programmable_preload_profiles": [
@@ -7652,28 +8689,44 @@
         "label": "Servo position tester",
         "board_asset_id": "part_microbit_board",
         "description": "Preloaded board sends fixed servo positions from labelled buttons or pads; children do not edit code.",
-        "adult_preparation_notes": "Flash before session, connect breakout, and verify at least two safe servo positions."
+        "adult_preparation_notes": "Flash before session, connect breakout, and verify at least two safe servo positions.",
+        "programming_state": "preloaded_locked",
+        "board_delivery_state": "adult_flashed_before_session",
+        "child_editable": false,
+        "blank_board_compatible": false
       },
       {
         "id": "preload_microbit_button_indicator",
         "label": "Button-to-indicator reader",
         "board_asset_id": "part_microbit_board",
         "description": "Preloaded board changes an indicator when a button input changes state.",
-        "adult_preparation_notes": "Flash before session and verify normally-open button behaviour with the selected indicator."
+        "adult_preparation_notes": "Flash before session and verify normally-open button behaviour with the selected indicator.",
+        "programming_state": "preloaded_locked",
+        "board_delivery_state": "adult_flashed_before_session",
+        "child_editable": false,
+        "blank_board_compatible": false
       },
       {
         "id": "preload_microbit_analog_display",
         "label": "Analog value display",
         "board_asset_id": "part_microbit_board",
         "description": "Preloaded board displays a changing value from a knob or analog sensor.",
-        "adult_preparation_notes": "Flash before session and verify low, middle, and high readings with the selected module."
+        "adult_preparation_notes": "Flash before session and verify low, middle, and high readings with the selected module.",
+        "programming_state": "preloaded_locked",
+        "board_delivery_state": "adult_flashed_before_session",
+        "child_editable": false,
+        "blank_board_compatible": false
       },
       {
         "id": "preload_microbit_tilt_indicator",
         "label": "Tilt-to-indicator reader",
         "board_asset_id": "part_microbit_board",
         "description": "Preloaded board changes an indicator when a tilt sensor crosses a prepared orientation.",
-        "adult_preparation_notes": "Flash before session and verify the indicator changes at a clear, safe tilt point."
+        "adult_preparation_notes": "Flash before session and verify the indicator changes at a clear, safe tilt point.",
+        "programming_state": "preloaded_locked",
+        "board_delivery_state": "adult_flashed_before_session",
+        "child_editable": false,
+        "blank_board_compatible": false
       }
     ]
   },

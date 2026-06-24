@@ -87,6 +87,44 @@ LEVEL_DIMENSION_FIELDS = {
 PILOT_KIT_FAMILIES = {"movement", "control_input", "sensing", "power", "structures"}
 PILOT_KIT_LEVELS = {1, 2}
 PREPARATION_STATES = {"blank", "preloaded", "loose", "prebuilt", "adult-prepared"}
+QUANTITY_BASES = {"per_child", "per_pair", "per_table", "per_session", "demo_only"}
+PROGRAMMING_STATES = {"blank", "preloaded_locked", "child_editable_template", "child_authored_allowed"}
+SUPERVISION_LEVELS = {"standard", "direct", "adult_controlled", "demo_only"}
+SAFETY_SENSITIVE_CATEGORIES = {
+    "actuator",
+    "load",
+    "power_connector",
+    "power_source",
+    "programmable_board",
+    "programmable_board_accessory",
+    "wire",
+}
+ELECTRICAL_LIMIT_ASSET_IDS = {
+    "part_aa_battery_pack",
+    "part_aa_cell",
+    "part_battery_holder",
+    "part_button_module",
+    "part_coin_cell",
+    "part_coin_cell_holder",
+    "part_croc_clip_lead",
+    "part_dc_motor",
+    "part_distance_sensor_module",
+    "part_joystick_module",
+    "part_led_indicator_module",
+    "part_led_module",
+    "part_led_strip",
+    "part_light_sensor_module",
+    "part_micro_servo",
+    "part_microbit_board",
+    "part_microbit_breakout",
+    "part_numeric_display_module",
+    "part_potentiometer_module",
+    "part_solenoid_sample",
+    "part_switch_module",
+    "part_tilt_sensor_module",
+    "part_toggle_switch",
+    "part_touch_sensor_module",
+}
 
 EXPECTED_CODING_BOUNDARY = {
     1: "No code.",
@@ -221,15 +259,34 @@ def pilot_asset_detail(
     preload_profiles_by_id: dict[str, dict[str, Any]],
 ) -> dict[str, Any]:
     asset = physical_assets_by_id.get(requirement.get("asset_id"), {})
+    safety = asset.get("safety", {}) if isinstance(asset.get("safety"), dict) else {}
+    stock = asset.get("stock", {}) if isinstance(asset.get("stock"), dict) else {}
     detail = {
         "asset_id": requirement.get("asset_id"),
+        "kit_code": asset.get("kit_code", ""),
         "label": asset.get("label", ""),
+        "short_label": asset.get("short_label") or asset.get("label", ""),
         "category": asset.get("category", ""),
         "quantity": requirement.get("quantity"),
+        "quantity_basis": requirement.get("quantity_basis"),
         "preparation_state": requirement.get("preparation_state"),
         "preparation_notes": requirement.get("preparation_notes", ""),
+        "programming_state": requirement.get("programming_state"),
         "storage": asset.get("storage", {}),
+        "safety_flags": safety.get("hazards", []),
+        "supervision_level": safety.get("supervision_level", ""),
+        "age_floor": safety.get("age_floor"),
+        "inspection_check": safety.get("inspection_check", ""),
+        "return_check": safety.get("return_check", ""),
+        "stock": {
+            "reusable": stock.get("reusable"),
+            "consumable": stock.get("consumable"),
+            "reorder_unit": stock.get("reorder_unit", ""),
+            "reorder_trigger": stock.get("reorder_trigger", ""),
+        },
     }
+    if detail["programming_state"] is None:
+        detail.pop("programming_state")
     preload_profile_id = requirement.get("preload_profile_id")
     if preload_profile_id:
         preload_profile = preload_profiles_by_id.get(preload_profile_id, {})
@@ -239,23 +296,36 @@ def pilot_asset_detail(
 
 
 def aggregate_pilot_assets(asset_rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    aggregated: dict[tuple[str, str, str], dict[str, Any]] = {}
+    aggregated: dict[tuple[str, str, str, str, str], dict[str, Any]] = {}
     for row in asset_rows:
         key = (
             str(row.get("asset_id", "")),
+            str(row.get("quantity_basis", "")),
             str(row.get("preparation_state", "")),
             str(row.get("preload_profile_id", "")),
+            str(row.get("programming_state", "")),
         )
         if key not in aggregated:
             aggregated[key] = {
                 "asset_id": row.get("asset_id"),
+                "kit_code": row.get("kit_code", ""),
                 "label": row.get("label", ""),
+                "short_label": row.get("short_label", ""),
                 "category": row.get("category", ""),
                 "total_quantity": 0,
+                "quantity_basis": row.get("quantity_basis"),
                 "preparation_state": row.get("preparation_state"),
                 "storage": row.get("storage", {}),
+                "safety_flags": row.get("safety_flags", []),
+                "supervision_level": row.get("supervision_level", ""),
+                "age_floor": row.get("age_floor"),
+                "inspection_check": row.get("inspection_check", ""),
+                "return_check": row.get("return_check", ""),
+                "stock": row.get("stock", {}),
                 "used_by_power_cards": [],
             }
+            if row.get("programming_state"):
+                aggregated[key]["programming_state"] = row.get("programming_state")
             if row.get("preload_profile_id"):
                 aggregated[key]["preload_profile_id"] = row.get("preload_profile_id")
                 aggregated[key]["preload_profile_label"] = row.get("preload_profile_label", "")
@@ -265,7 +335,16 @@ def aggregate_pilot_assets(asset_rows: list[dict[str, Any]]) -> list[dict[str, A
             aggregated[key]["used_by_power_cards"].append(used_by)
     return sorted(
         aggregated.values(),
-        key=lambda item: (str(item.get("storage", {}).get("bin_id", "")), str(item.get("asset_id", ""))),
+        key=lambda item: (
+            str(item.get("storage", {}).get("zone", "")),
+            str(item.get("storage", {}).get("bin_id", "")),
+            int(item.get("storage", {}).get("pack_order") or 0),
+            str(item.get("kit_code", "")),
+            str(item.get("asset_id", "")),
+            str(item.get("quantity_basis", "")),
+            str(item.get("preparation_state", "")),
+            str(item.get("preload_profile_id", "")),
+        ),
     )
 
 
@@ -288,6 +367,7 @@ def expected_pilot_kit_list(source: dict[str, Any]) -> dict[str, Any]:
     }
 
     by_power_card: list[dict[str, Any]] = []
+    all_rows: list[dict[str, Any]] = []
     family_rows: dict[str, list[dict[str, Any]]] = {}
     for card in pilot_kit_cards(source):
         assets = []
@@ -296,9 +376,11 @@ def expected_pilot_kit_list(source: dict[str, Any]) -> dict[str, Any]:
                 continue
             detail = pilot_asset_detail(requirement, physical_assets_by_id, preload_profiles_by_id)
             assets.append(detail)
-            family_row = dict(detail)
-            family_row["power_card_id"] = card.get("id")
-            family_rows.setdefault(card.get("primary_family", ""), []).append(family_row)
+            aggregate_row = dict(detail)
+            aggregate_row["power_card_id"] = card.get("id")
+            aggregate_row["power_card_title"] = card.get("title")
+            all_rows.append(aggregate_row)
+            family_rows.setdefault(card.get("primary_family", ""), []).append(aggregate_row)
         by_power_card.append(
             {
                 "power_card_id": card.get("id"),
@@ -330,6 +412,7 @@ def expected_pilot_kit_list(source: dict[str, Any]) -> dict[str, Any]:
         },
         "by_power_card": by_power_card,
         "by_skill_card": by_skill_card,
+        "global_packing_by_bin": aggregate_pilot_assets(all_rows),
     }
 
 
@@ -380,6 +463,62 @@ def duplicate_ids(records: list[dict[str, Any]], label: str, errors: list[str]) 
             errors.append(f"{label}: duplicate id {record_id}")
         ids.add(record_id)
     return ids
+
+
+def validate_safety_profile(asset_id: str, asset: dict[str, Any], errors: list[str]) -> None:
+    category = asset.get("category")
+    is_sensitive = category in SAFETY_SENSITIVE_CATEGORIES or asset_id in ELECTRICAL_LIMIT_ASSET_IDS
+    safety = asset.get("safety")
+    if not isinstance(safety, dict):
+        if is_sensitive:
+            errors.append(f"asset_inventory.physical_assets: safety-sensitive asset {asset_id} missing safety object")
+        return
+
+    hazards = safety.get("hazards")
+    if not isinstance(hazards, list):
+        errors.append(f"asset_inventory.physical_assets: asset {asset_id} safety.hazards must be a list")
+    elif is_sensitive and not hazards:
+        errors.append(f"asset_inventory.physical_assets: safety-sensitive asset {asset_id} missing safety hazards")
+
+    supervision_level = safety.get("supervision_level")
+    if supervision_level not in SUPERVISION_LEVELS:
+        errors.append(
+            f"asset_inventory.physical_assets: asset {asset_id} has invalid supervision_level {supervision_level!r}"
+        )
+
+    age_floor = safety.get("age_floor")
+    if not isinstance(age_floor, int) or age_floor < 0:
+        errors.append(f"asset_inventory.physical_assets: asset {asset_id} missing non-negative safety.age_floor")
+
+    for field in ("inspection_check", "return_check"):
+        if not str(safety.get(field, "")).strip():
+            errors.append(f"asset_inventory.physical_assets: asset {asset_id} missing safety.{field}")
+
+    if category in {"actuator", "load", "power_source", "programmable_board"} and supervision_level == "standard":
+        errors.append(
+            f"asset_inventory.physical_assets: asset {asset_id} needs direct or adult-controlled supervision"
+        )
+
+    if "coin_cell" in asset_id and supervision_level != "adult_controlled":
+        errors.append(f"asset_inventory.physical_assets: asset {asset_id} coin cells require adult_controlled supervision")
+
+    if asset_id in ELECTRICAL_LIMIT_ASSET_IDS:
+        limits = safety.get("electrical_limits")
+        if not isinstance(limits, dict):
+            errors.append(f"asset_inventory.physical_assets: asset {asset_id} missing safety.electrical_limits")
+        else:
+            max_voltage = limits.get("max_voltage_v")
+            max_current = limits.get("max_current_ma")
+            if not isinstance(max_voltage, (int, float)) or max_voltage <= 0:
+                errors.append(
+                    f"asset_inventory.physical_assets: asset {asset_id} electrical_limits missing positive max_voltage_v"
+                )
+            if not isinstance(max_current, int) or max_current <= 0:
+                errors.append(
+                    f"asset_inventory.physical_assets: asset {asset_id} electrical_limits missing positive max_current_ma"
+                )
+            if not str(limits.get("notes", "")).strip():
+                errors.append(f"asset_inventory.physical_assets: asset {asset_id} electrical_limits missing notes")
 
 
 def validate_top_level(source: dict[str, Any], errors: list[str]) -> None:
@@ -834,15 +973,25 @@ def validate_assets(
         "asset_inventory.physical_assets",
         errors,
     )
+    kit_codes = [
+        asset.get("kit_code")
+        for asset in physical_assets
+        if isinstance(asset, dict) and str(asset.get("kit_code", "")).strip()
+    ]
+    for kit_code, count in Counter(kit_codes).items():
+        if count > 1:
+            errors.append(f"asset_inventory.physical_assets: duplicate kit_code {kit_code}")
     physical_assets_by_id = {asset.get("id"): asset for asset in physical_assets if isinstance(asset, dict)}
     for asset in physical_assets:
         if not isinstance(asset, dict):
             errors.append("asset_inventory.physical_assets: each asset must be an object")
             continue
         asset_id = asset.get("id", "<missing-id>")
-        for field in ("label", "category"):
+        for field in ("kit_code", "label", "category"):
             if not str(asset.get(field, "")).strip():
                 errors.append(f"asset_inventory.physical_assets: asset {asset_id} missing non-empty {field}")
+        if "short_label" in asset and not str(asset.get("short_label", "")).strip():
+            errors.append(f"asset_inventory.physical_assets: asset {asset_id} has empty short_label")
         state = asset.get("default_preparation_state")
         if state not in PREPARATION_STATES:
             errors.append(
@@ -852,9 +1001,34 @@ def validate_assets(
         if not isinstance(storage, dict):
             errors.append(f"asset_inventory.physical_assets: asset {asset_id} missing storage object")
         else:
-            for field in ("zone", "bin_id", "bin_label"):
+            for field in ("zone", "bin_id", "bin_label", "compartment", "return_location"):
                 if not str(storage.get(field, "")).strip():
                     errors.append(f"asset_inventory.physical_assets: asset {asset_id} storage missing {field}")
+            if not isinstance(storage.get("pack_order"), int) or storage.get("pack_order") < 1:
+                errors.append(f"asset_inventory.physical_assets: asset {asset_id} storage missing positive pack_order")
+        if asset.get("category") == "programmable_board":
+            programmable = asset.get("programmable")
+            if not isinstance(programmable, dict):
+                errors.append(f"asset_inventory.physical_assets: programmable board {asset_id} missing programmable object")
+            else:
+                supported_states = programmable.get("supported_states")
+                if not isinstance(supported_states, list) or not set(supported_states).issubset(PROGRAMMING_STATES):
+                    errors.append(
+                        f"asset_inventory.physical_assets: programmable board {asset_id} has invalid supported_states"
+                    )
+                default_state = programmable.get("default_state")
+                if default_state not in PROGRAMMING_STATES:
+                    errors.append(
+                        f"asset_inventory.physical_assets: programmable board {asset_id} has invalid default_state {default_state!r}"
+                    )
+        stock = asset.get("stock")
+        if isinstance(stock, dict):
+            if not isinstance(stock.get("reusable"), bool) or not isinstance(stock.get("consumable"), bool):
+                errors.append(f"asset_inventory.physical_assets: asset {asset_id} stock reusable/consumable must be booleans")
+            for field in ("reorder_unit", "reorder_trigger"):
+                if not str(stock.get(field, "")).strip():
+                    errors.append(f"asset_inventory.physical_assets: asset {asset_id} stock missing {field}")
+        validate_safety_profile(asset_id, asset, errors)
 
     programmable_preload_profiles = require_list(
         inventory.get("programmable_preload_profiles"),
@@ -884,6 +1058,34 @@ def validate_assets(
             errors.append(
                 f"asset_inventory.programmable_preload_profiles: profile {profile_id} references unknown board asset {board_asset_id}"
             )
+        elif physical_assets_by_id.get(board_asset_id, {}).get("category") != "programmable_board":
+            errors.append(
+                f"asset_inventory.programmable_preload_profiles: profile {profile_id} board asset {board_asset_id} is not a programmable_board"
+            )
+        programming_state = profile.get("programming_state")
+        if programming_state not in PROGRAMMING_STATES:
+            errors.append(
+                f"asset_inventory.programmable_preload_profiles: profile {profile_id} has invalid programming_state {programming_state!r}"
+            )
+        if not str(profile.get("board_delivery_state", "")).strip():
+            errors.append(
+                f"asset_inventory.programmable_preload_profiles: profile {profile_id} missing board_delivery_state"
+            )
+        if not isinstance(profile.get("child_editable"), bool):
+            errors.append(f"asset_inventory.programmable_preload_profiles: profile {profile_id} missing child_editable boolean")
+        if not isinstance(profile.get("blank_board_compatible"), bool):
+            errors.append(
+                f"asset_inventory.programmable_preload_profiles: profile {profile_id} missing blank_board_compatible boolean"
+            )
+        if programming_state == "preloaded_locked":
+            if profile.get("child_editable") is not False:
+                errors.append(
+                    f"asset_inventory.programmable_preload_profiles: profile {profile_id} preloaded_locked must not be child_editable"
+                )
+            if profile.get("blank_board_compatible") is not False:
+                errors.append(
+                    f"asset_inventory.programmable_preload_profiles: profile {profile_id} preloaded_locked must not be blank_board_compatible"
+                )
 
     result_asset_cards = {
         asset.get("card_id")
@@ -933,6 +1135,11 @@ def validate_assets(
             quantity = requirement.get("quantity")
             if not isinstance(quantity, int) or quantity < 1:
                 errors.append(f"power_cards: card {power_id} required_assets[{index}] missing positive integer quantity")
+            quantity_basis = requirement.get("quantity_basis")
+            if quantity_basis not in QUANTITY_BASES:
+                errors.append(
+                    f"power_cards: card {power_id} required_assets[{index}] has invalid quantity_basis {quantity_basis!r}"
+                )
             state = requirement.get("preparation_state")
             if state not in PREPARATION_STATES:
                 errors.append(
@@ -940,6 +1147,17 @@ def validate_assets(
                 )
             if not str(requirement.get("preparation_notes", "")).strip():
                 errors.append(f"power_cards: card {power_id} required_assets[{index}] missing preparation_notes")
+            programming_state = requirement.get("programming_state")
+            asset = physical_assets_by_id.get(asset_id, {})
+            if programming_state is not None:
+                if programming_state not in PROGRAMMING_STATES:
+                    errors.append(
+                        f"power_cards: card {power_id} required_assets[{index}] has invalid programming_state {programming_state!r}"
+                    )
+                if asset.get("category") != "programmable_board":
+                    errors.append(
+                        f"power_cards: card {power_id} required_assets[{index}] sets programming_state on non-programmable asset {asset_id}"
+                    )
             preload_profile_id = requirement.get("preload_profile_id")
             if preload_profile_id:
                 profile = preload_profiles_by_id.get(preload_profile_id)
@@ -951,9 +1169,21 @@ def validate_assets(
                     errors.append(
                         f"power_cards: card {power_id} required_assets[{index}] preload profile {preload_profile_id} is for {profile.get('board_asset_id')}, not {asset_id}"
                     )
+                elif state != "preloaded":
+                    errors.append(
+                        f"power_cards: card {power_id} required_assets[{index}] uses preload profile but preparation_state is {state!r}"
+                    )
+                elif programming_state != profile.get("programming_state"):
+                    errors.append(
+                        f"power_cards: card {power_id} required_assets[{index}] programming_state must match preload profile {preload_profile_id}"
+                    )
             elif state == "preloaded":
                 errors.append(
                     f"power_cards: card {power_id} required_assets[{index}] is preloaded but has no preload_profile_id"
+                )
+            if state == "preloaded" and programming_state != "preloaded_locked":
+                errors.append(
+                    f"power_cards: card {power_id} required_assets[{index}] preloaded assets must use programming_state 'preloaded_locked'"
                 )
 
     known_assets = set(asset_ids)
