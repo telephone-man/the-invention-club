@@ -17,6 +17,7 @@ The canonical source owns Skill Cards, Power Cards, Integration Cards, Invention
 - `curriculum/generated/*` contains generated review/build artefacts and should not be edited by hand.
 - `curriculum/generated/lesson-plans/*` is experimental generated facilitator output. Treat these files as planning aids only; review safety, materials, age fit, and support assumptions before use.
 - `reports/validation-results.json` is generated validation output.
+- `reports/power-card-level-audit.md` is generated validation output listing Power Cards that need human review against the level model.
 
 Generated files use deterministic output and must not include volatile timestamps.
 

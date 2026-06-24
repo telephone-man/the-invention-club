@@ -13,6 +13,23 @@ Each family uses the same level ladder:
 5. Coordinate — use multiple related elements together
 6. Improve — debug, refine, optimise or explain trade-offs
 
+Each global level must define these dimensions:
+- adult support
+- child independence
+- kit state
+- coding expectation
+- physical build complexity
+- debugging/evidence expectation
+- integration readiness
+
+Coding boundary:
+- Level 1: no code.
+- Level 2: no child-authored code; preloaded or plug-and-play code is allowed.
+- Level 3: adjust one parameter, setting, threshold, timing value or mode.
+- Level 4: guided adaptation of a known code or logic pattern.
+- Level 5: coordinate multiple inputs, outputs, states, messages or subsystems.
+- Level 6: debug, optimise, compare or justify trade-offs.
+
 A power card teaches one primitive capability from one primary family.
 
 An integration card combines two or more power cards from different families.
