@@ -10,6 +10,8 @@ from collections import Counter, defaultdict
 from pathlib import Path
 from typing import Any
 
+import generate_lesson_plans
+import generate_pilot_micro_packs
 import generate_pilot_run_cards
 
 
@@ -29,6 +31,7 @@ REQUIRED_TOP_LEVEL = {
     "asset_inventory",
     "preload_profiles",
     "lesson_plan_profiles",
+    "pilot_micro_packs",
     "red_team_cases",
     "audit_warnings",
 }
@@ -139,6 +142,29 @@ RUN_CARD_REQUIRED_HEADINGS = {
     "##### Reset and Pack-Away",
     "##### Facilitator Notes",
     "##### Diagram Semantics",
+}
+SESSION_LESSON_REQUIRED_SECTIONS = {
+    "## Target Age And Support Assumptions",
+    "## Learning Objectives",
+    "## Linked Power Cards",
+    "## Relevant Skill Cards And Families",
+    "## Level Expectations And Coding Boundary",
+    "## Preparation Checklist",
+    "## Room And Table Setup",
+    "## Kit List By Bin",
+    "## Battery Count-Back Sheet",
+    "## Safety Rules",
+    "## Timing Plan And Facilitator Script",
+    "## Child-Facing Prompts",
+    "## Activity Sequence",
+    "## Success And Evidence Criteria",
+    "## Debug Prompts",
+    "## Differentiation",
+    "## Reset And Pack-Away Checklist",
+    "## Assessment And Observation Notes",
+    "## Follow-Up Recommendations",
+    "## Deliberately Deferred Cards",
+    "## Diagram Reference",
 }
 ELECTRICAL_LIMIT_ASSET_IDS = {
     "part_aa_battery_pack",
@@ -1603,13 +1629,41 @@ def validate_assets(
 def validate_profiles_and_audit(source: dict[str, Any], errors: list[str], warnings: list[str]) -> None:
     lesson_profiles = require_list(source.get("lesson_plan_profiles"), "lesson_plan_profiles", errors)
     duplicate_ids([profile for profile in lesson_profiles if isinstance(profile, dict)], "lesson_plan_profiles", errors)
+    profiles_by_id = {}
     for profile in lesson_profiles:
         if not isinstance(profile, dict):
             errors.append("lesson_plan_profiles: each profile must be an object")
             continue
+        profiles_by_id[profile.get("id")] = profile
         for field in ("id", "name", "output_dir", "source_card_type"):
             if not str(profile.get(field, "")).strip():
                 errors.append(f"lesson_plan_profiles: profile {profile.get('id', '<missing-id>')} missing non-empty {field}")
+
+    session_profile = profiles_by_id.get("facilitator_session_first_session")
+    if not isinstance(session_profile, dict):
+        errors.append("lesson_plan_profiles: missing facilitator_session_first_session profile")
+    else:
+        if session_profile.get("output_dir") != "curriculum/generated/session-lesson-plans":
+            errors.append("lesson_plan_profiles: facilitator_session_first_session output_dir must be curriculum/generated/session-lesson-plans")
+        if session_profile.get("source_card_type") != "pilot_micro_packs":
+            errors.append("lesson_plan_profiles: facilitator_session_first_session source_card_type must be pilot_micro_packs")
+        include = set(session_profile.get("include", []))
+        missing_include = {
+            "target_power_card_ids",
+            "group_size_assumptions",
+            "adult_ratio",
+            "timing_blocks",
+            "required_assets",
+            "battery_count_back",
+            "safety_rules",
+            "activity_flow",
+            "diagram_refs",
+            "deferred_power_cards",
+        } - include
+        if missing_include:
+            errors.append(
+                f"lesson_plan_profiles: facilitator_session_first_session missing include fields {sorted(missing_include)}"
+            )
 
     warning_ids = {
         warning.get("id")
@@ -1708,6 +1762,397 @@ def validate_pilot_run_card_pack(source: dict[str, Any], generated_dir: Path, er
             errors.append(f"generated pilot run-card {power_id} missing diagram semantics table or placeholder")
 
 
+def validate_pilot_micro_packs_source(
+    source: dict[str, Any],
+    power_by_id: dict[str, dict[str, Any]],
+    errors: list[str],
+) -> None:
+    packs = require_list(source.get("pilot_micro_packs"), "pilot_micro_packs", errors)
+    duplicate_ids([pack for pack in packs if isinstance(pack, dict)], "pilot_micro_packs", errors)
+    physical_asset_ids = {
+        asset.get("id")
+        for asset in source.get("asset_inventory", {}).get("physical_assets", [])
+        if isinstance(asset, dict)
+    }
+    pilot_card_ids = {card.get("id") for card in pilot_kit_cards(source)}
+
+    for pack in packs:
+        if not isinstance(pack, dict):
+            errors.append("pilot_micro_packs: each pack must be an object")
+            continue
+        pack_id = pack.get("id", "<missing-id>")
+        for field in (
+            "id",
+            "title",
+            "target_power_card_ids",
+            "group_size_assumptions",
+            "adult_ratio",
+            "timing_blocks",
+            "safety_rules",
+            "packing_assumptions",
+            "reset_count_back",
+            "deferred_power_cards",
+        ):
+            if field not in pack:
+                errors.append(f"pilot_micro_packs: pack {pack_id} missing {field}")
+
+        target_ids = pack.get("target_power_card_ids", [])
+        if not isinstance(target_ids, list) or not target_ids:
+            errors.append(f"pilot_micro_packs: pack {pack_id} target_power_card_ids must be a non-empty list")
+            target_ids = []
+        target_id_set = set()
+        for power_id in target_ids:
+            if power_id not in power_by_id:
+                errors.append(f"pilot_micro_packs: pack {pack_id} references unknown target Power Card {power_id}")
+            elif power_id not in pilot_card_ids:
+                errors.append(f"pilot_micro_packs: pack {pack_id} target {power_id} is outside the pilot kit scope")
+            target_id_set.add(power_id)
+
+        assumptions = pack.get("group_size_assumptions")
+        if not isinstance(assumptions, dict):
+            errors.append(f"pilot_micro_packs: pack {pack_id} group_size_assumptions must be an object")
+            assumptions = {}
+        child_counts = assumptions.get("child_counts")
+        if child_counts != [4, 5, 6]:
+            errors.append(f"pilot_micro_packs: pack {pack_id} child_counts must be exactly [4, 5, 6]")
+        session_minutes = assumptions.get("session_minutes")
+        if not isinstance(session_minutes, dict) or session_minutes.get("min") != 45 or session_minutes.get("max") != 60:
+            errors.append(f"pilot_micro_packs: pack {pack_id} session_minutes must cover 45-60 minutes")
+        pair_counts = assumptions.get("pair_counts_by_child_count")
+        if not isinstance(pair_counts, dict) or pair_counts.get("4") != 2 or pair_counts.get("5") != 3 or pair_counts.get("6") != 3:
+            errors.append(f"pilot_micro_packs: pack {pack_id} must include pair counts for 4, 5, and 6 children")
+        if not isinstance(assumptions.get("table_count"), int) or assumptions.get("table_count") < 1:
+            errors.append(f"pilot_micro_packs: pack {pack_id} must include a positive table_count")
+
+        adult_ratio = pack.get("adult_ratio")
+        if not isinstance(adult_ratio, dict):
+            errors.append(f"pilot_micro_packs: pack {pack_id} adult_ratio must be an object")
+        else:
+            if adult_ratio.get("required_facilitators") != 1:
+                errors.append(f"pilot_micro_packs: pack {pack_id} must require 1 facilitator")
+            if adult_ratio.get("recommended_helpers") != 1:
+                errors.append(f"pilot_micro_packs: pack {pack_id} must recommend 1 helper")
+
+        timing_blocks = pack.get("timing_blocks")
+        if not isinstance(timing_blocks, list) or not timing_blocks:
+            errors.append(f"pilot_micro_packs: pack {pack_id} timing_blocks must be a non-empty list")
+            timing_blocks = []
+        timing_card_ids: set[str] = set()
+        for index, block in enumerate(timing_blocks, start=1):
+            if not isinstance(block, dict):
+                errors.append(f"pilot_micro_packs: pack {pack_id} timing_blocks[{index}] must be an object")
+                continue
+            for field in ("minutes", "title", "facilitator_script"):
+                if not str(block.get(field, "")).strip():
+                    errors.append(f"pilot_micro_packs: pack {pack_id} timing_blocks[{index}] missing {field}")
+            for power_id in block.get("target_power_card_ids", []):
+                if power_id not in power_by_id:
+                    errors.append(f"pilot_micro_packs: pack {pack_id} timing block references unknown Power Card {power_id}")
+                if power_id not in target_id_set:
+                    errors.append(f"pilot_micro_packs: pack {pack_id} timing block includes non-target card {power_id}")
+                timing_card_ids.add(power_id)
+        if target_id_set - timing_card_ids:
+            errors.append(
+                f"pilot_micro_packs: pack {pack_id} timing blocks do not include targets {sorted(target_id_set - timing_card_ids)}"
+            )
+
+        for list_field in ("safety_rules", "packing_assumptions", "adult_setup_checklist", "pilot_observation_focus"):
+            value = pack.get(list_field)
+            if not isinstance(value, list) or not value or any(not str(item).strip() for item in value):
+                errors.append(f"pilot_micro_packs: pack {pack_id} {list_field} must be a non-empty string list")
+
+        if pack_id in generate_lesson_plans.SESSION_LESSON_PACK_IDS:
+            target_support = pack.get("target_age_support_assumptions")
+            if not isinstance(target_support, dict):
+                errors.append(f"pilot_micro_packs: pack {pack_id} target_age_support_assumptions must be an object")
+                target_support = {}
+            for field in ("target_age", "support_level", "access_note"):
+                if not str(target_support.get(field, "")).strip():
+                    errors.append(
+                        f"pilot_micro_packs: pack {pack_id} target_age_support_assumptions missing {field}"
+                    )
+
+            differentiation = pack.get("lesson_differentiation")
+            if not isinstance(differentiation, dict):
+                errors.append(f"pilot_micro_packs: pack {pack_id} lesson_differentiation must be an object")
+                differentiation = {}
+            for field in ("simplify", "repeat", "stretch", "stop_condition"):
+                if not str(differentiation.get(field, "")).strip():
+                    errors.append(f"pilot_micro_packs: pack {pack_id} lesson_differentiation missing {field}")
+
+            follow_up = pack.get("follow_up_recommendations")
+            if not isinstance(follow_up, list) or not follow_up or any(not str(item).strip() for item in follow_up):
+                errors.append(f"pilot_micro_packs: pack {pack_id} follow_up_recommendations must be a non-empty string list")
+
+        reset_count_back = pack.get("reset_count_back")
+        if not isinstance(reset_count_back, dict):
+            errors.append(f"pilot_micro_packs: pack {pack_id} reset_count_back must be an object")
+            reset_count_back = {}
+        battery_count_back = reset_count_back.get("battery_count_back")
+        if not isinstance(battery_count_back, list) or not battery_count_back:
+            errors.append(f"pilot_micro_packs: pack {pack_id} must include battery_count_back entries")
+            battery_count_back = []
+        for index, item in enumerate(battery_count_back, start=1):
+            if not isinstance(item, dict):
+                errors.append(f"pilot_micro_packs: pack {pack_id} battery_count_back[{index}] must be an object")
+                continue
+            asset_ids = item.get("asset_ids")
+            if not isinstance(asset_ids, list) or not asset_ids:
+                errors.append(f"pilot_micro_packs: pack {pack_id} battery_count_back[{index}] must include asset_ids")
+                continue
+            for asset_id in asset_ids:
+                if asset_id not in physical_asset_ids:
+                    errors.append(f"pilot_micro_packs: pack {pack_id} battery_count_back references unknown asset {asset_id}")
+            if not str(item.get("note", "")).strip():
+                errors.append(f"pilot_micro_packs: pack {pack_id} battery_count_back[{index}] missing note")
+        pack_away_steps = reset_count_back.get("pack_away_steps")
+        if not isinstance(pack_away_steps, list) or not pack_away_steps:
+            errors.append(f"pilot_micro_packs: pack {pack_id} must include reset/pack-away steps")
+
+        card_sequence = pack.get("card_sequence")
+        if not isinstance(card_sequence, list) or not card_sequence:
+            errors.append(f"pilot_micro_packs: pack {pack_id} card_sequence must be a non-empty list")
+            card_sequence = []
+        sequence_ids = []
+        for index, item in enumerate(card_sequence, start=1):
+            if not isinstance(item, dict):
+                errors.append(f"pilot_micro_packs: pack {pack_id} card_sequence[{index}] must be an object")
+                continue
+            power_id = item.get("power_card_id")
+            if power_id not in target_id_set:
+                errors.append(f"pilot_micro_packs: pack {pack_id} card_sequence includes non-target card {power_id}")
+            sequence_ids.append(power_id)
+            for field in ("purpose", "stop_condition", "handoff_cue"):
+                if not str(item.get(field, "")).strip():
+                    errors.append(f"pilot_micro_packs: pack {pack_id} card_sequence[{index}] missing {field}")
+        if sequence_ids != target_ids:
+            errors.append(f"pilot_micro_packs: pack {pack_id} card_sequence must match target_power_card_ids order")
+
+        for exclusion in pack.get("asset_exclusions", []):
+            if not isinstance(exclusion, dict):
+                errors.append(f"pilot_micro_packs: pack {pack_id} asset_exclusions entries must be objects")
+                continue
+            power_id = exclusion.get("power_card_id")
+            asset_id = exclusion.get("asset_id")
+            if power_id not in target_id_set:
+                errors.append(f"pilot_micro_packs: pack {pack_id} asset exclusion references non-target card {power_id}")
+                continue
+            required_asset_ids = {
+                requirement.get("asset_id")
+                for requirement in power_by_id.get(power_id, {}).get("required_assets", [])
+                if isinstance(requirement, dict)
+            }
+            if asset_id not in required_asset_ids:
+                errors.append(
+                    f"pilot_micro_packs: pack {pack_id} asset exclusion references asset {asset_id} not required by {power_id}"
+                )
+            if asset_id not in physical_asset_ids:
+                errors.append(f"pilot_micro_packs: pack {pack_id} asset exclusion references unknown asset {asset_id}")
+            if not str(exclusion.get("reason", "")).strip():
+                errors.append(f"pilot_micro_packs: pack {pack_id} asset exclusion missing reason")
+
+        diagram_refs = pack.get("diagram_refs")
+        if not isinstance(diagram_refs, list) or not diagram_refs:
+            errors.append(f"pilot_micro_packs: pack {pack_id} must include diagram_refs")
+            diagram_refs = []
+        has_r_pow_02_safe_diagram = False
+        for index, ref in enumerate(diagram_refs, start=1):
+            if not isinstance(ref, dict):
+                errors.append(f"pilot_micro_packs: pack {pack_id} diagram_refs[{index}] must be an object")
+                continue
+            power_id = ref.get("power_card_id")
+            if power_id not in target_id_set:
+                errors.append(f"pilot_micro_packs: pack {pack_id} diagram ref includes non-target card {power_id}")
+            if power_id == "r_pow_02" and ref.get("kind") == "static_svg" and str(ref.get("output_filename", "")).endswith(".svg"):
+                has_r_pow_02_safe_diagram = True
+            for field in ("id", "kind", "output_filename", "description"):
+                if not str(ref.get(field, "")).strip():
+                    errors.append(f"pilot_micro_packs: pack {pack_id} diagram_refs[{index}] missing {field}")
+        if "r_pow_02" in target_id_set and not has_r_pow_02_safe_diagram:
+            errors.append(f"pilot_micro_packs: pack {pack_id} must include a static safe-circuit diagram reference for r_pow_02")
+
+        deferred_items = pack.get("deferred_power_cards")
+        if not isinstance(deferred_items, list):
+            errors.append(f"pilot_micro_packs: pack {pack_id} deferred_power_cards must be a list")
+            deferred_items = []
+        deferred_ids = set()
+        for index, item in enumerate(deferred_items, start=1):
+            if not isinstance(item, dict):
+                errors.append(f"pilot_micro_packs: pack {pack_id} deferred_power_cards[{index}] must be an object")
+                continue
+            power_id = item.get("power_card_id")
+            if power_id not in power_by_id:
+                errors.append(f"pilot_micro_packs: pack {pack_id} defers unknown Power Card {power_id}")
+            if power_id in target_id_set:
+                errors.append(f"pilot_micro_packs: pack {pack_id} deferred card {power_id} is also a target")
+            if not str(item.get("reason", "")).strip():
+                errors.append(f"pilot_micro_packs: pack {pack_id} deferred card {power_id} missing reason")
+            deferred_ids.add(power_id)
+        if "r_pow_10" in target_id_set or "r_pow_10" in timing_card_ids or "r_pow_10" in sequence_ids:
+            errors.append(f"pilot_micro_packs: pack {pack_id} must not include deferred card r_pow_10")
+        if "r_pow_10" not in deferred_ids:
+            errors.append(f"pilot_micro_packs: pack {pack_id} must explicitly defer r_pow_10")
+        if pack_id == "first_session":
+            expected_deferred = pilot_card_ids - target_id_set
+            if deferred_ids != expected_deferred:
+                errors.append(
+                    f"pilot_micro_packs: first_session deferred cards must equal non-target pilot cards; "
+                    f"missing={sorted(expected_deferred - deferred_ids)}, extra={sorted(deferred_ids - expected_deferred)}"
+                )
+
+
+def validate_pilot_micro_pack_outputs(source: dict[str, Any], generated_dir: Path, errors: list[str]) -> None:
+    output_dir = generated_dir / "pilot-micro-packs"
+    packs = source.get("pilot_micro_packs", [])
+    for pack in packs:
+        if not isinstance(pack, dict):
+            continue
+        pack_id = str(pack.get("id", "pilot-micro-pack"))
+        slug = generate_pilot_micro_packs.slugify(pack_id)
+        markdown_path = output_dir / f"{slug}.md"
+        if not markdown_path.exists():
+            errors.append(f"Missing generated pilot micro-pack: {markdown_path}")
+            continue
+        actual = markdown_path.read_text(encoding="utf-8")
+        expected = generate_pilot_micro_packs.render_micro_pack_markdown(source, pack)
+        if actual != expected:
+            errors.append(f"generated pilot micro-pack {pack_id} does not match canonical source")
+        for snippet in (
+            "## One-Page Facilitator Timing Script",
+            "## Kit Pick List By Bin",
+            "## Battery Count-Back Sheet",
+            "## Reset And Pack-Away Checklist",
+            "r_pow_02 Safe-Circuit Diagram",
+        ):
+            if snippet not in actual:
+                errors.append(f"generated pilot micro-pack {pack_id} missing section {snippet!r}")
+
+        if any(isinstance(ref, dict) and ref.get("power_card_id") == "r_pow_02" for ref in pack.get("diagram_refs", [])):
+            diagram_filename = generate_pilot_micro_packs.r_pow_02_diagram_filename(pack)
+            diagram_path = output_dir / diagram_filename
+            if not diagram_path.exists():
+                errors.append(f"Missing generated r_pow_02 safe-circuit diagram: {diagram_path}")
+            else:
+                expected_svg = generate_pilot_micro_packs.render_r_pow_02_safe_circuit_svg(source)
+                actual_svg = diagram_path.read_text(encoding="utf-8")
+                if actual_svg != expected_svg:
+                    errors.append(f"generated r_pow_02 safe-circuit diagram {diagram_filename} does not match canonical source")
+                for snippet in ("A034", "A037", "positive lead", "negative return", "ADULT CHECK", "No loose AA cells"):
+                    if snippet not in actual_svg:
+                        errors.append(f"generated r_pow_02 safe-circuit diagram missing {snippet!r}")
+
+
+def validate_session_lesson_plan_outputs(source: dict[str, Any], generated_dir: Path, errors: list[str]) -> None:
+    output_dir = generated_dir / "session-lesson-plans"
+    index_path = output_dir / "index.md"
+    if not index_path.exists():
+        errors.append(f"Missing generated session lesson-plan index: {index_path}")
+
+    power_by_id = {
+        card.get("id"): card
+        for card in source.get("power_cards", [])
+        if isinstance(card, dict) and card.get("id")
+    }
+    family_by_id = {
+        family.get("id"): family
+        for family in source.get("skill_cards", [])
+        if isinstance(family, dict) and family.get("id")
+    }
+    level_by_id = {
+        level.get("id"): level
+        for level in source.get("levels", [])
+        if isinstance(level, dict) and level.get("id")
+    }
+    physical_asset_ids = {
+        asset.get("id")
+        for asset in source.get("asset_inventory", {}).get("physical_assets", [])
+        if isinstance(asset, dict) and asset.get("id")
+    }
+
+    for pack in source.get("pilot_micro_packs", []):
+        if not isinstance(pack, dict) or pack.get("id") not in generate_lesson_plans.SESSION_LESSON_PACK_IDS:
+            continue
+
+        pack_id = str(pack.get("id"))
+        target_ids = [str(card_id) for card_id in pack.get("target_power_card_ids", [])]
+        for card_id in target_ids:
+            card = power_by_id.get(card_id)
+            if not card:
+                errors.append(f"session lesson plan {pack_id}: target card {card_id} does not exist")
+                continue
+            if not isinstance(card.get("activity_flow"), dict):
+                errors.append(f"session lesson plan {pack_id}: target card {card_id} missing activity_flow")
+            for requirement in card.get("required_assets", []):
+                if not isinstance(requirement, dict):
+                    continue
+                asset_id = requirement.get("asset_id")
+                if asset_id not in physical_asset_ids:
+                    errors.append(
+                        f"session lesson plan {pack_id}: target card {card_id} references unknown required asset {asset_id}"
+                    )
+
+        child_counts = [str(count) for count in pack.get("group_size_assumptions", {}).get("child_counts", [])]
+        asset_rows = generate_pilot_micro_packs.micro_pack_asset_rows(source, pack)
+        for row in asset_rows:
+            quantities = row.get("quantity_by_child_count", {})
+            missing_counts = [count for count in child_counts if count not in quantities or not isinstance(quantities[count], int)]
+            if missing_counts:
+                errors.append(
+                    f"session lesson plan {pack_id}: asset {row.get('asset_id')} missing quantities for child counts {missing_counts}"
+                )
+
+        slug = generate_pilot_micro_packs.slugify(pack_id)
+        markdown_path = output_dir / f"{slug}.md"
+        if not markdown_path.exists():
+            errors.append(f"Missing generated session lesson plan: {markdown_path}")
+            continue
+
+        actual = markdown_path.read_text(encoding="utf-8")
+        expected = generate_lesson_plans.render_session_lesson_plan(
+            pack,
+            source,
+            power_by_id,
+            family_by_id,
+            level_by_id,
+        )
+        if actual != expected:
+            errors.append(f"generated session lesson plan {pack_id} does not match canonical source")
+
+        for section in sorted(SESSION_LESSON_REQUIRED_SECTIONS):
+            if section not in actual:
+                errors.append(f"generated session lesson plan {pack_id} missing section {section!r}")
+
+        for card_id in target_ids:
+            if f"### {card_id} - " not in actual:
+                errors.append(f"generated session lesson plan {pack_id} missing activity sequence for {card_id}")
+
+        required_snippets = [
+            "No child-authored code in this session.",
+            "## Battery Count-Back Sheet",
+            "## Safety Rules",
+            "## Reset And Pack-Away Checklist",
+            "## Deliberately Deferred Cards",
+            "r_pow_02 safe circuit: `../pilot-micro-packs/",
+        ]
+        for snippet in required_snippets:
+            if snippet not in actual:
+                errors.append(f"generated session lesson plan {pack_id} missing required snippet {snippet!r}")
+
+        if "r_pow_02" in target_ids:
+            diagram_filename = generate_pilot_micro_packs.r_pow_02_diagram_filename(pack)
+            if f"../pilot-micro-packs/{diagram_filename}" not in actual:
+                errors.append(f"generated session lesson plan {pack_id} missing r_pow_02 diagram reference")
+
+        deferred_ids = {
+            item.get("power_card_id")
+            for item in pack.get("deferred_power_cards", [])
+            if isinstance(item, dict)
+        }
+        for deferred_id in deferred_ids:
+            if str(deferred_id) not in actual:
+                errors.append(f"generated session lesson plan {pack_id} missing deferred card {deferred_id}")
+
+
 def validate_generated_outputs(source: dict[str, Any], generated_dir: Path, errors: list[str]) -> None:
     browser_curriculum = extract_window_json(
         generated_dir / "browser/curriculum-data.js",
@@ -1754,6 +2199,8 @@ def validate_generated_outputs(source: dict[str, Any], generated_dir: Path, erro
             errors.append(f"generated artefact {filename} does not structurally match canonical source")
 
     validate_pilot_run_card_pack(source, generated_dir, errors)
+    validate_pilot_micro_pack_outputs(source, generated_dir, errors)
+    validate_session_lesson_plan_outputs(source, generated_dir, errors)
 
 
 def compute_metrics(source: dict[str, Any], power_by_id: dict[str, dict[str, Any]]) -> dict[str, Any]:
@@ -1778,6 +2225,12 @@ def compute_metrics(source: dict[str, Any], power_by_id: dict[str, dict[str, Any
             ),
             "pilot_cards_with_required_assets": sum(1 for power in powers if power.get("required_assets")),
             "pilot_cards_with_activity_flow": sum(1 for power in powers if power.get("activity_flow")),
+            "pilot_micro_packs": len(source.get("pilot_micro_packs", [])),
+            "session_lesson_plans": sum(
+                1
+                for pack in source.get("pilot_micro_packs", [])
+                if isinstance(pack, dict) and pack.get("id") in generate_lesson_plans.SESSION_LESSON_PACK_IDS
+            ),
             "preload_profiles": len(source.get("preload_profiles", [])),
         },
         "power_cards_by_family_level": {
@@ -1811,6 +2264,7 @@ def validate_source(source_path: Path, generated_dir: Path, validate_generated: 
     validate_integrations(source, family_ids, power_by_id, errors)
     validate_inventions(source, family_ids, errors)
     validate_assets(source, power_by_id, errors)
+    validate_pilot_micro_packs_source(source, power_by_id, errors)
     validate_profiles_and_audit(source, errors, warnings)
     if validate_generated:
         validate_generated_outputs(source, generated_dir, errors)

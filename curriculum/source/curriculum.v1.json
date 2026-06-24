@@ -11954,6 +11954,24 @@
         "debug_prompts",
         "stretch_and_invention_follow_ons"
       ]
+    },
+    {
+      "id": "facilitator_session_first_session",
+      "name": "First Session Facilitator Plan",
+      "output_dir": "curriculum/generated/session-lesson-plans",
+      "source_card_type": "pilot_micro_packs",
+      "include": [
+        "target_power_card_ids",
+        "group_size_assumptions",
+        "adult_ratio",
+        "timing_blocks",
+        "required_assets",
+        "battery_count_back",
+        "safety_rules",
+        "activity_flow",
+        "diagram_refs",
+        "deferred_power_cards"
+      ]
     }
   ],
   "red_team_cases": [
@@ -12167,6 +12185,267 @@
       ],
       "principled_or_arbitrary": "principled",
       "schema_weakness": "The prompt is invention when player rules are open-ended, but a fixed radio tag recipe is an integration."
+    }
+  ],
+  "pilot_micro_packs": [
+    {
+      "id": "first_session",
+      "title": "First 45-60 Minute Pilot Micro-Pack",
+      "status": "operational_test_aid_not_final_lesson_plan",
+      "target_power_card_ids": [
+        "r_pow_01",
+        "r_ctl_01",
+        "r_pow_02"
+      ],
+      "group_size_assumptions": {
+        "session_minutes": {
+          "min": 45,
+          "max": 60
+        },
+        "child_counts": [
+          4,
+          5,
+          6
+        ],
+        "pairing_model": "Pairs where possible; one trio is acceptable for five children.",
+        "pair_counts_by_child_count": {
+          "4": 2,
+          "5": 3,
+          "6": 3
+        },
+        "table_count": 1,
+        "notes": "Pack for one shared table/station and two to three build teams."
+      },
+      "adult_ratio": {
+        "required_facilitators": 1,
+        "recommended_helpers": 1,
+        "helper_reason": "A second adult is recommended while r_pow_02 circuits are checked and powered briefly."
+      },
+      "target_age_support_assumptions": {
+        "target_age": "Use with the current Level 1-2 pilot group; the micro-pack does not set a narrower age band.",
+        "support_level": "Direct adult support for power handling and adult check before any switch-on.",
+        "access_note": "Keep prompts verbal and visible; use the printed circuit diagram when children need to see the path."
+      },
+      "timing_blocks": [
+        {
+          "minutes": "0-5",
+          "title": "Open the room rules",
+          "target_power_card_ids": [],
+          "facilitator_script": "Name the rule: no power is connected until an adult checks the path, polarity, and switch state."
+        },
+        {
+          "minutes": "5-15",
+          "title": "Recognise safe power",
+          "target_power_card_ids": [
+            "r_pow_01"
+          ],
+          "facilitator_script": "Use AA cells, the empty holder, polarity cards, and the adult-held coin cell to practise positive, negative, and count-back language."
+        },
+        {
+          "minutes": "15-25",
+          "title": "Sort controls by user action",
+          "target_power_card_ids": [
+            "r_ctl_01"
+          ],
+          "facilitator_script": "Keep all controls unplugged. Ask children to sort by press, toggle, turn, and direction."
+        },
+        {
+          "minutes": "25-45",
+          "title": "Power one LED load",
+          "target_power_card_ids": [
+            "r_pow_02"
+          ],
+          "facilitator_script": "Pairs build the LED-module circuit with the pack switched off. Adults check before any switch-on. Use LED module only."
+        },
+        {
+          "minutes": "45-60",
+          "title": "Reset, count back, and capture evidence",
+          "target_power_card_ids": [
+            "r_pow_01",
+            "r_ctl_01",
+            "r_pow_02"
+          ],
+          "facilitator_script": "Switch packs off, unclip leads, count all power items back, and record which prompts or diagrams children needed."
+        }
+      ],
+      "safety_rules": [
+        "No child-authored code in this session.",
+        "No power connected until an adult checks polarity, circuit path, and switch state.",
+        "Use r_pow_02 with the LED module only; do not use the optional motor comparison load.",
+        "Keep loose AA cells and coin cells under adult control and count them back.",
+        "Switch battery packs off before handout, checking, reset, or pack-away.",
+        "Children handle only the prepared low-voltage parts named for the active card."
+      ],
+      "packing_assumptions": [
+        "Pack for one shared table with two to three pairs or build teams.",
+        "Use pair counts of 2, 3, and 3 for 4, 5, and 6 children.",
+        "Treat demo-only items as adult-controlled and never as build-team consumables.",
+        "Use the LED module as the only r_pow_02 load for this first pilot.",
+        "Reuse shared table sorting items across the sequence rather than duplicating them for every child."
+      ],
+      "adult_setup_checklist": [
+        "Print this micro-pack and the r_pow_02 safe-circuit diagram.",
+        "Lay out one table with power recognition items, unplugged controls, and a separate powered-circuit area.",
+        "Prepare AA packs switched off before handout.",
+        "Put loose AA cells and the coin cell in adult-controlled reach only.",
+        "Check clip lead insulation and LED module polarity labels before children arrive.",
+        "Keep optional motor load out of the first pilot kit tray."
+      ],
+      "card_sequence": [
+        {
+          "power_card_id": "r_pow_01",
+          "purpose": "Establish polarity language and adult count-back expectations before any powered circuit.",
+          "stop_condition": "Children can point to positive and negative and name one safety limit.",
+          "handoff_cue": "Move on when children can explain why the coin cell stays adult-controlled."
+        },
+        {
+          "power_card_id": "r_ctl_01",
+          "purpose": "Give a quick unplugged success before the powered circuit.",
+          "stop_condition": "Children sort controls into press, toggle, turn, and direction.",
+          "handoff_cue": "Move on when children can match a control to a user action."
+        },
+        {
+          "power_card_id": "r_pow_02",
+          "purpose": "Test whether the generated powered-circuit instructions work with a real small group.",
+          "stop_condition": "Each pair briefly lights the LED module after adult check, switches off, and resets.",
+          "handoff_cue": "Stop rather than adding the motor if the LED circuit works."
+        }
+      ],
+      "reset_count_back": {
+        "battery_count_back": [
+          {
+            "asset_ids": [
+              "part_aa_cell"
+            ],
+            "note": "Count loose AA cells before and after r_pow_01; they are not used for r_pow_02."
+          },
+          {
+            "asset_ids": [
+              "part_coin_cell"
+            ],
+            "note": "The coin cell is adult-held demonstration only and must be counted back immediately."
+          },
+          {
+            "asset_ids": [
+              "part_aa_battery_pack"
+            ],
+            "note": "Return every AA pack switched off; the adult removes or counts cells after the session."
+          }
+        ],
+        "pack_away_steps": [
+          "Switch off every AA pack before leads are removed.",
+          "Unclip and untangle all clip leads.",
+          "Return LED modules unplugged to the power load compartment.",
+          "Return unplugged controls dry, with connector pins checked.",
+          "Count loose cells, coin cell, AA packs, and clip leads before closing the kit.",
+          "Record any warm wires, damaged insulation, missing labels, or confusing prompts."
+        ]
+      },
+      "diagram_refs": [
+        {
+          "id": "r_pow_02_safe_led_circuit",
+          "power_card_id": "r_pow_02",
+          "kind": "static_svg",
+          "output_filename": "first-session-r_pow_02-safe-circuit.svg",
+          "description": "Printable safe circuit diagram for the first pilot: battery pack, clip leads, LED module, adult check, no loose AA cells, no optional motor."
+        }
+      ],
+      "asset_exclusions": [
+        {
+          "power_card_id": "r_pow_02",
+          "asset_id": "part_dc_motor",
+          "reason": "Optional alternate motor load is deliberately deferred; first pilot uses LED module only."
+        }
+      ],
+      "pilot_observation_focus": [
+        "Which adult setup steps needed more detail before the session could start?",
+        "Which child-facing prompts produced action without extra explanation?",
+        "Where did children need the printed r_pow_02 diagram?",
+        "How long did count-back and pack-away actually take?",
+        "Were 2 pairs and 3 pairs both manageable with the listed quantities?",
+        "Did the second adult become necessary during powered circuit checks?"
+      ],
+      "lesson_differentiation": {
+        "simplify": "If powered-circuit checks are slow, keep r_pow_02 as an adult-checked demonstration after children complete r_pow_01 and r_ctl_01.",
+        "repeat": "Repeat the polarity sort or the unplugged control sort before powered work if children cannot explain the next safe step.",
+        "stretch": "Ask early finishers to explain the LED circuit path and polarity using the printed diagram, without adding the optional motor.",
+        "stop_condition": "Stop once each pair has briefly lit the LED module, switched off, and reset; do not add deferred cards."
+      },
+      "follow_up_recommendations": [
+        "Review observation notes before adding any motor or LED-strip work.",
+        "Pilot r_mov_02 only after the first LED-only power circuit is calm and repeatable.",
+        "Pilot preloaded-board cards separately once board labels, firmware state, and helper coverage are confirmed."
+      ],
+      "deferred_power_cards": [
+        {
+          "power_card_id": "r_mov_01",
+          "reason": "Deferred to keep the first session focused on power safety and one LED circuit."
+        },
+        {
+          "power_card_id": "r_mov_02",
+          "reason": "Deferred because motor use adds moving-shaft risk after the LED-only first circuit."
+        },
+        {
+          "power_card_id": "r_mov_03",
+          "reason": "Deferred until preloaded board and servo setup are confirmed."
+        },
+        {
+          "power_card_id": "r_ctl_02",
+          "reason": "Deferred until preloaded board and indicator setup are confirmed."
+        },
+        {
+          "power_card_id": "r_ctl_03",
+          "reason": "Deferred until preloaded board and display setup are confirmed."
+        },
+        {
+          "power_card_id": "r_sen_01",
+          "reason": "Deferred to avoid mixing sensor sorting with the first power-control pilot."
+        },
+        {
+          "power_card_id": "r_sen_02",
+          "reason": "Deferred until preloaded analog display setup is confirmed."
+        },
+        {
+          "power_card_id": "r_str_01",
+          "reason": "Deferred because structure observation is a separate non-electrical pilot thread."
+        },
+        {
+          "power_card_id": "r_str_02",
+          "reason": "Deferred because frame building needs a separate timing and consumables check."
+        },
+        {
+          "power_card_id": "r_mov_09",
+          "reason": "Deferred to keep the first session below one movement comparison thread."
+        },
+        {
+          "power_card_id": "r_ctl_09",
+          "reason": "Deferred because r_ctl_01 already covers the first unplugged controls sort."
+        },
+        {
+          "power_card_id": "r_sen_09",
+          "reason": "Deferred until sensor kit quantities are confirmed."
+        },
+        {
+          "power_card_id": "r_sen_10",
+          "reason": "Deferred until preloaded tilt indicator setup is confirmed."
+        },
+        {
+          "power_card_id": "r_str_09",
+          "reason": "Deferred because braces and structures need their own observation station."
+        },
+        {
+          "power_card_id": "r_str_10",
+          "reason": "Deferred because tower building needs a separate timing and reset check."
+        },
+        {
+          "power_card_id": "r_pow_09",
+          "reason": "Deferred because r_pow_01 already covers first-session cell and polarity sorting."
+        },
+        {
+          "power_card_id": "r_pow_10",
+          "reason": "Deferred until LED strip current limit, switch path, and kit quantity are confirmed."
+        }
+      ]
     }
   ],
   "audit_warnings": [

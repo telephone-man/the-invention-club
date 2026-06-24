@@ -15,6 +15,8 @@ import shutil
 from pathlib import Path
 from typing import Any
 
+import generate_lesson_plans
+import generate_pilot_micro_packs
 import generate_pilot_run_cards
 
 
@@ -24,6 +26,8 @@ GENERATED_DIR = ROOT / "curriculum/generated"
 BROWSER_DIR = GENERATED_DIR / "browser"
 LESSON_DIR = GENERATED_DIR / "lesson-plans"
 RUN_CARD_DIR = GENERATED_DIR / "pilot-run-cards"
+MICRO_PACK_DIR = GENERATED_DIR / "pilot-micro-packs"
+SESSION_LESSON_DIR = GENERATED_DIR / "session-lesson-plans"
 GENERATED_NOTICE = [
     "GENERATED FILE - DO NOT EDIT BY HAND.",
     "Source: curriculum/source/curriculum.v1.json",
@@ -552,6 +556,24 @@ def lesson_plan_profiles() -> list[dict[str, Any]]:
                 "debug_prompts",
                 "stretch_and_invention_follow_ons",
             ],
+        },
+        {
+            "id": "facilitator_session_first_session",
+            "name": "First Session Facilitator Plan",
+            "output_dir": "curriculum/generated/session-lesson-plans",
+            "source_card_type": "pilot_micro_packs",
+            "include": [
+                "target_power_card_ids",
+                "group_size_assumptions",
+                "adult_ratio",
+                "timing_blocks",
+                "required_assets",
+                "battery_count_back",
+                "safety_rules",
+                "activity_flow",
+                "diagram_refs",
+                "deferred_power_cards",
+            ],
         }
     ]
 
@@ -588,6 +610,7 @@ def bootstrap_source() -> dict[str, Any]:
         "asset_inventory": asset_inventory,
         "preload_profiles": build_preload_profiles(asset_inventory),
         "lesson_plan_profiles": lesson_plan_profiles(),
+        "pilot_micro_packs": [],
         "red_team_cases": red_team_cases,
         "audit_warnings": WEAK_BOUNDARY_WARNINGS,
     }
@@ -623,6 +646,8 @@ def build_outputs(source: dict[str, Any], *, mirror_root: bool = True) -> None:
     BROWSER_DIR.mkdir(parents=True, exist_ok=True)
     GENERATED_DIR.mkdir(parents=True, exist_ok=True)
     RUN_CARD_DIR.mkdir(parents=True, exist_ok=True)
+    MICRO_PACK_DIR.mkdir(parents=True, exist_ok=True)
+    SESSION_LESSON_DIR.mkdir(parents=True, exist_ok=True)
 
     browser_payload = browser_curriculum_payload(source)
     browser_curriculum_path = BROWSER_DIR / "curriculum-data.js"
@@ -649,6 +674,8 @@ def build_outputs(source: dict[str, Any], *, mirror_root: bool = True) -> None:
         generate_pilot_run_cards.expected_pilot_run_cards_markdown(source),
         encoding="utf-8",
     )
+    generate_pilot_micro_packs.write_micro_pack_outputs(source, MICRO_PACK_DIR)
+    generate_lesson_plans.write_session_lesson_outputs(source, SESSION_LESSON_DIR)
 
 
 def main() -> int:

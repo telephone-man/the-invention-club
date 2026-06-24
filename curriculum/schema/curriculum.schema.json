@@ -14,6 +14,7 @@
     "asset_inventory",
     "preload_profiles",
     "lesson_plan_profiles",
+    "pilot_micro_packs",
     "red_team_cases",
     "audit_warnings"
   ],
@@ -61,6 +62,10 @@
     "lesson_plan_profiles": {
       "type": "array",
       "items": { "$ref": "#/$defs/lesson_plan_profile" }
+    },
+    "pilot_micro_packs": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/pilot_micro_pack" }
     },
     "red_team_cases": {
       "type": "array",
@@ -553,6 +558,34 @@
         "output_dir": { "type": "string", "minLength": 1 },
         "source_card_type": { "type": "string", "minLength": 1 },
         "include": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "pilot_micro_pack": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "title",
+        "target_power_card_ids",
+        "group_size_assumptions",
+        "adult_ratio",
+        "timing_blocks",
+        "safety_rules",
+        "packing_assumptions",
+        "reset_count_back",
+        "deferred_power_cards"
+      ],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "title": { "type": "string", "minLength": 1 },
+        "target_power_card_ids": { "type": "array", "items": { "type": "string" } },
+        "group_size_assumptions": { "type": "object", "additionalProperties": true },
+        "adult_ratio": { "type": "object", "additionalProperties": true },
+        "timing_blocks": { "type": "array", "items": { "type": "object", "additionalProperties": true } },
+        "safety_rules": { "type": "array", "items": { "type": "string" } },
+        "packing_assumptions": { "type": "array", "items": { "type": "string" } },
+        "reset_count_back": { "type": "object", "additionalProperties": true },
+        "deferred_power_cards": { "type": "array", "items": { "type": "object", "additionalProperties": true } }
       }
     }
   }
