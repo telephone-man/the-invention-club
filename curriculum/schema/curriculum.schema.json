@@ -183,7 +183,164 @@
         "required_assets": {
           "type": "array",
           "items": { "$ref": "#/$defs/required_asset" }
+        },
+        "activity_flow": { "$ref": "#/$defs/activity_flow" }
+      }
+    },
+    "activity_flow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "adult_setup",
+        "child_start_state",
+        "build_steps",
+        "test_steps",
+        "debug_steps",
+        "reset_and_pack",
+        "facilitator_notes"
+      ],
+      "properties": {
+        "adult_setup": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/activity_step" }
+        },
+        "child_start_state": { "$ref": "#/$defs/child_start_state" },
+        "build_steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/activity_step" }
+        },
+        "test_steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/activity_step" }
+        },
+        "debug_steps": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/activity_step" }
+        },
+        "reset_and_pack": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/activity_step" }
+        },
+        "facilitator_notes": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "diagram_refs": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/diagram_ref" }
+        },
+        "diagram_semantics": { "$ref": "#/$defs/diagram_semantics" }
+      }
+    },
+    "child_start_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["prompt", "visible_asset_ids", "starter_question"],
+      "properties": {
+        "prompt": { "type": "string", "minLength": 1 },
+        "visible_asset_ids": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "starter_question": { "type": "string", "minLength": 1 }
+      }
+    },
+    "activity_step": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "actor", "kind", "instruction"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "actor": {
+          "enum": ["adult", "child", "pair", "table"]
+        },
+        "kind": {
+          "enum": ["prepare", "observe", "sort", "connect", "assemble", "test", "debug", "reset"]
+        },
+        "instruction": { "type": "string", "minLength": 1 },
+        "asset_ids": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "safety_focus": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "expected_result": { "type": "string", "minLength": 1 },
+        "diagram_node_ids": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
         }
+      }
+    },
+    "diagram_ref": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "label"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1 },
+        "description": { "type": "string", "minLength": 1 }
+      }
+    },
+    "diagram_semantics": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["primary_view", "nodes", "connections"],
+      "properties": {
+        "primary_view": {
+          "enum": ["parts_layout", "sorting_grid", "safe_circuit", "mechanism", "structure_test"]
+        },
+        "nodes": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/diagram_node" }
+        },
+        "connections": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/diagram_connection" }
+        },
+        "states": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/diagram_state" }
+        }
+      }
+    },
+    "diagram_node": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "asset_id", "role", "label"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "asset_id": { "type": "string", "minLength": 1 },
+        "role": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1 }
+      }
+    },
+    "diagram_connection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["from", "to", "kind"],
+      "properties": {
+        "from": { "type": "string", "minLength": 1 },
+        "to": { "type": "string", "minLength": 1 },
+        "kind": { "type": "string", "minLength": 1 },
+        "made_by": { "type": "string", "minLength": 1 }
+      }
+    },
+    "diagram_state": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "trigger", "expected_change"],
+      "properties": {
+        "id": { "type": "string", "minLength": 1 },
+        "trigger": { "type": "string", "minLength": 1 },
+        "expected_change": { "type": "string", "minLength": 1 }
       }
     },
     "integration_card": {

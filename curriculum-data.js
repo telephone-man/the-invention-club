@@ -552,7 +552,150 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [],
       "classification_rationale": "",
       "result_image": "assets/power-card-results/r_mov_01.svg",
-      "result_alt": "Recognise actuators result build on a workshop table"
+      "result_alt": "Recognise actuators result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Place A001 DC motor and A002 micro servo as unplugged table samples, and keep A003 solenoid sample for adult demonstration only.",
+            "asset_ids": [
+              "part_dc_motor",
+              "part_micro_servo",
+              "part_solenoid_sample"
+            ],
+            "safety_focus": [
+              "moving_shaft",
+              "moving_horn",
+              "pinch_point",
+              "demo_only_electrical"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "The parts are for recognising motion today, not for making a powered circuit.",
+          "visible_asset_ids": [
+            "part_dc_motor",
+            "part_micro_servo"
+          ],
+          "starter_question": "Which part looks like it spins, turns to a position, or pushes?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "child",
+            "kind": "observe",
+            "instruction": "Turn the unpowered motor shaft gently and watch the path it makes.",
+            "asset_ids": [
+              "part_dc_motor"
+            ],
+            "safety_focus": [
+              "moving_shaft"
+            ],
+            "expected_result": "Child identifies rotation."
+          },
+          {
+            "id": "build_2",
+            "actor": "child",
+            "kind": "observe",
+            "instruction": "Move the servo horn by hand only if the adult says it is free, then describe the angle motion.",
+            "asset_ids": [
+              "part_micro_servo"
+            ],
+            "safety_focus": [
+              "moving_horn",
+              "pinch_point"
+            ],
+            "expected_result": "Child identifies position or angle movement."
+          },
+          {
+            "id": "build_3",
+            "actor": "child",
+            "kind": "observe",
+            "instruction": "Watch the adult demo the solenoid sample and name the push-pull motion.",
+            "asset_ids": [
+              "part_solenoid_sample"
+            ],
+            "safety_focus": [
+              "pinch_point",
+              "demo_only_electrical"
+            ],
+            "expected_result": "Child observes without handling the demo-only part."
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "adult",
+            "kind": "test",
+            "instruction": "Ask the child to sort the motor, servo, and adult-held solenoid example into spin, angle, and push-pull motion.",
+            "asset_ids": [
+              "part_dc_motor",
+              "part_micro_servo",
+              "part_solenoid_sample"
+            ],
+            "safety_focus": [
+              "demo_only_electrical"
+            ],
+            "expected_result": "Actuator types are matched to their motion."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If a child guesses by part shape only, repeat the motion slowly and ask what point or line moves."
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Return A001, A002, and A003 unplugged; check the solenoid sample is back in adult-controlled storage.",
+            "asset_ids": [
+              "part_dc_motor",
+              "part_micro_servo",
+              "part_solenoid_sample"
+            ],
+            "safety_focus": [
+              "moving_shaft",
+              "moving_horn",
+              "demo_only_electrical"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "Keep all actuator examples unpowered except the adult-controlled solenoid demonstration.",
+          "Do not turn this into a build; the learning target is recognising motion types."
+        ],
+        "diagram_semantics": {
+          "primary_view": "sorting_grid",
+          "nodes": [
+            {
+              "id": "motor",
+              "asset_id": "part_dc_motor",
+              "role": "rotation_sample",
+              "label": "A001 DC motor"
+            },
+            {
+              "id": "servo",
+              "asset_id": "part_micro_servo",
+              "role": "angle_sample",
+              "label": "A002 micro servo"
+            },
+            {
+              "id": "solenoid",
+              "asset_id": "part_solenoid_sample",
+              "role": "push_pull_demo",
+              "label": "A003 solenoid demo"
+            }
+          ],
+          "connections": []
+        }
+      }
     },
     {
       "id": "r_mov_02",
@@ -604,7 +747,154 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [],
       "classification_rationale": "",
       "result_image": "assets/power-card-results/r_mov_02.svg",
-      "result_alt": "Spin a DC motor result build on a workshop table"
+      "result_alt": "Spin a DC motor result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Check A001 motor wires, A034 battery pack switch, and A036 clip lead insulation before handout.",
+            "asset_ids": [
+              "part_dc_motor",
+              "part_aa_battery_pack",
+              "part_croc_clip_lead"
+            ],
+            "safety_focus": [
+              "moving_shaft",
+              "short_circuit",
+              "damaged_insulation"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "The motor should spin only after the adult checks the circuit path.",
+          "visible_asset_ids": [
+            "part_dc_motor",
+            "part_aa_battery_pack",
+            "part_croc_clip_lead"
+          ],
+          "starter_question": "Where should the two leads go to make one complete path?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "pair",
+            "kind": "connect",
+            "instruction": "With the pack switched off, clip one lead from battery pack positive to one motor wire.",
+            "asset_ids": [
+              "part_aa_battery_pack",
+              "part_croc_clip_lead",
+              "part_dc_motor"
+            ],
+            "safety_focus": [
+              "short_circuit"
+            ]
+          },
+          {
+            "id": "build_2",
+            "actor": "pair",
+            "kind": "connect",
+            "instruction": "After adult check, clip the second lead from battery pack negative to the other motor wire.",
+            "asset_ids": [
+              "part_aa_battery_pack",
+              "part_croc_clip_lead",
+              "part_dc_motor"
+            ],
+            "safety_focus": [
+              "short_circuit"
+            ]
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "child",
+            "kind": "test",
+            "instruction": "Switch on briefly, watch the shaft spin, then switch off.",
+            "asset_ids": [
+              "part_aa_battery_pack",
+              "part_dc_motor"
+            ],
+            "safety_focus": [
+              "moving_shaft",
+              "warm_wires"
+            ],
+            "expected_result": "Motor spins without warm wires, loose clips, or fingers near the shaft."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If it does not spin, check switch position, clip contact, and whether both motor wires are connected.",
+            "asset_ids": [
+              "part_aa_battery_pack",
+              "part_croc_clip_lead",
+              "part_dc_motor"
+            ]
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "pair",
+            "kind": "reset",
+            "instruction": "Switch off, unclip both leads, untangle the leads, and return the motor with no wire around the shaft.",
+            "asset_ids": [
+              "part_aa_battery_pack",
+              "part_croc_clip_lead",
+              "part_dc_motor"
+            ],
+            "safety_focus": [
+              "moving_shaft",
+              "short_circuit"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "Keep switch-on time short and require adult check before power is applied.",
+          "Direction reversal is a stretch only after the first safe spin works."
+        ],
+        "diagram_semantics": {
+          "primary_view": "safe_circuit",
+          "nodes": [
+            {
+              "id": "battery_pack",
+              "asset_id": "part_aa_battery_pack",
+              "role": "power_source",
+              "label": "A034 AA battery pack"
+            },
+            {
+              "id": "motor",
+              "asset_id": "part_dc_motor",
+              "role": "load",
+              "label": "A001 DC motor"
+            },
+            {
+              "id": "lead_pair",
+              "asset_id": "part_croc_clip_lead",
+              "role": "connection_pair",
+              "label": "A036 clip leads"
+            }
+          ],
+          "connections": [
+            {
+              "from": "battery_pack.positive",
+              "to": "motor.terminal_a",
+              "kind": "power",
+              "made_by": "child_with_adult_check"
+            },
+            {
+              "from": "battery_pack.negative",
+              "to": "motor.terminal_b",
+              "kind": "return",
+              "made_by": "child_with_adult_check"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "r_mov_03",
@@ -665,7 +955,181 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [],
       "classification_rationale": "",
       "result_image": "assets/power-card-results/r_mov_03.svg",
-      "result_alt": "Set a servo angle result build on a workshop table"
+      "result_alt": "Set a servo angle result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Flash and label the Micro:bit with preload_microbit_servo_positions, fit the A018 breakout, and check the A002 servo moves before handout.",
+            "asset_ids": [
+              "part_microbit_board",
+              "part_microbit_breakout",
+              "part_micro_servo",
+              "part_servo_horn"
+            ],
+            "safety_focus": [
+              "firmware_state",
+              "miswiring",
+              "moving_horn",
+              "pinch_point"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "The board is already programmed; choose positions but do not edit code.",
+          "visible_asset_ids": [
+            "part_micro_servo",
+            "part_servo_horn",
+            "part_microbit_board",
+            "part_microbit_breakout"
+          ],
+          "starter_question": "What two positions should the horn point to?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "pair",
+            "kind": "connect",
+            "instruction": "Plug the servo into the labelled servo pins on the adult-prepared breakout.",
+            "asset_ids": [
+              "part_micro_servo",
+              "part_microbit_breakout"
+            ],
+            "safety_focus": [
+              "miswiring"
+            ]
+          },
+          {
+            "id": "build_2",
+            "actor": "pair",
+            "kind": "assemble",
+            "instruction": "Fit the servo horn loosely so its position can be seen without blocking the travel.",
+            "asset_ids": [
+              "part_micro_servo",
+              "part_servo_horn"
+            ],
+            "safety_focus": [
+              "moving_horn",
+              "pinch_point"
+            ]
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "child",
+            "kind": "test",
+            "instruction": "Use the preloaded controls to move the servo between two labelled positions.",
+            "asset_ids": [
+              "part_microbit_board",
+              "part_micro_servo",
+              "part_servo_horn"
+            ],
+            "safety_focus": [
+              "moving_horn"
+            ],
+            "expected_result": "Servo moves to at least two chosen positions without hitting the table or fingers."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If the servo does not move, check the preload label, signal wire, power, and whether the horn is blocked.",
+            "asset_ids": [
+              "part_microbit_board",
+              "part_microbit_breakout",
+              "part_micro_servo"
+            ]
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Power down the preloaded board, unplug the servo, count the horn, and return boards separately from blank boards.",
+            "asset_ids": [
+              "part_microbit_board",
+              "part_microbit_breakout",
+              "part_micro_servo",
+              "part_servo_horn"
+            ],
+            "safety_focus": [
+              "firmware_state",
+              "moving_horn"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "This is a position-selection activity, not a coding activity.",
+          "Use A004 servo horns only as visible markers; avoid tightening them until the travel is checked."
+        ],
+        "diagram_semantics": {
+          "primary_view": "mechanism",
+          "nodes": [
+            {
+              "id": "board",
+              "asset_id": "part_microbit_board",
+              "role": "preloaded_controller",
+              "label": "A017 preloaded Micro:bit"
+            },
+            {
+              "id": "breakout",
+              "asset_id": "part_microbit_breakout",
+              "role": "labelled_connector",
+              "label": "A018 breakout"
+            },
+            {
+              "id": "servo",
+              "asset_id": "part_micro_servo",
+              "role": "actuator",
+              "label": "A002 micro servo"
+            },
+            {
+              "id": "horn",
+              "asset_id": "part_servo_horn",
+              "role": "position_marker",
+              "label": "A004 servo horn"
+            }
+          ],
+          "connections": [
+            {
+              "from": "board.servo_profile",
+              "to": "breakout.servo_pins",
+              "kind": "preloaded_signal",
+              "made_by": "adult_prepared"
+            },
+            {
+              "from": "breakout.servo_pins",
+              "to": "servo.plug",
+              "kind": "signal_power",
+              "made_by": "child_guided"
+            },
+            {
+              "from": "servo.output",
+              "to": "horn.center",
+              "kind": "mechanical",
+              "made_by": "child_guided"
+            }
+          ],
+          "states": [
+            {
+              "id": "position_a",
+              "trigger": "preloaded control selects first position",
+              "expected_change": "horn points to first mark"
+            },
+            {
+              "id": "position_b",
+              "trigger": "preloaded control selects second position",
+              "expected_change": "horn points to second mark"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "r_mov_04",
@@ -871,7 +1335,120 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [],
       "classification_rationale": "",
       "result_image": "assets/power-card-results/r_ctl_01.svg",
-      "result_alt": "Recognise input controls result build on a workshop table"
+      "result_alt": "Recognise input controls result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Lay out A008 button, A009 toggle switch, A010 knob, and A011 joystick as loose unplugged controls.",
+            "asset_ids": [
+              "part_button_module",
+              "part_toggle_switch",
+              "part_potentiometer_module",
+              "part_joystick_module"
+            ],
+            "safety_focus": [
+              "small_connectors",
+              "low_voltage_electrical"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "The controls are unplugged samples for sorting by what a person does.",
+          "visible_asset_ids": [
+            "part_button_module",
+            "part_toggle_switch",
+            "part_potentiometer_module",
+            "part_joystick_module"
+          ],
+          "starter_question": "Which control do you press, switch, turn, or steer?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "child",
+            "kind": "sort",
+            "instruction": "Sort the controls into press, toggle, turn, and direction groups.",
+            "asset_ids": [
+              "part_button_module",
+              "part_toggle_switch",
+              "part_potentiometer_module",
+              "part_joystick_module"
+            ],
+            "expected_result": "Each control is grouped by its physical action."
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "adult",
+            "kind": "test",
+            "instruction": "Ask the child to act out how a user would operate each control.",
+            "expected_result": "Child names press, toggle, turn, or direction input."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If two controls seem similar, ask whether they have one state, two states, a range, or a direction."
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Return all loose controls dry and unplugged to the input controls compartment.",
+            "asset_ids": [
+              "part_button_module",
+              "part_toggle_switch",
+              "part_potentiometer_module",
+              "part_joystick_module"
+            ],
+            "safety_focus": [
+              "small_connectors"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "Do not connect the controls at Level 1.",
+          "Keep attention on user action and control type, not electronics."
+        ],
+        "diagram_semantics": {
+          "primary_view": "sorting_grid",
+          "nodes": [
+            {
+              "id": "button",
+              "asset_id": "part_button_module",
+              "role": "press_input",
+              "label": "A008 button"
+            },
+            {
+              "id": "toggle",
+              "asset_id": "part_toggle_switch",
+              "role": "two_state_input",
+              "label": "A009 toggle"
+            },
+            {
+              "id": "knob",
+              "asset_id": "part_potentiometer_module",
+              "role": "range_input",
+              "label": "A010 knob"
+            },
+            {
+              "id": "joystick",
+              "asset_id": "part_joystick_module",
+              "role": "direction_input",
+              "label": "A011 joystick"
+            }
+          ],
+          "connections": []
+        }
+      }
     },
     {
       "id": "r_ctl_02",
@@ -932,7 +1509,177 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [],
       "classification_rationale": "",
       "result_image": "assets/power-card-results/r_ctl_02.svg",
-      "result_alt": "Read a button result build on a workshop table"
+      "result_alt": "Read a button result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Flash and label the Micro:bit with preload_microbit_button_indicator, fit A018 breakout, and confirm A019 indicator changes before handout.",
+            "asset_ids": [
+              "part_microbit_board",
+              "part_microbit_breakout",
+              "part_led_indicator_module"
+            ],
+            "safety_focus": [
+              "firmware_state",
+              "miswiring",
+              "bright_led"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "The board is already programmed; press the button to test input state, not to edit code.",
+          "visible_asset_ids": [
+            "part_button_module",
+            "part_microbit_board",
+            "part_microbit_breakout",
+            "part_led_indicator_module"
+          ],
+          "starter_question": "What should change when the button is pressed?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "pair",
+            "kind": "connect",
+            "instruction": "Plug the button module into the labelled button input on the breakout.",
+            "asset_ids": [
+              "part_button_module",
+              "part_microbit_breakout"
+            ],
+            "safety_focus": [
+              "miswiring",
+              "small_connectors"
+            ]
+          },
+          {
+            "id": "build_2",
+            "actor": "adult",
+            "kind": "connect",
+            "instruction": "Confirm the indicator module is on the labelled output before power stays on.",
+            "asset_ids": [
+              "part_led_indicator_module",
+              "part_microbit_breakout"
+            ],
+            "safety_focus": [
+              "miswiring",
+              "bright_led"
+            ]
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "child",
+            "kind": "test",
+            "instruction": "Press and release the button three times and say when the indicator changes.",
+            "asset_ids": [
+              "part_button_module",
+              "part_led_indicator_module"
+            ],
+            "expected_result": "Indicator changes only with button state."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If the indicator does not change, check the labelled input, board power, and preload label before swapping parts.",
+            "asset_ids": [
+              "part_button_module",
+              "part_microbit_board",
+              "part_microbit_breakout",
+              "part_led_indicator_module"
+            ]
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Power down and return the preloaded board, breakout, button, and indicator to their labelled storage.",
+            "asset_ids": [
+              "part_microbit_board",
+              "part_microbit_breakout",
+              "part_button_module",
+              "part_led_indicator_module"
+            ],
+            "safety_focus": [
+              "firmware_state",
+              "small_connectors"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "Use the preloaded board as a black-box input reader.",
+          "The child should describe input state changes, not alter firmware."
+        ],
+        "diagram_semantics": {
+          "primary_view": "safe_circuit",
+          "nodes": [
+            {
+              "id": "button",
+              "asset_id": "part_button_module",
+              "role": "input",
+              "label": "A008 button"
+            },
+            {
+              "id": "board",
+              "asset_id": "part_microbit_board",
+              "role": "preloaded_controller",
+              "label": "A017 preloaded Micro:bit"
+            },
+            {
+              "id": "breakout",
+              "asset_id": "part_microbit_breakout",
+              "role": "labelled_connector",
+              "label": "A018 breakout"
+            },
+            {
+              "id": "indicator",
+              "asset_id": "part_led_indicator_module",
+              "role": "output",
+              "label": "A019 indicator"
+            }
+          ],
+          "connections": [
+            {
+              "from": "button.output",
+              "to": "breakout.input",
+              "kind": "signal",
+              "made_by": "child_guided"
+            },
+            {
+              "from": "breakout.board_edge",
+              "to": "board.input",
+              "kind": "signal",
+              "made_by": "adult_prepared"
+            },
+            {
+              "from": "board.output",
+              "to": "indicator.input",
+              "kind": "signal",
+              "made_by": "adult_prepared"
+            }
+          ],
+          "states": [
+            {
+              "id": "released",
+              "trigger": "button released",
+              "expected_change": "indicator off or low"
+            },
+            {
+              "id": "pressed",
+              "trigger": "button pressed",
+              "expected_change": "indicator on or high"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "r_ctl_03",
@@ -992,7 +1739,176 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [],
       "classification_rationale": "",
       "result_image": "assets/power-card-results/r_ctl_03.svg",
-      "result_alt": "Read a knob result build on a workshop table"
+      "result_alt": "Read a knob result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Flash and label the Micro:bit with preload_microbit_analog_display, fit A018 breakout, and confirm A020 display reads a test value.",
+            "asset_ids": [
+              "part_microbit_board",
+              "part_microbit_breakout",
+              "part_numeric_display_module"
+            ],
+            "safety_focus": [
+              "firmware_state",
+              "miswiring",
+              "small_connectors"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "The board is already programmed; turn the knob and watch the value, but do not edit code.",
+          "visible_asset_ids": [
+            "part_potentiometer_module",
+            "part_microbit_board",
+            "part_microbit_breakout",
+            "part_numeric_display_module"
+          ],
+          "starter_question": "What should the number do when the knob turns?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "pair",
+            "kind": "connect",
+            "instruction": "Plug the knob module into the labelled analog input on the breakout.",
+            "asset_ids": [
+              "part_potentiometer_module",
+              "part_microbit_breakout"
+            ],
+            "safety_focus": [
+              "miswiring",
+              "small_connectors"
+            ]
+          },
+          {
+            "id": "build_2",
+            "actor": "adult",
+            "kind": "connect",
+            "instruction": "Confirm the number display is connected to the prepared output before testing.",
+            "asset_ids": [
+              "part_numeric_display_module",
+              "part_microbit_breakout"
+            ],
+            "safety_focus": [
+              "miswiring"
+            ]
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "child",
+            "kind": "test",
+            "instruction": "Turn the knob slowly from low to high and describe how the display changes.",
+            "asset_ids": [
+              "part_potentiometer_module",
+              "part_numeric_display_module"
+            ],
+            "expected_result": "Displayed value changes smoothly as the knob turns."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If the value does not move smoothly, check all three knob pins, the display connection, and the preload label.",
+            "asset_ids": [
+              "part_potentiometer_module",
+              "part_microbit_board",
+              "part_microbit_breakout",
+              "part_numeric_display_module"
+            ]
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Power down the preloaded board and return the board, breakout, knob, and display unplugged.",
+            "asset_ids": [
+              "part_microbit_board",
+              "part_microbit_breakout",
+              "part_potentiometer_module",
+              "part_numeric_display_module"
+            ],
+            "safety_focus": [
+              "firmware_state",
+              "small_connectors"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "Keep the focus on reading a changing input value.",
+          "Low, middle, and high are enough; do not introduce threshold tuning at this level."
+        ],
+        "diagram_semantics": {
+          "primary_view": "safe_circuit",
+          "nodes": [
+            {
+              "id": "knob",
+              "asset_id": "part_potentiometer_module",
+              "role": "analog_input",
+              "label": "A010 knob"
+            },
+            {
+              "id": "board",
+              "asset_id": "part_microbit_board",
+              "role": "preloaded_reader",
+              "label": "A017 preloaded Micro:bit"
+            },
+            {
+              "id": "breakout",
+              "asset_id": "part_microbit_breakout",
+              "role": "labelled_connector",
+              "label": "A018 breakout"
+            },
+            {
+              "id": "display",
+              "asset_id": "part_numeric_display_module",
+              "role": "output",
+              "label": "A020 display"
+            }
+          ],
+          "connections": [
+            {
+              "from": "knob.signal",
+              "to": "breakout.analog_input",
+              "kind": "signal",
+              "made_by": "child_guided"
+            },
+            {
+              "from": "breakout.board_edge",
+              "to": "board.input",
+              "kind": "signal",
+              "made_by": "adult_prepared"
+            },
+            {
+              "from": "board.output",
+              "to": "display.input",
+              "kind": "signal",
+              "made_by": "adult_prepared"
+            }
+          ],
+          "states": [
+            {
+              "id": "low",
+              "trigger": "knob near low end",
+              "expected_change": "display shows a low reading"
+            },
+            {
+              "id": "high",
+              "trigger": "knob near high end",
+              "expected_change": "display shows a high reading"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "r_ctl_04",
@@ -1201,7 +2117,120 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [],
       "classification_rationale": "",
       "result_image": "assets/power-card-results/r_sen_01.svg",
-      "result_alt": "Recognise sensors result build on a workshop table"
+      "result_alt": "Recognise sensors result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Lay out A012 light, A013 tilt, A014 distance, and A015 touch sensor modules as loose unplugged samples.",
+            "asset_ids": [
+              "part_light_sensor_module",
+              "part_tilt_sensor_module",
+              "part_distance_sensor_module",
+              "part_touch_sensor_module"
+            ],
+            "safety_focus": [
+              "small_connectors",
+              "low_voltage_electrical"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "The sensors are unplugged samples for recognising what each one notices.",
+          "visible_asset_ids": [
+            "part_light_sensor_module",
+            "part_tilt_sensor_module",
+            "part_distance_sensor_module",
+            "part_touch_sensor_module"
+          ],
+          "starter_question": "What change in the world might each sensor notice?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "child",
+            "kind": "sort",
+            "instruction": "Match each sensor sample to light, tilt, distance, or contact.",
+            "asset_ids": [
+              "part_light_sensor_module",
+              "part_tilt_sensor_module",
+              "part_distance_sensor_module",
+              "part_touch_sensor_module"
+            ],
+            "expected_result": "Sensors are grouped by what they notice."
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "adult",
+            "kind": "test",
+            "instruction": "Ask the child to name one real-world change each sensor could notice.",
+            "expected_result": "Child gives one sensible example for each sensor type."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If sensor purpose is confused, ask whether the change needs light, angle, distance, or touch."
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Return all sensor samples unplugged with connector pins checked.",
+            "asset_ids": [
+              "part_light_sensor_module",
+              "part_tilt_sensor_module",
+              "part_distance_sensor_module",
+              "part_touch_sensor_module"
+            ],
+            "safety_focus": [
+              "small_connectors"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "Do not power the sensors at Level 1.",
+          "The useful distinction is what changes around the sensor, not how the sensor works internally."
+        ],
+        "diagram_semantics": {
+          "primary_view": "sorting_grid",
+          "nodes": [
+            {
+              "id": "light_sensor",
+              "asset_id": "part_light_sensor_module",
+              "role": "light_notice",
+              "label": "A012 light sensor"
+            },
+            {
+              "id": "tilt_sensor",
+              "asset_id": "part_tilt_sensor_module",
+              "role": "tilt_notice",
+              "label": "A013 tilt sensor"
+            },
+            {
+              "id": "distance_sensor",
+              "asset_id": "part_distance_sensor_module",
+              "role": "distance_notice",
+              "label": "A014 distance sensor"
+            },
+            {
+              "id": "touch_sensor",
+              "asset_id": "part_touch_sensor_module",
+              "role": "contact_notice",
+              "label": "A015 touch sensor"
+            }
+          ],
+          "connections": []
+        }
+      }
     },
     {
       "id": "r_sen_02",
@@ -1269,7 +2298,189 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [],
       "classification_rationale": "",
       "result_image": "assets/power-card-results/r_sen_02.svg",
-      "result_alt": "Read a light sensor result build on a workshop table"
+      "result_alt": "Read a light sensor result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Flash and label the Micro:bit with preload_microbit_analog_display, fit A018 breakout, check A020 display, and check A016 torch.",
+            "asset_ids": [
+              "part_microbit_board",
+              "part_microbit_breakout",
+              "part_numeric_display_module",
+              "part_torch"
+            ],
+            "safety_focus": [
+              "firmware_state",
+              "miswiring",
+              "bright_light"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "The board is already programmed; cover and uncover the sensor to read light changes, not to edit code.",
+          "visible_asset_ids": [
+            "part_light_sensor_module",
+            "part_microbit_board",
+            "part_microbit_breakout",
+            "part_numeric_display_module",
+            "part_torch"
+          ],
+          "starter_question": "What should the reading do when the sensor gets more or less light?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "pair",
+            "kind": "connect",
+            "instruction": "Plug the light sensor into the labelled sensor input on the breakout.",
+            "asset_ids": [
+              "part_light_sensor_module",
+              "part_microbit_breakout"
+            ],
+            "safety_focus": [
+              "miswiring",
+              "small_connectors"
+            ]
+          },
+          {
+            "id": "build_2",
+            "actor": "adult",
+            "kind": "connect",
+            "instruction": "Confirm the display is on the prepared output before the child tests light levels.",
+            "asset_ids": [
+              "part_numeric_display_module",
+              "part_microbit_breakout"
+            ],
+            "safety_focus": [
+              "miswiring"
+            ]
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "child",
+            "kind": "test",
+            "instruction": "Cover and uncover the sensor, then compare it with room light or the adult-approved torch.",
+            "asset_ids": [
+              "part_light_sensor_module",
+              "part_numeric_display_module",
+              "part_torch"
+            ],
+            "safety_focus": [
+              "bright_light"
+            ],
+            "expected_result": "Displayed value changes when light is covered or uncovered."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If the value does not change, check sensor direction, labelled input, display connection, and preload label.",
+            "asset_ids": [
+              "part_light_sensor_module",
+              "part_microbit_board",
+              "part_microbit_breakout",
+              "part_numeric_display_module"
+            ]
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Power down the preloaded board; return the board, breakout, sensor, display, and torch switched off.",
+            "asset_ids": [
+              "part_microbit_board",
+              "part_microbit_breakout",
+              "part_light_sensor_module",
+              "part_numeric_display_module",
+              "part_torch"
+            ],
+            "safety_focus": [
+              "firmware_state",
+              "bright_light"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "Keep torch use brief and do not shine it into eyes.",
+          "Do not ask children to tune thresholds; this card is only reading a changing value."
+        ],
+        "diagram_semantics": {
+          "primary_view": "safe_circuit",
+          "nodes": [
+            {
+              "id": "sensor",
+              "asset_id": "part_light_sensor_module",
+              "role": "input",
+              "label": "A012 light sensor"
+            },
+            {
+              "id": "board",
+              "asset_id": "part_microbit_board",
+              "role": "preloaded_reader",
+              "label": "A017 preloaded Micro:bit"
+            },
+            {
+              "id": "breakout",
+              "asset_id": "part_microbit_breakout",
+              "role": "labelled_connector",
+              "label": "A018 breakout"
+            },
+            {
+              "id": "display",
+              "asset_id": "part_numeric_display_module",
+              "role": "output",
+              "label": "A020 display"
+            },
+            {
+              "id": "torch",
+              "asset_id": "part_torch",
+              "role": "test_stimulus",
+              "label": "A016 torch"
+            }
+          ],
+          "connections": [
+            {
+              "from": "sensor.signal",
+              "to": "breakout.sensor_input",
+              "kind": "signal",
+              "made_by": "child_guided"
+            },
+            {
+              "from": "breakout.board_edge",
+              "to": "board.input",
+              "kind": "signal",
+              "made_by": "adult_prepared"
+            },
+            {
+              "from": "board.output",
+              "to": "display.input",
+              "kind": "signal",
+              "made_by": "adult_prepared"
+            }
+          ],
+          "states": [
+            {
+              "id": "covered",
+              "trigger": "sensor covered",
+              "expected_change": "display reading changes downward or upward consistently"
+            },
+            {
+              "id": "lit",
+              "trigger": "sensor lit by room light or torch",
+              "expected_change": "display reading changes the other way"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "r_sen_03",
@@ -1492,7 +2703,131 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [],
       "classification_rationale": "",
       "result_image": "assets/power-card-results/r_str_01.svg",
-      "result_alt": "Recognise beams and joints result build on a workshop table"
+      "result_alt": "Recognise beams and joints result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Place stable and weak A021 frame samples, A027 small test weight, and A023 craft sticks on the table.",
+            "asset_ids": [
+              "part_sample_frame",
+              "part_small_weight",
+              "part_craft_stick"
+            ],
+            "safety_focus": [
+              "loose_joint",
+              "projectile_if_overloaded",
+              "dropped_weight",
+              "splinter"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "The frames are for observing beams, joints, and load paths, not for building yet.",
+          "visible_asset_ids": [
+            "part_sample_frame",
+            "part_craft_stick"
+          ],
+          "starter_question": "Where will the weight push on this frame?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "child",
+            "kind": "observe",
+            "instruction": "Point to beams and joints on the frame samples and loose craft sticks.",
+            "asset_ids": [
+              "part_sample_frame",
+              "part_craft_stick"
+            ],
+            "safety_focus": [
+              "splinter"
+            ]
+          },
+          {
+            "id": "build_2",
+            "actor": "adult",
+            "kind": "test",
+            "instruction": "Place the small weight on each sample while the child watches what moves first.",
+            "asset_ids": [
+              "part_sample_frame",
+              "part_small_weight"
+            ],
+            "safety_focus": [
+              "dropped_weight",
+              "overload_test"
+            ],
+            "expected_result": "Child sees where load travels and where a joint may fail."
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "child",
+            "kind": "observe",
+            "instruction": "Name one place the load pushes and one joint that might fail.",
+            "asset_ids": [
+              "part_sample_frame"
+            ],
+            "expected_result": "Child points to where load travels and where a joint may fail."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If the load path is unclear, press gently on one joint and ask which nearby part moves."
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Return the test weight to adult storage and pack frame samples and unused sticks without loose pieces.",
+            "asset_ids": [
+              "part_small_weight",
+              "part_sample_frame",
+              "part_craft_stick"
+            ],
+            "safety_focus": [
+              "dropped_weight",
+              "loose_joint"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "The adult handles the load test; the child observes and points.",
+          "Keep the test weight low enough that failure is visible but not dramatic."
+        ],
+        "diagram_semantics": {
+          "primary_view": "structure_test",
+          "nodes": [
+            {
+              "id": "frame",
+              "asset_id": "part_sample_frame",
+              "role": "structure_sample",
+              "label": "A021 sample frame"
+            },
+            {
+              "id": "weight",
+              "asset_id": "part_small_weight",
+              "role": "load",
+              "label": "A027 small test weight"
+            },
+            {
+              "id": "stick",
+              "asset_id": "part_craft_stick",
+              "role": "beam_example",
+              "label": "A023 craft stick"
+            }
+          ],
+          "connections": []
+        }
+      }
     },
     {
       "id": "r_str_02",
@@ -1551,7 +2886,170 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [],
       "classification_rationale": "",
       "result_image": "assets/power-card-results/r_str_02.svg",
-      "result_alt": "Build a stable frame result build on a workshop table"
+      "result_alt": "Build a stable frame result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Set out A023 craft sticks, A025 card stock, A026 masking tape, and the adult-controlled A027 target weight.",
+            "asset_ids": [
+              "part_craft_stick",
+              "part_card_stock",
+              "part_masking_tape",
+              "part_small_weight"
+            ],
+            "safety_focus": [
+              "splinter",
+              "paper_edge",
+              "adhesive",
+              "dropped_weight",
+              "overload_test"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "Build one simple frame, then test whether it can hold the adult-chosen load.",
+          "visible_asset_ids": [
+            "part_craft_stick",
+            "part_card_stock",
+            "part_masking_tape"
+          ],
+          "starter_question": "How can the base and joints stop the frame wobbling?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "pair",
+            "kind": "assemble",
+            "instruction": "Use craft sticks and tape to make a simple frame with a base wider than the top.",
+            "asset_ids": [
+              "part_craft_stick",
+              "part_masking_tape"
+            ],
+            "safety_focus": [
+              "splinter",
+              "adhesive"
+            ]
+          },
+          {
+            "id": "build_2",
+            "actor": "pair",
+            "kind": "assemble",
+            "instruction": "Add card stock gussets or base support where the frame wobbles most.",
+            "asset_ids": [
+              "part_card_stock",
+              "part_masking_tape"
+            ],
+            "safety_focus": [
+              "paper_edge"
+            ]
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "adult",
+            "kind": "test",
+            "instruction": "Place the target weight on the frame for 30 seconds while the pair watches the first moving joint.",
+            "asset_ids": [
+              "part_small_weight",
+              "part_craft_stick",
+              "part_card_stock"
+            ],
+            "safety_focus": [
+              "dropped_weight",
+              "overload_test"
+            ],
+            "expected_result": "Frame holds the target load for 30 seconds."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "pair",
+            "kind": "debug",
+            "instruction": "If it falls, widen the base or retape the joint that moved first before retesting.",
+            "asset_ids": [
+              "part_craft_stick",
+              "part_card_stock",
+              "part_masking_tape"
+            ]
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Count the test weight back, return tape, and separate reusable unused materials from damaged frame parts.",
+            "asset_ids": [
+              "part_small_weight",
+              "part_masking_tape",
+              "part_craft_stick",
+              "part_card_stock"
+            ],
+            "safety_focus": [
+              "dropped_weight",
+              "consumable_waste"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "This is simple guided assembly; avoid turning it into a full bridge design challenge.",
+          "Use one clear load and one retest cycle if time allows."
+        ],
+        "diagram_semantics": {
+          "primary_view": "structure_test",
+          "nodes": [
+            {
+              "id": "sticks",
+              "asset_id": "part_craft_stick",
+              "role": "beams",
+              "label": "A023 craft sticks"
+            },
+            {
+              "id": "gussets",
+              "asset_id": "part_card_stock",
+              "role": "joint_support",
+              "label": "A025 card stock"
+            },
+            {
+              "id": "tape",
+              "asset_id": "part_masking_tape",
+              "role": "fastener",
+              "label": "A026 masking tape"
+            },
+            {
+              "id": "weight",
+              "asset_id": "part_small_weight",
+              "role": "load",
+              "label": "A027 small test weight"
+            }
+          ],
+          "connections": [
+            {
+              "from": "sticks.joint",
+              "to": "tape.strip",
+              "kind": "joint",
+              "made_by": "child_guided"
+            },
+            {
+              "from": "gussets.corner",
+              "to": "sticks.joint",
+              "kind": "reinforcement",
+              "made_by": "child_guided"
+            },
+            {
+              "from": "weight.load",
+              "to": "sticks.top",
+              "kind": "load_test",
+              "made_by": "adult_controlled"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "r_str_03",
@@ -1791,7 +3289,154 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [],
       "classification_rationale": "",
       "result_image": "assets/power-card-results/r_pow_01.svg",
-      "result_alt": "Recognise safe power sources result build on a workshop table"
+      "result_alt": "Recognise safe power sources result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Place checked A030 AA cells, an empty A032 holder, A035 polarity cards, and keep A031 coin cell as an adult-controlled demo item.",
+            "asset_ids": [
+              "part_aa_cell",
+              "part_battery_holder",
+              "part_coin_cell",
+              "part_polarity_cards"
+            ],
+            "safety_focus": [
+              "loose_battery",
+              "short_circuit",
+              "button_cell_ingestion",
+              "polarity_confusion"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "The parts are not for making a circuit today.",
+          "visible_asset_ids": [
+            "part_aa_cell",
+            "part_battery_holder",
+            "part_polarity_cards"
+          ],
+          "starter_question": "Which marks show positive and negative?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "child",
+            "kind": "sort",
+            "instruction": "Match each AA cell end and holder mark to the polarity cards without connecting anything.",
+            "asset_ids": [
+              "part_aa_cell",
+              "part_battery_holder",
+              "part_polarity_cards"
+            ],
+            "safety_focus": [
+              "loose_battery",
+              "polarity_confusion"
+            ],
+            "expected_result": "Child identifies positive and negative marks."
+          },
+          {
+            "id": "build_2",
+            "actor": "child",
+            "kind": "observe",
+            "instruction": "Watch the adult show the coin cell and explain why it stays adult-controlled.",
+            "asset_ids": [
+              "part_coin_cell"
+            ],
+            "safety_focus": [
+              "button_cell_ingestion",
+              "short_circuit"
+            ],
+            "expected_result": "Child observes the coin cell without handling it."
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "adult",
+            "kind": "test",
+            "instruction": "Ask the child to point to one polarity mark and name one safety limit for each source.",
+            "asset_ids": [
+              "part_aa_cell",
+              "part_battery_holder",
+              "part_coin_cell"
+            ],
+            "safety_focus": [
+              "loose_battery",
+              "button_cell_ingestion"
+            ],
+            "expected_result": "Child identifies polarity and one safety limit for each source."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If polarity is confused, compare the shape and printed marks before retrying the sort.",
+            "asset_ids": [
+              "part_aa_cell",
+              "part_battery_holder",
+              "part_polarity_cards"
+            ]
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Count all AA cells back, return the coin cell immediately to adult-controlled storage, and check the holder is empty.",
+            "asset_ids": [
+              "part_aa_cell",
+              "part_coin_cell",
+              "part_battery_holder",
+              "part_polarity_cards"
+            ],
+            "safety_focus": [
+              "loose_battery",
+              "button_cell_ingestion",
+              "short_circuit_if_loaded"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "Do not let children build powered circuits on this Level 1 card.",
+          "Coin cells are adult-controlled recognition items only."
+        ],
+        "diagram_semantics": {
+          "primary_view": "sorting_grid",
+          "nodes": [
+            {
+              "id": "aa_cell",
+              "asset_id": "part_aa_cell",
+              "role": "power_source",
+              "label": "A030 AA cell"
+            },
+            {
+              "id": "holder",
+              "asset_id": "part_battery_holder",
+              "role": "holder",
+              "label": "A032 empty holder"
+            },
+            {
+              "id": "coin_cell",
+              "asset_id": "part_coin_cell",
+              "role": "adult_controlled_demo",
+              "label": "A031 coin cell"
+            },
+            {
+              "id": "polarity_cards",
+              "asset_id": "part_polarity_cards",
+              "role": "safety_prompt",
+              "label": "A035 polarity cards"
+            }
+          ],
+          "connections": []
+        }
+      }
     },
     {
       "id": "r_pow_02",
@@ -1850,7 +3495,167 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [],
       "classification_rationale": "",
       "result_image": "assets/power-card-results/r_pow_02.svg",
-      "result_alt": "Power one load result build on a workshop table"
+      "result_alt": "Power one load result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Check A034 battery pack switch, A037 LED module polarity, optional A001 motor, and A036 clip lead insulation before handout.",
+            "asset_ids": [
+              "part_aa_battery_pack",
+              "part_led_module",
+              "part_dc_motor",
+              "part_croc_clip_lead"
+            ],
+            "safety_focus": [
+              "short_circuit",
+              "warm_wires",
+              "polarity_confusion",
+              "moving_shaft",
+              "damaged_insulation"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "Power one safe load after the adult checks polarity and the circuit path.",
+          "visible_asset_ids": [
+            "part_aa_battery_pack",
+            "part_led_module",
+            "part_croc_clip_lead"
+          ],
+          "starter_question": "How can we make one complete path without crossing positive and negative?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "pair",
+            "kind": "connect",
+            "instruction": "With the pack switched off, connect positive to the LED module positive using one lead.",
+            "asset_ids": [
+              "part_aa_battery_pack",
+              "part_led_module",
+              "part_croc_clip_lead"
+            ],
+            "safety_focus": [
+              "short_circuit",
+              "polarity_confusion"
+            ]
+          },
+          {
+            "id": "build_2",
+            "actor": "pair",
+            "kind": "connect",
+            "instruction": "After adult check, connect negative to the LED module negative using the second lead.",
+            "asset_ids": [
+              "part_aa_battery_pack",
+              "part_led_module",
+              "part_croc_clip_lead"
+            ],
+            "safety_focus": [
+              "short_circuit",
+              "polarity_confusion"
+            ]
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "child",
+            "kind": "test",
+            "instruction": "Switch on briefly, confirm the load powers, then switch off and check nothing is warm.",
+            "asset_ids": [
+              "part_aa_battery_pack",
+              "part_led_module"
+            ],
+            "safety_focus": [
+              "warm_wires",
+              "polarity_confusion"
+            ],
+            "expected_result": "Load powers on without overheating, shorting, or reversed polarity."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If it does not light, switch off before checking polarity, lead contact, and whether the load is rated for the pack.",
+            "asset_ids": [
+              "part_aa_battery_pack",
+              "part_led_module",
+              "part_croc_clip_lead"
+            ]
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Switch off the battery pack, unclip leads, return LED and optional motor unplugged, and count battery pack and leads back.",
+            "asset_ids": [
+              "part_aa_battery_pack",
+              "part_led_module",
+              "part_dc_motor",
+              "part_croc_clip_lead"
+            ],
+            "safety_focus": [
+              "short_circuit",
+              "moving_shaft",
+              "warm_wires"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "Use the LED module as the first load; the motor is comparison only after the LED works safely.",
+          "No bare loose AA cells should be handed out for this card."
+        ],
+        "diagram_semantics": {
+          "primary_view": "safe_circuit",
+          "nodes": [
+            {
+              "id": "battery_pack",
+              "asset_id": "part_aa_battery_pack",
+              "role": "power_source",
+              "label": "A034 AA battery pack"
+            },
+            {
+              "id": "led",
+              "asset_id": "part_led_module",
+              "role": "first_load",
+              "label": "A037 LED module"
+            },
+            {
+              "id": "motor",
+              "asset_id": "part_dc_motor",
+              "role": "optional_load",
+              "label": "A001 DC motor"
+            },
+            {
+              "id": "lead_pair",
+              "asset_id": "part_croc_clip_lead",
+              "role": "connection_pair",
+              "label": "A036 clip leads"
+            }
+          ],
+          "connections": [
+            {
+              "from": "battery_pack.positive",
+              "to": "led.positive",
+              "kind": "power",
+              "made_by": "child_with_adult_check"
+            },
+            {
+              "from": "battery_pack.negative",
+              "to": "led.negative",
+              "kind": "return",
+              "made_by": "child_with_adult_check"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "r_pow_03",
@@ -3229,7 +5034,121 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [],
       "classification_rationale": "",
       "result_image": "assets/power-card-results/r_mov_09.svg",
-      "result_alt": "Compare wheel and flap motion result build on a workshop table"
+      "result_alt": "Compare wheel and flap motion result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Place A005 wheel, A006 flap, and A007 slider samples on the table and check each moves freely by hand.",
+            "asset_ids": [
+              "part_wheel_sample",
+              "part_cardboard_flap_sample",
+              "part_slider_sample"
+            ],
+            "safety_focus": [
+              "rolling_part",
+              "paper_edge",
+              "hinge_pinching",
+              "pinch_point"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "The samples are prebuilt and unpowered; compare the path each moving part follows.",
+          "visible_asset_ids": [
+            "part_wheel_sample",
+            "part_cardboard_flap_sample",
+            "part_slider_sample"
+          ],
+          "starter_question": "Which one spins, swings, or slides?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "child",
+            "kind": "observe",
+            "instruction": "Move each sample gently by hand and trace the path with one finger in the air.",
+            "asset_ids": [
+              "part_wheel_sample",
+              "part_cardboard_flap_sample",
+              "part_slider_sample"
+            ],
+            "safety_focus": [
+              "hinge_pinching",
+              "pinch_point"
+            ]
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "child",
+            "kind": "sort",
+            "instruction": "Match the samples to spin, swing, and slide motion labels.",
+            "asset_ids": [
+              "part_wheel_sample",
+              "part_cardboard_flap_sample",
+              "part_slider_sample"
+            ],
+            "expected_result": "Three moving samples are matched to spin, swing, or slide motion."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If swing and slide are confused, ask whether the part turns around a fixed point or moves along a line."
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Return the wheel, flap, and slider samples intact, with the slider seated and the flap flat.",
+            "asset_ids": [
+              "part_wheel_sample",
+              "part_cardboard_flap_sample",
+              "part_slider_sample"
+            ],
+            "safety_focus": [
+              "rolling_part",
+              "hinge_pinching"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "Keep this as motion vocabulary and observation.",
+          "Do not add motors or linkages to these samples in the Level 1 activity."
+        ],
+        "diagram_semantics": {
+          "primary_view": "sorting_grid",
+          "nodes": [
+            {
+              "id": "wheel",
+              "asset_id": "part_wheel_sample",
+              "role": "spin_sample",
+              "label": "A005 wheel sample"
+            },
+            {
+              "id": "flap",
+              "asset_id": "part_cardboard_flap_sample",
+              "role": "swing_sample",
+              "label": "A006 flap sample"
+            },
+            {
+              "id": "slider",
+              "asset_id": "part_slider_sample",
+              "role": "slide_sample",
+              "label": "A007 slider sample"
+            }
+          ],
+          "connections": []
+        }
+      }
     },
     {
       "id": "r_mov_10",
@@ -3387,7 +5306,120 @@ window.INVENTION_CLUB_CURRICULUM = {
       ],
       "classification_rationale": "Primary learning is recognising control roles; user expectation supports the choice.",
       "result_image": "assets/power-card-results/r_ctl_09.svg",
-      "result_alt": "Match controls to jobs result build on a workshop table"
+      "result_alt": "Match controls to jobs result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Lay out A008 button, A009 toggle, A010 knob, and A011 joystick as unplugged control samples.",
+            "asset_ids": [
+              "part_button_module",
+              "part_toggle_switch",
+              "part_potentiometer_module",
+              "part_joystick_module"
+            ],
+            "safety_focus": [
+              "small_connectors",
+              "low_voltage_electrical"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "Choose which control fits each job; do not wire the controls today.",
+          "visible_asset_ids": [
+            "part_button_module",
+            "part_toggle_switch",
+            "part_potentiometer_module",
+            "part_joystick_module"
+          ],
+          "starter_question": "Which job needs a press, a stay-on choice, an amount, or a direction?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "child",
+            "kind": "sort",
+            "instruction": "Match the controls to jobs: start, stay on, choose amount, and steer.",
+            "asset_ids": [
+              "part_button_module",
+              "part_toggle_switch",
+              "part_potentiometer_module",
+              "part_joystick_module"
+            ],
+            "expected_result": "Each control is matched to a sensible job."
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "adult",
+            "kind": "test",
+            "instruction": "Give one new job and ask the child to pick a control with a reason.",
+            "expected_result": "Child explains the control choice using press, state, range, or direction."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If the match is arbitrary, ask what the user expects to do with their hand."
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Return all controls dry, unplugged, and with pins checked.",
+            "asset_ids": [
+              "part_button_module",
+              "part_toggle_switch",
+              "part_potentiometer_module",
+              "part_joystick_module"
+            ],
+            "safety_focus": [
+              "small_connectors"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "This card tests fit between user action and job, not electronics.",
+          "Use real examples such as doorbell, lamp, volume, and steering."
+        ],
+        "diagram_semantics": {
+          "primary_view": "sorting_grid",
+          "nodes": [
+            {
+              "id": "button",
+              "asset_id": "part_button_module",
+              "role": "start_job",
+              "label": "A008 button"
+            },
+            {
+              "id": "toggle",
+              "asset_id": "part_toggle_switch",
+              "role": "stay_on_job",
+              "label": "A009 toggle"
+            },
+            {
+              "id": "knob",
+              "asset_id": "part_potentiometer_module",
+              "role": "amount_job",
+              "label": "A010 knob"
+            },
+            {
+              "id": "joystick",
+              "asset_id": "part_joystick_module",
+              "role": "steer_job",
+              "label": "A011 joystick"
+            }
+          ],
+          "connections": []
+        }
+      }
     },
     {
       "id": "r_ctl_10",
@@ -3540,7 +5572,120 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [],
       "classification_rationale": "",
       "result_image": "assets/power-card-results/r_sen_09.svg",
-      "result_alt": "Sort sensors by what they notice result build on a workshop table"
+      "result_alt": "Sort sensors by what they notice result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Lay out A012 light, A015 touch, A013 tilt, and A014 distance sensors as unplugged samples.",
+            "asset_ids": [
+              "part_light_sensor_module",
+              "part_touch_sensor_module",
+              "part_tilt_sensor_module",
+              "part_distance_sensor_module"
+            ],
+            "safety_focus": [
+              "small_connectors",
+              "low_voltage_electrical"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "Sort the sensors by what they notice; they stay unplugged today.",
+          "visible_asset_ids": [
+            "part_light_sensor_module",
+            "part_touch_sensor_module",
+            "part_tilt_sensor_module",
+            "part_distance_sensor_module"
+          ],
+          "starter_question": "Does this sensor need light, touch, tipping, or distance?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "child",
+            "kind": "sort",
+            "instruction": "Group each sensor under the change it notices.",
+            "asset_ids": [
+              "part_light_sensor_module",
+              "part_touch_sensor_module",
+              "part_tilt_sensor_module",
+              "part_distance_sensor_module"
+            ],
+            "expected_result": "Sensor samples are grouped by the thing each one notices."
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "adult",
+            "kind": "test",
+            "instruction": "Ask whether each sensor needs contact or can notice from far away.",
+            "expected_result": "Child distinguishes contact, tilt, light, and distance sensing."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If two sensors are swapped, ask what changes around the sensor before any electronics are connected."
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Return all sensors unplugged to the sensor modules compartment with pins checked.",
+            "asset_ids": [
+              "part_light_sensor_module",
+              "part_touch_sensor_module",
+              "part_tilt_sensor_module",
+              "part_distance_sensor_module"
+            ],
+            "safety_focus": [
+              "small_connectors"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "This deliberately overlaps with r_sen_01 but focuses on the sorting language.",
+          "Do not move into threshold or reading values here."
+        ],
+        "diagram_semantics": {
+          "primary_view": "sorting_grid",
+          "nodes": [
+            {
+              "id": "light_sensor",
+              "asset_id": "part_light_sensor_module",
+              "role": "light_notice",
+              "label": "A012 light sensor"
+            },
+            {
+              "id": "touch_sensor",
+              "asset_id": "part_touch_sensor_module",
+              "role": "contact_notice",
+              "label": "A015 touch sensor"
+            },
+            {
+              "id": "tilt_sensor",
+              "asset_id": "part_tilt_sensor_module",
+              "role": "tilt_notice",
+              "label": "A013 tilt sensor"
+            },
+            {
+              "id": "distance_sensor",
+              "asset_id": "part_distance_sensor_module",
+              "role": "distance_notice",
+              "label": "A014 distance sensor"
+            }
+          ],
+          "connections": []
+        }
+      }
     },
     {
       "id": "r_sen_10",
@@ -3603,7 +5748,177 @@ window.INVENTION_CLUB_CURRICULUM = {
       ],
       "classification_rationale": "Primary learning is reading a sensor; input handling supports the visible result.",
       "result_image": "assets/power-card-results/r_sen_10.svg",
-      "result_alt": "Read a tilt sensor result build on a workshop table"
+      "result_alt": "Read a tilt sensor result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Flash and label the Micro:bit with preload_microbit_tilt_indicator, fit A018 breakout, and confirm A019 indicator changes when tipped.",
+            "asset_ids": [
+              "part_microbit_board",
+              "part_microbit_breakout",
+              "part_led_indicator_module"
+            ],
+            "safety_focus": [
+              "firmware_state",
+              "miswiring",
+              "bright_led"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "The board is already programmed; tip the sensor and watch the indicator, but do not edit code.",
+          "visible_asset_ids": [
+            "part_tilt_sensor_module",
+            "part_microbit_board",
+            "part_microbit_breakout",
+            "part_led_indicator_module"
+          ],
+          "starter_question": "Which way up should make the indicator change?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "pair",
+            "kind": "connect",
+            "instruction": "Plug the tilt sensor into the labelled tilt input on the breakout.",
+            "asset_ids": [
+              "part_tilt_sensor_module",
+              "part_microbit_breakout"
+            ],
+            "safety_focus": [
+              "miswiring",
+              "small_connectors"
+            ]
+          },
+          {
+            "id": "build_2",
+            "actor": "adult",
+            "kind": "connect",
+            "instruction": "Confirm the indicator is connected to the prepared output before testing.",
+            "asset_ids": [
+              "part_led_indicator_module",
+              "part_microbit_breakout"
+            ],
+            "safety_focus": [
+              "miswiring",
+              "bright_led"
+            ]
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "child",
+            "kind": "test",
+            "instruction": "Tip the sensor slowly past its change point three times and watch the indicator.",
+            "asset_ids": [
+              "part_tilt_sensor_module",
+              "part_led_indicator_module"
+            ],
+            "expected_result": "The indicator changes when the sensor tips past a clear point."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If the output is inconsistent, check sensor orientation, labelled input, board power, and preload label.",
+            "asset_ids": [
+              "part_tilt_sensor_module",
+              "part_microbit_board",
+              "part_microbit_breakout",
+              "part_led_indicator_module"
+            ]
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Power down the preloaded board and return the board, breakout, tilt sensor, and indicator unplugged.",
+            "asset_ids": [
+              "part_microbit_board",
+              "part_microbit_breakout",
+              "part_tilt_sensor_module",
+              "part_led_indicator_module"
+            ],
+            "safety_focus": [
+              "firmware_state",
+              "small_connectors"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "The child reads a preloaded tilt state; no threshold setting is introduced.",
+          "Ask for repeated yes/no evidence rather than perfect calibration."
+        ],
+        "diagram_semantics": {
+          "primary_view": "safe_circuit",
+          "nodes": [
+            {
+              "id": "tilt_sensor",
+              "asset_id": "part_tilt_sensor_module",
+              "role": "input",
+              "label": "A013 tilt sensor"
+            },
+            {
+              "id": "board",
+              "asset_id": "part_microbit_board",
+              "role": "preloaded_controller",
+              "label": "A017 preloaded Micro:bit"
+            },
+            {
+              "id": "breakout",
+              "asset_id": "part_microbit_breakout",
+              "role": "labelled_connector",
+              "label": "A018 breakout"
+            },
+            {
+              "id": "indicator",
+              "asset_id": "part_led_indicator_module",
+              "role": "output",
+              "label": "A019 indicator"
+            }
+          ],
+          "connections": [
+            {
+              "from": "tilt_sensor.output",
+              "to": "breakout.tilt_input",
+              "kind": "signal",
+              "made_by": "child_guided"
+            },
+            {
+              "from": "breakout.board_edge",
+              "to": "board.input",
+              "kind": "signal",
+              "made_by": "adult_prepared"
+            },
+            {
+              "from": "board.output",
+              "to": "indicator.input",
+              "kind": "signal",
+              "made_by": "adult_prepared"
+            }
+          ],
+          "states": [
+            {
+              "id": "level",
+              "trigger": "sensor held level",
+              "expected_change": "indicator in baseline state"
+            },
+            {
+              "id": "tipped",
+              "trigger": "sensor tipped past change point",
+              "expected_change": "indicator changes state"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "r_sen_11",
@@ -3726,7 +6041,138 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [],
       "classification_rationale": "",
       "result_image": "assets/power-card-results/r_str_09.svg",
-      "result_alt": "Spot triangles and braces result build on a workshop table"
+      "result_alt": "Spot triangles and braces result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Place A021 stable and wobbly frames, A022 triangle frame, A024 straws, and A026 masking tape for observation.",
+            "asset_ids": [
+              "part_sample_frame",
+              "part_triangle_frame_sample",
+              "part_straw",
+              "part_masking_tape"
+            ],
+            "safety_focus": [
+              "loose_joint",
+              "small_cut_piece",
+              "adhesive"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "Look for shapes that stop wobble; do not build a full structure today.",
+          "visible_asset_ids": [
+            "part_sample_frame",
+            "part_triangle_frame_sample",
+            "part_straw",
+            "part_masking_tape"
+          ],
+          "starter_question": "Where can the shape squash sideways, and what stops it?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "child",
+            "kind": "observe",
+            "instruction": "Compare the stable, wobbly, and triangle frame samples and point to braces.",
+            "asset_ids": [
+              "part_sample_frame",
+              "part_triangle_frame_sample"
+            ],
+            "safety_focus": [
+              "loose_joint"
+            ]
+          },
+          {
+            "id": "build_2",
+            "actor": "child",
+            "kind": "sort",
+            "instruction": "Use loose straws to show where a brace could go without taping a new build.",
+            "asset_ids": [
+              "part_straw"
+            ],
+            "safety_focus": [
+              "small_cut_piece"
+            ]
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "child",
+            "kind": "sort",
+            "instruction": "Sort the sample frames into stable and wobbly groups and give one reason.",
+            "asset_ids": [
+              "part_sample_frame",
+              "part_triangle_frame_sample"
+            ],
+            "expected_result": "Stable and wobbly sample frames are sorted with a reason."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If the reason is vague, ask which part stops a corner changing shape."
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Return sample frames intact, collect straws, and return tape without loose tangled strips.",
+            "asset_ids": [
+              "part_sample_frame",
+              "part_triangle_frame_sample",
+              "part_straw",
+              "part_masking_tape"
+            ],
+            "safety_focus": [
+              "loose_joint",
+              "consumable_waste"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "This Level 1 card is recognition of triangles and braces, not construction.",
+          "Tape is present as a familiar join material but should not become the main activity."
+        ],
+        "diagram_semantics": {
+          "primary_view": "structure_test",
+          "nodes": [
+            {
+              "id": "frames",
+              "asset_id": "part_sample_frame",
+              "role": "comparison_samples",
+              "label": "A021 sample frames"
+            },
+            {
+              "id": "triangle",
+              "asset_id": "part_triangle_frame_sample",
+              "role": "stable_shape_sample",
+              "label": "A022 triangle frame"
+            },
+            {
+              "id": "straws",
+              "asset_id": "part_straw",
+              "role": "brace_marker",
+              "label": "A024 straws"
+            },
+            {
+              "id": "tape",
+              "asset_id": "part_masking_tape",
+              "role": "join_reference",
+              "label": "A026 masking tape"
+            }
+          ],
+          "connections": []
+        }
+      }
     },
     {
       "id": "r_str_10",
@@ -3788,7 +6234,166 @@ window.INVENTION_CLUB_CURRICULUM = {
       ],
       "classification_rationale": "Primary learning is basic stability; materials choices support the build.",
       "result_image": "assets/power-card-results/r_str_10.svg",
-      "result_alt": "Build a wide-foot tower result build on a workshop table"
+      "result_alt": "Build a wide-foot tower result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Set out A028 card tubes, A029 base card, A026 masking tape, and adult-controlled A027 weight for gentle nudge trials.",
+            "asset_ids": [
+              "part_card_tube",
+              "part_base_card",
+              "part_masking_tape",
+              "part_small_weight"
+            ],
+            "safety_focus": [
+              "paper_edge",
+              "rolling_part",
+              "adhesive",
+              "dropped_weight",
+              "overload_test"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "Build a tower with wide feet, then test whether it survives gentle nudges.",
+          "visible_asset_ids": [
+            "part_card_tube",
+            "part_base_card",
+            "part_masking_tape"
+          ],
+          "starter_question": "How wide should the feet be so the tower does not tip?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "pair",
+            "kind": "assemble",
+            "instruction": "Tape card tubes to the base card with the feet spread wider than the top.",
+            "asset_ids": [
+              "part_card_tube",
+              "part_base_card",
+              "part_masking_tape"
+            ],
+            "safety_focus": [
+              "paper_edge",
+              "adhesive"
+            ]
+          },
+          {
+            "id": "build_2",
+            "actor": "pair",
+            "kind": "assemble",
+            "instruction": "Add small tape tabs where a tube lifts or rolls.",
+            "asset_ids": [
+              "part_card_tube",
+              "part_masking_tape"
+            ],
+            "safety_focus": [
+              "rolling_part",
+              "adhesive"
+            ]
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "adult",
+            "kind": "test",
+            "instruction": "Place the small weight if needed, then give three gentle nudges while the pair watches the base.",
+            "asset_ids": [
+              "part_small_weight",
+              "part_card_tube",
+              "part_base_card"
+            ],
+            "safety_focus": [
+              "dropped_weight",
+              "overload_test"
+            ],
+            "expected_result": "The tower stands and survives three gentle nudges."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "pair",
+            "kind": "debug",
+            "instruction": "If it tips, move the feet wider or lower the heavy part before trying the nudge test again.",
+            "asset_ids": [
+              "part_card_tube",
+              "part_base_card",
+              "part_masking_tape"
+            ]
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Count the weight back, return tape, and separate reusable unused tubes and base cards from damaged builds.",
+            "asset_ids": [
+              "part_small_weight",
+              "part_masking_tape",
+              "part_card_tube",
+              "part_base_card"
+            ],
+            "safety_focus": [
+              "dropped_weight",
+              "consumable_waste"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "Keep the test to gentle nudges; do not turn it into a height competition.",
+          "The key evidence is whether base width changes stability."
+        ],
+        "diagram_semantics": {
+          "primary_view": "structure_test",
+          "nodes": [
+            {
+              "id": "tubes",
+              "asset_id": "part_card_tube",
+              "role": "tower_columns",
+              "label": "A028 card tubes"
+            },
+            {
+              "id": "base",
+              "asset_id": "part_base_card",
+              "role": "wide_foot_base",
+              "label": "A029 base card"
+            },
+            {
+              "id": "tape",
+              "asset_id": "part_masking_tape",
+              "role": "fastener",
+              "label": "A026 masking tape"
+            },
+            {
+              "id": "weight",
+              "asset_id": "part_small_weight",
+              "role": "test_load",
+              "label": "A027 small test weight"
+            }
+          ],
+          "connections": [
+            {
+              "from": "tubes.foot",
+              "to": "base.wide_point",
+              "kind": "taped_joint",
+              "made_by": "child_guided"
+            },
+            {
+              "from": "weight.load",
+              "to": "tubes.top",
+              "kind": "load_test",
+              "made_by": "adult_controlled"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "r_str_11",
@@ -3912,7 +6517,141 @@ window.INVENTION_CLUB_CURRICULUM = {
       "supporting_families": [],
       "classification_rationale": "",
       "result_image": "assets/power-card-results/r_pow_09.svg",
-      "result_alt": "Sort cells and holders safely result build on a workshop table"
+      "result_alt": "Sort cells and holders safely result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Place checked A030 AA cells, empty A033 coin holder, switched-off A034 AA pack, and A035 polarity cards for safe sorting.",
+            "asset_ids": [
+              "part_aa_cell",
+              "part_coin_cell_holder",
+              "part_aa_battery_pack",
+              "part_polarity_cards"
+            ],
+            "safety_focus": [
+              "loose_battery",
+              "button_cell_access",
+              "short_circuit",
+              "polarity_confusion"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "Sort power parts by type and orientation without making a circuit.",
+          "visible_asset_ids": [
+            "part_aa_cell",
+            "part_coin_cell_holder",
+            "part_aa_battery_pack",
+            "part_polarity_cards"
+          ],
+          "starter_question": "Which holder fits which cell, and where are positive and negative marked?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "child",
+            "kind": "sort",
+            "instruction": "Match each cell, holder, and pack to polarity cards without inserting cells or connecting a load.",
+            "asset_ids": [
+              "part_aa_cell",
+              "part_coin_cell_holder",
+              "part_aa_battery_pack",
+              "part_polarity_cards"
+            ],
+            "safety_focus": [
+              "loose_battery",
+              "button_cell_access",
+              "polarity_confusion"
+            ]
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "adult",
+            "kind": "test",
+            "instruction": "Ask the child to explain why the coin holder stays empty and why the AA pack stays switched off.",
+            "asset_ids": [
+              "part_coin_cell_holder",
+              "part_aa_battery_pack"
+            ],
+            "safety_focus": [
+              "button_cell_access",
+              "short_circuit"
+            ],
+            "expected_result": "Power parts are sorted by type and orientation without making a circuit."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If orientation is confused, compare holder shape, printed marks, and polarity cards before retrying.",
+            "asset_ids": [
+              "part_coin_cell_holder",
+              "part_aa_battery_pack",
+              "part_polarity_cards"
+            ]
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Count AA cells back, verify the coin holder is empty, switch off and return the AA pack, and pack polarity cards.",
+            "asset_ids": [
+              "part_aa_cell",
+              "part_coin_cell_holder",
+              "part_aa_battery_pack",
+              "part_polarity_cards"
+            ],
+            "safety_focus": [
+              "loose_battery",
+              "button_cell_access",
+              "short_circuit"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "No circuit is made on this card.",
+          "The AA pack is a recognition object here, not a power source for a load."
+        ],
+        "diagram_semantics": {
+          "primary_view": "sorting_grid",
+          "nodes": [
+            {
+              "id": "aa_cells",
+              "asset_id": "part_aa_cell",
+              "role": "cell_type",
+              "label": "A030 AA cells"
+            },
+            {
+              "id": "coin_holder",
+              "asset_id": "part_coin_cell_holder",
+              "role": "empty_holder",
+              "label": "A033 coin holder"
+            },
+            {
+              "id": "aa_pack",
+              "asset_id": "part_aa_battery_pack",
+              "role": "prepared_pack",
+              "label": "A034 AA pack"
+            },
+            {
+              "id": "polarity_cards",
+              "asset_id": "part_polarity_cards",
+              "role": "orientation_prompt",
+              "label": "A035 polarity cards"
+            }
+          ],
+          "connections": []
+        }
+      }
     },
     {
       "id": "r_pow_10",
@@ -3974,7 +6713,180 @@ window.INVENTION_CLUB_CURRICULUM = {
       ],
       "classification_rationale": "Primary learning is powering one safe load.",
       "result_image": "assets/power-card-results/r_pow_10.svg",
-      "result_alt": "Light an LED strip safely result build on a workshop table"
+      "result_alt": "Light an LED strip safely result build on a workshop table",
+      "activity_flow": {
+        "adult_setup": [
+          {
+            "id": "setup_1",
+            "actor": "adult",
+            "kind": "prepare",
+            "instruction": "Check A038 LED strip rating, A034 battery pack switch, A039 switch module terminals, and A036 clip lead insulation.",
+            "asset_ids": [
+              "part_led_strip",
+              "part_aa_battery_pack",
+              "part_switch_module",
+              "part_croc_clip_lead"
+            ],
+            "safety_focus": [
+              "current_draw",
+              "warm_strip",
+              "polarity_confusion",
+              "short_circuit",
+              "polarity_or_path_confusion",
+              "damaged_insulation"
+            ]
+          }
+        ],
+        "child_start_state": {
+          "prompt": "Light the strip only after the adult checks polarity, switch path, and current limit.",
+          "visible_asset_ids": [
+            "part_led_strip",
+            "part_aa_battery_pack",
+            "part_switch_module",
+            "part_croc_clip_lead"
+          ],
+          "starter_question": "Where should the switch sit so the strip can turn off easily?"
+        },
+        "build_steps": [
+          {
+            "id": "build_1",
+            "actor": "pair",
+            "kind": "connect",
+            "instruction": "With the pack off, connect battery positive through the switch module toward the LED strip positive.",
+            "asset_ids": [
+              "part_aa_battery_pack",
+              "part_switch_module",
+              "part_led_strip",
+              "part_croc_clip_lead"
+            ],
+            "safety_focus": [
+              "short_circuit",
+              "polarity_or_path_confusion",
+              "polarity_confusion"
+            ]
+          },
+          {
+            "id": "build_2",
+            "actor": "pair",
+            "kind": "connect",
+            "instruction": "After adult check, connect the LED strip negative back to battery negative.",
+            "asset_ids": [
+              "part_aa_battery_pack",
+              "part_led_strip",
+              "part_croc_clip_lead"
+            ],
+            "safety_focus": [
+              "short_circuit",
+              "polarity_confusion"
+            ]
+          }
+        ],
+        "test_steps": [
+          {
+            "id": "test_1",
+            "actor": "child",
+            "kind": "test",
+            "instruction": "Switch on briefly, confirm the LEDs light, switch off, and check that wires and strip are not warm.",
+            "asset_ids": [
+              "part_led_strip",
+              "part_aa_battery_pack",
+              "part_switch_module"
+            ],
+            "safety_focus": [
+              "warm_strip",
+              "current_draw",
+              "warm_wires"
+            ],
+            "expected_result": "The LEDs light without warm wires or reversed polarity."
+          }
+        ],
+        "debug_steps": [
+          {
+            "id": "debug_1",
+            "actor": "adult",
+            "kind": "debug",
+            "instruction": "If the strip does not light, switch off before checking polarity, switch path, lead contact, and strip rating.",
+            "asset_ids": [
+              "part_led_strip",
+              "part_aa_battery_pack",
+              "part_switch_module",
+              "part_croc_clip_lead"
+            ]
+          }
+        ],
+        "reset_and_pack": [
+          {
+            "id": "reset_1",
+            "actor": "adult",
+            "kind": "reset",
+            "instruction": "Switch off the pack, unclip leads, return the switch off and unplugged, and check the LED strip is cool before packing.",
+            "asset_ids": [
+              "part_led_strip",
+              "part_aa_battery_pack",
+              "part_switch_module",
+              "part_croc_clip_lead"
+            ],
+            "safety_focus": [
+              "warm_strip",
+              "short_circuit",
+              "damaged_insulation"
+            ]
+          }
+        ],
+        "facilitator_notes": [
+          "Keep the LED strip current-limited and use only the selected classroom strip.",
+          "The switch is part of safe operation, not an optional decoration."
+        ],
+        "diagram_semantics": {
+          "primary_view": "safe_circuit",
+          "nodes": [
+            {
+              "id": "battery_pack",
+              "asset_id": "part_aa_battery_pack",
+              "role": "power_source",
+              "label": "A034 AA battery pack"
+            },
+            {
+              "id": "switch",
+              "asset_id": "part_switch_module",
+              "role": "control",
+              "label": "A039 switch module"
+            },
+            {
+              "id": "led_strip",
+              "asset_id": "part_led_strip",
+              "role": "load",
+              "label": "A038 LED strip"
+            },
+            {
+              "id": "lead_pair",
+              "asset_id": "part_croc_clip_lead",
+              "role": "connection_pair",
+              "label": "A036 clip leads"
+            }
+          ],
+          "connections": [
+            {
+              "from": "battery_pack.positive",
+              "to": "switch.input",
+              "kind": "power",
+              "made_by": "child_with_adult_check"
+            },
+            {
+              "from": "switch.output",
+              "to": "led_strip.positive",
+              "kind": "switched_power",
+              "made_by": "child_with_adult_check"
+            },
+            {
+              "from": "led_strip.negative",
+              "to": "battery_pack.negative",
+              "kind": "return",
+              "made_by": "child_with_adult_check"
+            }
+          ]
+        }
+      }
     },
     {
       "id": "r_pow_11",

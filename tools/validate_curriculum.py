@@ -90,6 +90,25 @@ PREPARATION_STATES = {"blank", "preloaded", "loose", "prebuilt", "adult-prepared
 QUANTITY_BASES = {"per_child", "per_pair", "per_table", "per_session", "demo_only"}
 PROGRAMMING_STATES = {"blank", "preloaded_locked", "child_editable_template", "child_authored_allowed"}
 SUPERVISION_LEVELS = {"standard", "direct", "adult_controlled", "demo_only"}
+ACTIVITY_FLOW_STEP_SECTIONS = ("adult_setup", "build_steps", "test_steps", "debug_steps", "reset_and_pack")
+ACTIVITY_FLOW_REQUIRED_SECTIONS = set(ACTIVITY_FLOW_STEP_SECTIONS) | {"child_start_state", "facilitator_notes"}
+ACTIVITY_FLOW_ALLOWED_SECTIONS = ACTIVITY_FLOW_REQUIRED_SECTIONS | {"diagram_refs", "diagram_semantics"}
+ACTIVITY_STEP_ACTORS = {"adult", "child", "pair", "table"}
+ACTIVITY_STEP_KINDS = {"prepare", "observe", "sort", "connect", "assemble", "test", "debug", "reset"}
+LEVEL_1_CHILD_DISALLOWED_STEP_KINDS = {"connect", "assemble"}
+PROGRAMMING_EDIT_PATTERNS = [
+    r"\b(write|edit|author|create|modify|change)\s+(code|a program|program|script|firmware)\b",
+    r"\b(code|program|script|firmware)\s+from\s+scratch\b",
+    r"\bflash\s+(the\s+)?(board|micro:bit|firmware)\b",
+]
+RESET_REQUIRED_CATEGORIES = {
+    "power_source",
+    "programmable_board",
+    "programmable_board_accessory",
+    "wire",
+    "load",
+}
+DIAGRAM_PRIMARY_VIEWS = {"parts_layout", "sorting_grid", "safe_circuit", "mechanism", "structure_test"}
 SAFETY_SENSITIVE_CATEGORIES = {
     "actuator",
     "load",
@@ -562,6 +581,25 @@ def validate_schema_contract(source: dict[str, Any], errors: list[str], warnings
     if schema_version != "curriculum.v1":
         errors.append(f"schema: expected meta.schema_version const 'curriculum.v1', found {schema_version!r}")
 
+    power_card_properties = schema.get("$defs", {}).get("power_card", {}).get("properties", {})
+    if "activity_flow" not in power_card_properties:
+        errors.append("schema: power_card must define optional activity_flow property")
+    missing_activity_defs = sorted(
+        definition
+        for definition in (
+            "activity_flow",
+            "activity_step",
+            "child_start_state",
+            "diagram_semantics",
+            "diagram_node",
+            "diagram_connection",
+            "diagram_state",
+        )
+        if definition not in schema.get("$defs", {})
+    )
+    if missing_activity_defs:
+        errors.append(f"schema: missing activity_flow-related definitions {missing_activity_defs}")
+
     warnings.append(
         "JSON schema contract parsed; custom semantic validation is used because no JSON Schema runtime is vendored."
     )
@@ -726,6 +764,339 @@ def validate_dependency_cycles(power_by_id: dict[str, dict[str, Any]], errors: l
     for cycle in cycles:
         errors.append(f"power_cards: dependency cycle detected: {' -> '.join(cycle)}")
     return cycles
+
+
+def step_has_programming_edit_language(text: str) -> bool:
+    return any(re.search(pattern, text, flags=re.IGNORECASE) for pattern in PROGRAMMING_EDIT_PATTERNS)
+
+
+def activity_flow_steps(flow: dict[str, Any]) -> list[tuple[str, dict[str, Any]]]:
+    steps: list[tuple[str, dict[str, Any]]] = []
+    for section in ACTIVITY_FLOW_STEP_SECTIONS:
+        section_steps = flow.get(section)
+        if isinstance(section_steps, list):
+            steps.extend((section, step) for step in section_steps if isinstance(step, dict))
+    return steps
+
+
+def validate_activity_diagram(
+    power_id: str,
+    power: dict[str, Any],
+    flow: dict[str, Any],
+    required_asset_ids: set[str],
+    steps: list[tuple[str, dict[str, Any]]],
+    errors: list[str],
+) -> None:
+    diagram_refs = flow.get("diagram_refs")
+    if diagram_refs is not None:
+        if not isinstance(diagram_refs, list):
+            errors.append(f"power_cards: pilot card {power_id} activity_flow.diagram_refs must be a list")
+        else:
+            for index, ref in enumerate(diagram_refs, start=1):
+                if not isinstance(ref, dict):
+                    errors.append(
+                        f"power_cards: pilot card {power_id} activity_flow.diagram_refs[{index}] must be an object"
+                    )
+                    continue
+                for field in ("id", "label"):
+                    if not str(ref.get(field, "")).strip():
+                        errors.append(
+                            f"power_cards: pilot card {power_id} activity_flow.diagram_refs[{index}] missing {field}"
+                        )
+
+    diagram = flow.get("diagram_semantics")
+    if diagram is None:
+        return
+    if not isinstance(diagram, dict):
+        errors.append(f"power_cards: pilot card {power_id} activity_flow.diagram_semantics must be an object")
+        return
+
+    primary_view = diagram.get("primary_view")
+    if primary_view not in DIAGRAM_PRIMARY_VIEWS:
+        errors.append(
+            f"power_cards: pilot card {power_id} activity_flow.diagram_semantics has invalid primary_view {primary_view!r}"
+        )
+
+    nodes = diagram.get("nodes")
+    node_ids: set[str] = set()
+    if not isinstance(nodes, list) or not nodes:
+        errors.append(f"power_cards: pilot card {power_id} activity_flow.diagram_semantics.nodes must be a non-empty list")
+        nodes = []
+    for index, node in enumerate(nodes, start=1):
+        if not isinstance(node, dict):
+            errors.append(
+                f"power_cards: pilot card {power_id} activity_flow.diagram_semantics.nodes[{index}] must be an object"
+            )
+            continue
+        node_id = node.get("id")
+        if not str(node_id or "").strip():
+            errors.append(
+                f"power_cards: pilot card {power_id} activity_flow.diagram_semantics.nodes[{index}] missing id"
+            )
+        elif node_id in node_ids:
+            errors.append(
+                f"power_cards: pilot card {power_id} activity_flow.diagram_semantics.nodes duplicate id {node_id}"
+            )
+        else:
+            node_ids.add(str(node_id))
+        asset_id = node.get("asset_id")
+        if asset_id not in required_asset_ids:
+            errors.append(
+                f"power_cards: pilot card {power_id} activity_flow.diagram_semantics.nodes[{index}] asset_id {asset_id!r} is not in required_assets"
+            )
+        for field in ("role", "label"):
+            if not str(node.get(field, "")).strip():
+                errors.append(
+                    f"power_cards: pilot card {power_id} activity_flow.diagram_semantics.nodes[{index}] missing {field}"
+                )
+
+    connections = diagram.get("connections")
+    if not isinstance(connections, list):
+        errors.append(f"power_cards: pilot card {power_id} activity_flow.diagram_semantics.connections must be a list")
+        connections = []
+    for index, connection in enumerate(connections, start=1):
+        if not isinstance(connection, dict):
+            errors.append(
+                f"power_cards: pilot card {power_id} activity_flow.diagram_semantics.connections[{index}] must be an object"
+            )
+            continue
+        for endpoint_field in ("from", "to"):
+            endpoint = connection.get(endpoint_field)
+            endpoint_node_id = str(endpoint or "").split(".", 1)[0]
+            if endpoint_node_id not in node_ids:
+                errors.append(
+                    f"power_cards: pilot card {power_id} activity_flow.diagram_semantics.connections[{index}] {endpoint_field} endpoint {endpoint!r} references unknown node"
+                )
+        if not str(connection.get("kind", "")).strip():
+            errors.append(
+                f"power_cards: pilot card {power_id} activity_flow.diagram_semantics.connections[{index}] missing kind"
+            )
+        if power.get("level") == 1 and connection.get("kind") != "conceptual":
+            errors.append(
+                f"power_cards: level 1 card {power_id} has non-conceptual diagram connection {connection.get('kind')!r}"
+            )
+
+    states = diagram.get("states")
+    if states is not None:
+        if not isinstance(states, list):
+            errors.append(f"power_cards: pilot card {power_id} activity_flow.diagram_semantics.states must be a list")
+        else:
+            for index, state in enumerate(states, start=1):
+                if not isinstance(state, dict):
+                    errors.append(
+                        f"power_cards: pilot card {power_id} activity_flow.diagram_semantics.states[{index}] must be an object"
+                    )
+                    continue
+                for field in ("id", "trigger", "expected_change"):
+                    if not str(state.get(field, "")).strip():
+                        errors.append(
+                            f"power_cards: pilot card {power_id} activity_flow.diagram_semantics.states[{index}] missing {field}"
+                        )
+
+    for section, step in steps:
+        diagram_node_ids = step.get("diagram_node_ids")
+        if diagram_node_ids is None:
+            continue
+        if not isinstance(diagram_node_ids, list):
+            errors.append(
+                f"power_cards: pilot card {power_id} activity_flow.{section}.{step.get('id', '<missing-id>')} diagram_node_ids must be a list"
+            )
+            continue
+        for node_id in diagram_node_ids:
+            if node_id not in node_ids:
+                errors.append(
+                    f"power_cards: pilot card {power_id} activity_flow.{section}.{step.get('id', '<missing-id>')} references unknown diagram node {node_id}"
+                )
+
+
+def validate_activity_flows(
+    source: dict[str, Any],
+    power_by_id: dict[str, dict[str, Any]],
+    physical_assets_by_id: dict[str, dict[str, Any]],
+    errors: list[str],
+) -> None:
+    pilot_card_ids = {card.get("id") for card in pilot_kit_cards(source)}
+    for power_id, power in power_by_id.items():
+        in_pilot_scope = power_id in pilot_card_ids
+        flow = power.get("activity_flow")
+        if in_pilot_scope and not isinstance(flow, dict):
+            errors.append(f"power_cards: pilot card {power_id} missing activity_flow object")
+            continue
+        if not in_pilot_scope and flow is not None:
+            errors.append(f"power_cards: card {power_id} has activity_flow outside the current pilot scope")
+            continue
+        if flow is None:
+            continue
+        if not isinstance(flow, dict):
+            errors.append(f"power_cards: card {power_id} activity_flow must be an object")
+            continue
+
+        missing_sections = sorted(ACTIVITY_FLOW_REQUIRED_SECTIONS - set(flow))
+        if missing_sections:
+            errors.append(f"power_cards: pilot card {power_id} activity_flow missing sections {missing_sections}")
+        unknown_sections = sorted(set(flow) - ACTIVITY_FLOW_ALLOWED_SECTIONS)
+        if unknown_sections:
+            errors.append(f"power_cards: pilot card {power_id} activity_flow has unknown sections {unknown_sections}")
+        if "diagram_refs" not in flow and "diagram_semantics" not in flow:
+            errors.append(
+                f"power_cards: pilot card {power_id} activity_flow must include diagram_refs or diagram_semantics"
+            )
+
+        required_assets = power.get("required_assets", [])
+        requirement_by_asset = {
+            requirement.get("asset_id"): requirement
+            for requirement in required_assets
+            if isinstance(requirement, dict) and requirement.get("asset_id")
+        }
+        required_asset_ids = set(requirement_by_asset)
+
+        child_start = flow.get("child_start_state")
+        if not isinstance(child_start, dict):
+            errors.append(f"power_cards: pilot card {power_id} activity_flow.child_start_state must be an object")
+        else:
+            for field in ("prompt", "starter_question"):
+                if not str(child_start.get(field, "")).strip():
+                    errors.append(
+                        f"power_cards: pilot card {power_id} activity_flow.child_start_state missing {field}"
+                    )
+            visible_asset_ids = child_start.get("visible_asset_ids")
+            if not isinstance(visible_asset_ids, list):
+                errors.append(
+                    f"power_cards: pilot card {power_id} activity_flow.child_start_state.visible_asset_ids must be a list"
+                )
+            else:
+                for asset_id in visible_asset_ids:
+                    if asset_id not in required_asset_ids:
+                        errors.append(
+                            f"power_cards: pilot card {power_id} child_start_state visible asset {asset_id!r} is not in required_assets"
+                        )
+                    if requirement_by_asset.get(asset_id, {}).get("quantity_basis") == "demo_only":
+                        errors.append(
+                            f"power_cards: pilot card {power_id} child_start_state exposes demo_only asset {asset_id!r}"
+                        )
+
+        facilitator_notes = flow.get("facilitator_notes")
+        if not isinstance(facilitator_notes, list) or not facilitator_notes:
+            errors.append(f"power_cards: pilot card {power_id} activity_flow.facilitator_notes must be a non-empty list")
+        elif any(not str(note).strip() for note in facilitator_notes):
+            errors.append(f"power_cards: pilot card {power_id} activity_flow.facilitator_notes must be non-empty strings")
+
+        steps = activity_flow_steps(flow)
+        step_ids: set[str] = set()
+        all_safety_focus: set[str] = set()
+        reset_asset_ids: set[str] = set()
+        for section in ACTIVITY_FLOW_STEP_SECTIONS:
+            section_steps = flow.get(section)
+            if not isinstance(section_steps, list) or not section_steps:
+                errors.append(f"power_cards: pilot card {power_id} activity_flow.{section} must be a non-empty list")
+                continue
+            for index, step in enumerate(section_steps, start=1):
+                if not isinstance(step, dict):
+                    errors.append(f"power_cards: pilot card {power_id} activity_flow.{section}[{index}] must be an object")
+                    continue
+                step_id = step.get("id")
+                if not str(step_id or "").strip():
+                    errors.append(f"power_cards: pilot card {power_id} activity_flow.{section}[{index}] missing id")
+                elif step_id in step_ids:
+                    errors.append(f"power_cards: pilot card {power_id} activity_flow duplicate step id {step_id}")
+                else:
+                    step_ids.add(str(step_id))
+
+                actor = step.get("actor")
+                kind = step.get("kind")
+                instruction = str(step.get("instruction", "")).strip()
+                if actor not in ACTIVITY_STEP_ACTORS:
+                    errors.append(
+                        f"power_cards: pilot card {power_id} activity_flow.{section}.{step_id} has invalid actor {actor!r}"
+                    )
+                if kind not in ACTIVITY_STEP_KINDS:
+                    errors.append(
+                        f"power_cards: pilot card {power_id} activity_flow.{section}.{step_id} has invalid kind {kind!r}"
+                    )
+                if not instruction:
+                    errors.append(f"power_cards: pilot card {power_id} activity_flow.{section}.{step_id} missing instruction")
+
+                if (
+                    power.get("level") == 1
+                    and actor in {"child", "pair", "table"}
+                    and kind in LEVEL_1_CHILD_DISALLOWED_STEP_KINDS
+                ):
+                    errors.append(
+                        f"power_cards: level 1 card {power_id} has child-facing {kind} step {step_id}; Level 1 must stay observation/sorting focused"
+                    )
+                if actor in {"child", "pair", "table"} and step_has_programming_edit_language(instruction):
+                    errors.append(
+                        f"power_cards: card {power_id} activity_flow.{section}.{step_id} uses child-facing programming/editing language"
+                    )
+
+                asset_ids = step.get("asset_ids", [])
+                if asset_ids is None:
+                    asset_ids = []
+                if not isinstance(asset_ids, list):
+                    errors.append(
+                        f"power_cards: pilot card {power_id} activity_flow.{section}.{step_id} asset_ids must be a list"
+                    )
+                    asset_ids = []
+                for asset_id in asset_ids:
+                    if asset_id not in required_asset_ids:
+                        errors.append(
+                            f"power_cards: pilot card {power_id} activity_flow.{section}.{step_id} references asset {asset_id!r} outside required_assets"
+                        )
+                    if requirement_by_asset.get(asset_id, {}).get("quantity_basis") == "demo_only":
+                        allowed_demo_step = actor == "adult" or (actor == "child" and kind == "observe")
+                        if not allowed_demo_step:
+                            errors.append(
+                                f"power_cards: pilot card {power_id} activity_flow.{section}.{step_id} uses demo_only asset {asset_id!r} outside adult or child observation step"
+                            )
+                if section == "reset_and_pack":
+                    reset_asset_ids.update(asset_ids)
+
+                safety_focus = step.get("safety_focus", [])
+                if safety_focus is None:
+                    safety_focus = []
+                if not isinstance(safety_focus, list):
+                    errors.append(
+                        f"power_cards: pilot card {power_id} activity_flow.{section}.{step_id} safety_focus must be a list"
+                    )
+                    safety_focus = []
+                all_safety_focus.update(str(item) for item in safety_focus if str(item).strip())
+
+        setup_text = " ".join(
+            str(step.get("instruction", ""))
+            for step in flow.get("adult_setup", [])
+            if isinstance(step, dict)
+        )
+        for asset_id, requirement in requirement_by_asset.items():
+            preload_profile_id = requirement.get("preload_profile_id")
+            if requirement.get("preparation_state") == "preloaded":
+                if not preload_profile_id:
+                    errors.append(f"power_cards: pilot card {power_id} activity_flow preloaded asset {asset_id} has no profile")
+                elif preload_profile_id not in setup_text:
+                    errors.append(
+                        f"power_cards: pilot card {power_id} adult_setup must name preload profile {preload_profile_id}"
+                    )
+
+            asset = physical_assets_by_id.get(asset_id, {})
+            safety = asset.get("safety", {}) if isinstance(asset.get("safety"), dict) else {}
+            hazards = set(safety.get("hazards", [])) if isinstance(safety.get("hazards"), list) else set()
+            supervision_level = safety.get("supervision_level")
+            if supervision_level in {"direct", "adult_controlled", "demo_only"} and hazards:
+                if not hazards.intersection(all_safety_focus):
+                    errors.append(
+                        f"power_cards: pilot card {power_id} activity_flow lacks safety_focus matching hazards for supervised asset {asset_id}"
+                    )
+
+            reset_required = (
+                requirement.get("quantity_basis") == "demo_only"
+                or supervision_level in {"adult_controlled", "demo_only"}
+                or asset.get("category") in RESET_REQUIRED_CATEGORIES
+            )
+            if reset_required and asset_id not in reset_asset_ids:
+                errors.append(
+                    f"power_cards: pilot card {power_id} reset_and_pack must mention asset {asset_id}"
+                )
+
+        validate_activity_diagram(power_id, power, flow, required_asset_ids, steps, errors)
 
 
 def iter_card_field_text(card: dict[str, Any], fields: tuple[str, ...]) -> list[tuple[str, str]]:
@@ -1186,6 +1557,8 @@ def validate_assets(
                     f"power_cards: card {power_id} required_assets[{index}] preloaded assets must use programming_state 'preloaded_locked'"
                 )
 
+    validate_activity_flows(source, power_by_id, physical_assets_by_id, errors)
+
     known_assets = set(asset_ids)
     for profile in require_list(source.get("preload_profiles"), "preload_profiles", errors):
         if not isinstance(profile, dict):
@@ -1295,6 +1668,7 @@ def compute_metrics(source: dict[str, Any], power_by_id: dict[str, dict[str, Any
                 source.get("asset_inventory", {}).get("programmable_preload_profiles", [])
             ),
             "pilot_cards_with_required_assets": sum(1 for power in powers if power.get("required_assets")),
+            "pilot_cards_with_activity_flow": sum(1 for power in powers if power.get("activity_flow")),
             "preload_profiles": len(source.get("preload_profiles", [])),
         },
         "power_cards_by_family_level": {
