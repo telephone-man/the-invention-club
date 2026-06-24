@@ -13,11 +13,10 @@ venv/
 *.tmp
 *.log
 _site/
+curriculum/generated/
+reports/validation-results.json
 
 docs
-tools
-reports
-curriculum
 AGENTS.md
 concat.xml
 README.md

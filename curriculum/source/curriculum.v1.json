@@ -1,4 +1,10 @@
-window.INVENTION_CLUB_CURRICULUM = {
+{
+  "meta": {
+    "schema_version": "curriculum.v1",
+    "source_status": "canonical_bootstrapped_from_current_website_and_generated_curriculum",
+    "generation_timestamp_policy": "Do not store volatile timestamps in generated artefacts; use stable deterministic output for reviewable diffs.",
+    "baseline_note": "Uses the 120-card website Power Card set as the operational baseline; the previous 80-card realistic generated set remains historical validation evidence."
+  },
   "levels": [
     {
       "id": 1,
@@ -43,7 +49,7 @@ window.INVENTION_CLUB_CURRICULUM = {
       "coding_expectation": "Debug, simplify, compare, or justify code, logic, and physical trade-offs; older learners may write short programs, but coding is not the only route."
     }
   ],
-  "families": [
+  "skill_cards": [
     {
       "id": "movement",
       "name": "Movement",
@@ -82,7 +88,9 @@ window.INVENTION_CLUB_CURRICULUM = {
           "name": "Improve",
           "focus": "Refine unreliable or inefficient motion."
         }
-      ]
+      ],
+      "icon_asset": "assets/skill-icons/make-it-move.jpg",
+      "summary": "Motors, servos, wheels and mechanisms."
     },
     {
       "id": "control_input",
@@ -122,7 +130,9 @@ window.INVENTION_CLUB_CURRICULUM = {
           "name": "Improve",
           "focus": "Refine control reliability and usability."
         }
-      ]
+      ],
+      "icon_asset": "assets/skill-icons/make-it-obey.jpg",
+      "summary": "Buttons, switches, knobs and controllers."
     },
     {
       "id": "sensing",
@@ -162,7 +172,9 @@ window.INVENTION_CLUB_CURRICULUM = {
           "name": "Improve",
           "focus": "Calibrate or reduce false readings."
         }
-      ]
+      ],
+      "icon_asset": "assets/skill-icons/make-it-notice.jpg",
+      "summary": "Sensors for light, tilt, distance or touch."
     },
     {
       "id": "structures",
@@ -202,7 +214,9 @@ window.INVENTION_CLUB_CURRICULUM = {
           "name": "Improve",
           "focus": "Refine strength, stiffness, weight, or repairability."
         }
-      ]
+      ],
+      "icon_asset": "assets/skill-icons/make-it-strong.jpg",
+      "summary": "Frames, hinges, mounts and stable builds."
     },
     {
       "id": "power",
@@ -242,7 +256,9 @@ window.INVENTION_CLUB_CURRICULUM = {
           "name": "Improve",
           "focus": "Diagnose drops, overheating, or unsafe choices."
         }
-      ]
+      ],
+      "icon_asset": "assets/skill-icons/make-it-run-safely.jpg",
+      "summary": "Batteries, polarity, loads and safe choices."
     },
     {
       "id": "materials_fabrication",
@@ -282,7 +298,9 @@ window.INVENTION_CLUB_CURRICULUM = {
           "name": "Improve",
           "focus": "Refine durability, accuracy, and trade-offs."
         }
-      ]
+      ],
+      "icon_asset": "assets/skill-icons/make-it-real.jpg",
+      "summary": "Materials, fabrication, joins and enclosures."
     },
     {
       "id": "logic_sequencing",
@@ -322,7 +340,9 @@ window.INVENTION_CLUB_CURRICULUM = {
           "name": "Improve",
           "focus": "Debug and simplify logic trade-offs."
         }
-      ]
+      ],
+      "icon_asset": "assets/skill-icons/make-it-decide.jpg",
+      "summary": "Sequences, rules, timing and simple logic."
     },
     {
       "id": "communication",
@@ -362,7 +382,9 @@ window.INVENTION_CLUB_CURRICULUM = {
           "name": "Improve",
           "focus": "Improve range, clarity, or reliability."
         }
-      ]
+      ],
+      "icon_asset": "assets/skill-icons/make-it-signal.jpg",
+      "summary": "Messages, radio links, alerts and displays."
     },
     {
       "id": "debugging_testing",
@@ -402,7 +424,9 @@ window.INVENTION_CLUB_CURRICULUM = {
           "name": "Improve",
           "focus": "Refine a fix and explain evidence."
         }
-      ]
+      ],
+      "icon_asset": "assets/skill-icons/make-it-work-again.jpg",
+      "summary": "Testing, debugging, repair and evidence."
     },
     {
       "id": "design_iteration",
@@ -442,10 +466,12 @@ window.INVENTION_CLUB_CURRICULUM = {
           "name": "Improve",
           "focus": "Use evidence and trade-offs to iterate."
         }
-      ]
+      ],
+      "icon_asset": "assets/skill-icons/make-it-better.jpg",
+      "summary": "User needs, criteria, feedback and iteration."
     }
   ],
-  "powerCards": [
+  "power_cards": [
     {
       "id": "r_mov_01",
       "title": "Recognise actuators",
@@ -4023,7 +4049,7 @@ window.INVENTION_CLUB_CURRICULUM = {
       "result_alt": "Make a prototype fit a real place result build on a workshop table"
     }
   ],
-  "integrationCards": [
+  "integration_cards": [
     {
       "id": "r_int_01",
       "title": "Button-controlled motor",
@@ -4763,7 +4789,7 @@ window.INVENTION_CLUB_CURRICULUM = {
       ]
     }
   ],
-  "inventionCards": [
+  "invention_cards": [
     {
       "id": "r_inv_01",
       "theme": "Accessible playground model",
@@ -5063,7 +5089,7 @@ window.INVENTION_CLUB_CURRICULUM = {
       ]
     }
   ],
-  "assetInventory": {
+  "asset_inventory": {
     "version": 1,
     "assets": [
       {
@@ -6617,7 +6643,7 @@ window.INVENTION_CLUB_CURRICULUM = {
       ]
     }
   },
-  "preloadProfiles": [
+  "preload_profiles": [
     {
       "id": "homepage",
       "description": "Assets needed for the parent-facing homepage.",
@@ -6914,5 +6940,246 @@ window.INVENTION_CLUB_CURRICULUM = {
         "power_result_r_des_12"
       ]
     }
+  ],
+  "lesson_plan_profiles": [
+    {
+      "id": "facilitator_integration_cards",
+      "name": "Facilitator Integration Card Plans",
+      "output_dir": "curriculum/generated/lesson-plans",
+      "source_card_type": "integration_cards",
+      "include": [
+        "required_power_cards",
+        "dependency_chain",
+        "materials",
+        "safety_notes",
+        "debug_prompts",
+        "stretch_and_invention_follow_ons"
+      ]
+    }
+  ],
+  "red_team_cases": [
+    {
+      "case": "button-controlled motor",
+      "classification": "integration",
+      "families_involved": [
+        "movement",
+        "control_input"
+      ],
+      "related_generated_examples": [
+        "r_int_01",
+        "r_mov_02",
+        "r_ctl_02"
+      ],
+      "principled_or_arbitrary": "principled",
+      "schema_weakness": "Works cleanly only if facilitators remember that reading the button and making the motor move remain separate primitive skills."
+    },
+    {
+      "case": "remote-controlled vehicle",
+      "classification": "integration",
+      "families_involved": [
+        "communication",
+        "control_input",
+        "movement",
+        "power",
+        "structures"
+      ],
+      "related_generated_examples": [
+        "r_int_07"
+      ],
+      "principled_or_arbitrary": "principled",
+      "schema_weakness": "The classification is clear for a fixed vehicle recipe, but it becomes invention if the vehicle mission is open-ended."
+    },
+    {
+      "case": "sensor-controlled robot",
+      "classification": "integration",
+      "families_involved": [
+        "sensing",
+        "logic_sequencing",
+        "movement",
+        "power"
+      ],
+      "related_generated_examples": [
+        "r_int_06"
+      ],
+      "principled_or_arbitrary": "principled",
+      "schema_weakness": "The integration can absorb the overlap, but the number of required prerequisite skills rises quickly."
+    },
+    {
+      "case": "robotic arm",
+      "classification": "integration",
+      "families_involved": [
+        "movement",
+        "structures",
+        "control_input"
+      ],
+      "related_generated_examples": [
+        "r_int_10"
+      ],
+      "principled_or_arbitrary": "principled",
+      "schema_weakness": "Resolved by the fixed-integration versus open-invention rule; card authors must state how much choice children have.",
+      "schema_rule": "Fixed challenge with named Movement, Structures and Control/Input prerequisites is Integration; open-ended arm invention would be an Invention card."
+    },
+    {
+      "case": "automatic door",
+      "classification": "integration",
+      "families_involved": [
+        "sensing",
+        "movement",
+        "structures",
+        "logic_sequencing"
+      ],
+      "related_generated_examples": [
+        "r_int_03"
+      ],
+      "principled_or_arbitrary": "principled",
+      "schema_weakness": "The fixed challenge classifies well, but hinge construction and servo motion need a tie-breaker when taught separately."
+    },
+    {
+      "case": "alarm system",
+      "classification": "integration",
+      "families_involved": [
+        "sensing",
+        "communication",
+        "power",
+        "logic_sequencing"
+      ],
+      "related_generated_examples": [
+        "r_int_09"
+      ],
+      "principled_or_arbitrary": "principled",
+      "schema_weakness": "Classification is stable when the alarm rule is fixed; open-ended security exhibit variants should move to invention."
+    },
+    {
+      "case": "traffic lights",
+      "classification": "integration",
+      "families_involved": [
+        "logic_sequencing",
+        "power",
+        "materials_fabrication"
+      ],
+      "related_generated_examples": [
+        "r_int_04"
+      ],
+      "principled_or_arbitrary": "principled",
+      "schema_weakness": "This is one of the cleaner overlaps because the main learning problem is sequencing powered outputs."
+    },
+    {
+      "case": "tilt-controlled game",
+      "classification": "integration",
+      "families_involved": [
+        "sensing",
+        "control_input",
+        "logic_sequencing",
+        "design_iteration"
+      ],
+      "related_generated_examples": [
+        "r_int_05"
+      ],
+      "principled_or_arbitrary": "principled",
+      "schema_weakness": "If the game rules are invented by children, the same prompt should probably become an invention card."
+    },
+    {
+      "case": "servo-powered puppet",
+      "classification": "integration",
+      "families_involved": [
+        "movement",
+        "materials_fabrication",
+        "design_iteration"
+      ],
+      "related_generated_examples": [
+        "r_int_08"
+      ],
+      "principled_or_arbitrary": "principled",
+      "schema_weakness": "The puppet becomes hard to classify if expression, mechanism, and fabrication are all equally central."
+    },
+    {
+      "case": "structure with moving hinge",
+      "classification": "power",
+      "families_involved": [
+        "structures",
+        "movement",
+        "materials_fabrication"
+      ],
+      "related_generated_examples": [
+        "r_str_04",
+        "r_int_11"
+      ],
+      "principled_or_arbitrary": "principled",
+      "schema_weakness": "Resolved for passive hinges; actuated hinge projects still need integration cards.",
+      "schema_rule": "Passive joint support, alignment and range are Structures; actuated travel is Movement; combining both is Integration."
+    },
+    {
+      "case": "debugging a broken circuit",
+      "classification": "power",
+      "families_involved": [
+        "debugging_testing",
+        "power"
+      ],
+      "related_generated_examples": [
+        "r_dbg_04",
+        "r_int_24"
+      ],
+      "principled_or_arbitrary": "principled",
+      "schema_weakness": "Resolved by the supporting-family and Debugging/Testing primary-family tie-breaker; still needs a rationale field when used in curriculum.",
+      "schema_rule": "Diagnostic method primary; circuit and power knowledge are supporting context."
+    },
+    {
+      "case": "improving a weak chassis",
+      "classification": "power",
+      "families_involved": [
+        "structures",
+        "debugging_testing",
+        "design_iteration"
+      ],
+      "related_generated_examples": [
+        "r_str_07",
+        "r_int_13"
+      ],
+      "principled_or_arbitrary": "principled",
+      "schema_weakness": "Resolved for fixed chassis-improvement lessons; open-ended redesign challenges still belong as integrations or inventions.",
+      "schema_rule": "Improve stays in the family whose object is being improved; chassis strength is a Structures problem with debugging/design support."
+    },
+    {
+      "case": "choosing a safe battery",
+      "classification": "power",
+      "families_involved": [
+        "power",
+        "design_iteration"
+      ],
+      "related_generated_examples": [
+        "r_pow_04",
+        "r_int_12"
+      ],
+      "principled_or_arbitrary": "principled",
+      "schema_weakness": "Fits Power if battery capability is primary, but the schema has no explicit Safety support tag."
+    },
+    {
+      "case": "radio-controlled multiplayer game",
+      "classification": "invention",
+      "families_involved": [
+        "communication",
+        "control_input",
+        "logic_sequencing",
+        "design_iteration"
+      ],
+      "related_generated_examples": [
+        "r_int_14",
+        "r_inv_05"
+      ],
+      "principled_or_arbitrary": "principled",
+      "schema_weakness": "The prompt is invention when player rules are open-ended, but a fixed radio tag recipe is an integration."
+    }
+  ],
+  "audit_warnings": [
+    {
+      "id": "human_facing_design_boundaries",
+      "source": "reports/amendment-audit.md",
+      "summary": "Comfort, feedback, aesthetics, repairability and planning remain intent-sensitive and should keep explicit rationales when used as power cards."
+    },
+    {
+      "id": "metrics_overstate_certainty",
+      "source": "reports/amendment-audit.md",
+      "summary": "Validation metrics are useful but should not be treated as proof that all ambiguity disappeared."
+    }
   ]
-};
+}

@@ -2274,6 +2274,283 @@ html {
   object-fit: cover;
 }
 
+.power-card-animated-result {
+  position: relative;
+}
+
+.power-card-scene {
+  display: block;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+}
+
+.power-card-animation-toggle {
+  position: absolute;
+  right: 0.55rem;
+  bottom: 0.55rem;
+  display: inline-grid;
+  place-items: center;
+  width: 2.35rem;
+  height: 2.35rem;
+  border: 3px solid var(--outline);
+  border-radius: 999px;
+  background: var(--paper);
+  color: var(--outline);
+  box-shadow: 3px 3px 0 rgba(36, 33, 31, 0.18);
+  cursor: pointer;
+}
+
+.power-card-animation-toggle:focus-visible {
+  outline: 3px solid var(--gold);
+  outline-offset: 3px;
+}
+
+.power-card-animation-toggle span {
+  position: relative;
+  display: block;
+  width: 0.9rem;
+  height: 1rem;
+}
+
+.power-card-animation-toggle span::before,
+.power-card-animation-toggle span::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0.26rem;
+  border-radius: 2px;
+  background: currentColor;
+  content: "";
+}
+
+.power-card-animation-toggle span::before {
+  left: 0.12rem;
+}
+
+.power-card-animation-toggle span::after {
+  right: 0.12rem;
+}
+
+.power-card-animated-result.is-paused .power-card-animation-toggle span::before {
+  top: 0;
+  left: 0.18rem;
+  width: 0;
+  height: 0;
+  border-top: 0.5rem solid transparent;
+  border-bottom: 0.5rem solid transparent;
+  border-left: 0.78rem solid currentColor;
+  border-radius: 0;
+  background: transparent;
+}
+
+.power-card-animated-result.is-paused .power-card-animation-toggle span::after {
+  display: none;
+}
+
+.power-card-wire {
+  stroke: var(--outline);
+  stroke-width: 8;
+  stroke-linecap: round;
+  opacity: 0.9;
+}
+
+.power-card-wire-power {
+  stroke: #d54a3a;
+}
+
+.power-card-wire-ground {
+  stroke: #24211f;
+  opacity: 0.78;
+}
+
+.power-card-wire-signal,
+.power-card-wire-logic,
+.power-card-wire-radio,
+.power-card-wire-test,
+.power-card-wire-evidence,
+.power-card-wire-material,
+.power-card-wire-mark,
+.power-card-wire-join,
+.power-card-wire-focus,
+.power-card-wire-load {
+  stroke: var(--teal);
+}
+
+.power-card-wire-radio {
+  stroke: #315eaa;
+}
+
+.power-card-wire-test,
+.power-card-wire-evidence {
+  stroke: var(--gold);
+}
+
+.power-card-wire-flow,
+.power-card-wire-pulse {
+  stroke-dasharray: 18 20;
+  animation: power-card-wire-flow 1.25s linear infinite;
+}
+
+.power-card-motion-spin {
+  animation: power-card-spin 1.15s linear infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.power-card-motion-swing {
+  animation: power-card-swing 1.85s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.power-card-motion-press {
+  animation: power-card-press 1.4s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.power-card-motion-blink {
+  animation: power-card-blink 1.2s ease-in-out infinite;
+}
+
+.power-card-motion-pulse,
+.power-card-motion-sense,
+.power-card-motion-waves,
+.power-card-motion-sequence,
+.power-card-motion-load,
+.power-card-motion-scan {
+  animation: power-card-pulse 1.6s ease-in-out infinite;
+}
+
+.power-card-motion-load {
+  animation-name: power-card-load;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.power-card-motion-scan {
+  animation-name: power-card-scan;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.power-card-motion-wobble {
+  animation: power-card-wobble 1.8s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.power-card-animated-result.is-paused .power-card-wire-flow,
+.power-card-animated-result.is-paused .power-card-wire-pulse,
+.power-card-animated-result.is-paused [class*="power-card-motion-"],
+.power-card-animated-result.is-offscreen .power-card-wire-flow,
+.power-card-animated-result.is-offscreen .power-card-wire-pulse,
+.power-card-animated-result.is-offscreen [class*="power-card-motion-"] {
+  animation-play-state: paused;
+}
+
+@keyframes power-card-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes power-card-swing {
+  0%,
+  100% {
+    transform: rotate(-12deg);
+  }
+
+  50% {
+    transform: rotate(18deg);
+  }
+}
+
+@keyframes power-card-press {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  45%,
+  60% {
+    transform: translateY(10px);
+  }
+}
+
+@keyframes power-card-blink {
+  0%,
+  35%,
+  100% {
+    opacity: 0.58;
+  }
+
+  55%,
+  72% {
+    opacity: 1;
+  }
+}
+
+@keyframes power-card-pulse {
+  0%,
+  100% {
+    opacity: 0.42;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes power-card-wire-flow {
+  to {
+    stroke-dashoffset: -38;
+  }
+}
+
+@keyframes power-card-load {
+  0%,
+  100% {
+    transform: translateY(-2px);
+  }
+
+  50% {
+    transform: translateY(10px);
+  }
+}
+
+@keyframes power-card-scan {
+  0%,
+  100% {
+    transform: translate(-4px, -3px);
+    opacity: 0.72;
+  }
+
+  50% {
+    transform: translate(8px, 7px);
+    opacity: 1;
+  }
+}
+
+@keyframes power-card-wobble {
+  0%,
+  100% {
+    transform: rotate(-1deg);
+  }
+
+  50% {
+    transform: rotate(1deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .power-card-wire-flow,
+  .power-card-wire-pulse,
+  [class*="power-card-motion-"] {
+    animation: none !important;
+  }
+}
+
 .power-card-meta {
   width: fit-content;
   margin: 0 0 0.15rem;

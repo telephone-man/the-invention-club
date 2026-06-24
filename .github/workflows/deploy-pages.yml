@@ -32,7 +32,7 @@ jobs:
       - name: Prepare static site
         run: |
           mkdir -p _site
-          cp index.html curriculum.html styles.css script.js curriculum-data.js _site/
+          cp index.html curriculum.html styles.css script.js curriculum-data.js power-card-scenes.js _site/
           cp -R assets _site/assets
           touch _site/.nojekyll
 
