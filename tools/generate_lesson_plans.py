@@ -13,6 +13,12 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE = ROOT / "curriculum/source/curriculum.v1.json"
 DEFAULT_OUTPUT_DIR = ROOT / "curriculum/generated/lesson-plans"
+GENERATED_NOTICE = [
+    "<!-- GENERATED FILE - DO NOT EDIT BY HAND.",
+    "Source: curriculum/source/curriculum.v1.json",
+    "Rebuild: python3 tools/generate_lesson_plans.py",
+    "Status: experimental facilitator planning aid. Review before use. -->",
+]
 
 
 def load_source(path: Path) -> dict[str, Any]:
@@ -82,6 +88,8 @@ def render_integration_plan(
     ][:3]
 
     lines = [
+        *GENERATED_NOTICE,
+        "",
         f"# {integration['title']}",
         "",
         "Generated facilitator lesson plan. Review safety, materials, age fit, and support needs before use.",
@@ -192,6 +200,8 @@ def generate(source_path: Path, output_dir: Path) -> None:
         generated_files.append(filename)
 
     index_lines = [
+        *GENERATED_NOTICE,
+        "",
         "# Generated Lesson Plans",
         "",
         "These files are generated from `curriculum/source/curriculum.v1.json`.",

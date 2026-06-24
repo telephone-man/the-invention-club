@@ -21,6 +21,11 @@ SOURCE_PATH = ROOT / "curriculum/source/curriculum.v1.json"
 GENERATED_DIR = ROOT / "curriculum/generated"
 BROWSER_DIR = GENERATED_DIR / "browser"
 LESSON_DIR = GENERATED_DIR / "lesson-plans"
+GENERATED_NOTICE = [
+    "GENERATED FILE - DO NOT EDIT BY HAND.",
+    "Source: curriculum/source/curriculum.v1.json",
+    "Rebuild: python3 tools/build_curriculum.py",
+]
 
 SKILL_ICON_BY_FAMILY = {
     "movement": "assets/skill-icons/make-it-move.jpg",
@@ -107,13 +112,23 @@ WEAK_BOUNDARY_WARNINGS = [
 ]
 
 
+def json_text(path: Path) -> str:
+    text = path.read_text(encoding="utf-8")
+    if path.suffix in {".yaml", ".yml"}:
+        text = "\n".join(line for line in text.splitlines() if not line.lstrip().startswith("#"))
+    return text
+
+
 def load_json(path: Path) -> Any:
-    return json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(json_text(path))
 
 
 def write_json(path: Path, data: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    prefix = ""
+    if path.suffix in {".yaml", ".yml"}:
+        prefix = "".join(f"# {line}\n" for line in GENERATED_NOTICE) + "\n"
+    path.write_text(prefix + json.dumps(data, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
 
 
 def extract_window_json(path: Path, global_name: str) -> Any:
@@ -366,8 +381,9 @@ def browser_curriculum_payload(source: dict[str, Any]) -> dict[str, Any]:
 
 def write_browser_bundle(path: Path, global_name: str, payload: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
+    header = "".join(f"// {line}\n" for line in GENERATED_NOTICE) + "\n"
     path.write_text(
-        f"window.{global_name} = {json.dumps(payload, indent=2, ensure_ascii=False)};\n",
+        f"{header}window.{global_name} = {json.dumps(payload, indent=2, ensure_ascii=False)};\n",
         encoding="utf-8",
     )
 

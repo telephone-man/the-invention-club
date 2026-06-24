@@ -16,7 +16,6 @@ _site/
 curriculum/generated/
 reports/validation-results.json
 
-docs
 AGENTS.md
 concat.xml
 README.md

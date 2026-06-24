@@ -16,8 +16,9 @@ This is not "Viable as written" because the improvement depends on amendments no
 - Amendments tested: `docs/schema-amendments.md`
 - Failure criteria: `docs/failure-conditions.md`
 - Rubric thresholds: `docs/evaluation-rubric.md`
-- Generated curriculum: `curriculum/generated/families.yaml`, `power_cards.yaml`, `integration_cards.yaml`, `invention_cards.yaml`
-- Red-team cases: `curriculum/generated/red_team_cases.yaml`
+- Canonical curriculum source: `curriculum/source/curriculum.v1.json`
+- Generated curriculum artefacts: `curriculum/generated/families.yaml`, `power_cards.yaml`, `integration_cards.yaml`, `invention_cards.yaml`
+- Red-team cases: `curriculum/source/curriculum.v1.json` with generated mirror at `curriculum/generated/red_team_cases.yaml`
 - Validator: `tools/validate_curriculum.py`
 - Final validation: `reports/validation-results.json`
 - Iteration evidence: `reports/iteration-log.md`
@@ -27,7 +28,7 @@ This is not "Viable as written" because the improvement depends on amendments no
 Command:
 
 ```bash
-python3 tools/validate_curriculum.py --curriculum-dir curriculum/generated --output reports/validation-results.json
+python3 tools/validate_curriculum.py --source curriculum/source/curriculum.v1.json --curriculum-dir curriculum/generated --output reports/validation-results.json
 ```
 
 Result:

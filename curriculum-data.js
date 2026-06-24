@@ -1,3 +1,7 @@
+// GENERATED FILE - DO NOT EDIT BY HAND.
+// Source: curriculum/source/curriculum.v1.json
+// Rebuild: python3 tools/build_curriculum.py
+
 window.INVENTION_CLUB_CURRICULUM = {
   "levels": [
     {

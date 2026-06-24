@@ -45,8 +45,8 @@ After reviewing the rendered page, the site was revised to reduce prose density 
 - `reports/schema-stress-test.md` for the final viability judgement and validation summary.
 - `reports/amendment-audit.md` for caution that the final metrics are too clean and that some boundaries remain intent-sensitive.
 - `reports/skill-boundary-edge-cases.md` for the human-facing design caveats around comfort, feedback, aesthetics, repairability and planning.
-- `curriculum/generated/integration_cards.yaml` and `curriculum/generated/invention_cards.yaml` for example combinations and challenge themes.
-- `reports/validation-results.json` for the validated counts and the current no-errors/no-warnings state.
+- `curriculum/source/curriculum.v1.json` for Integration/Invention examples and challenge themes, with generated mirrors under `curriculum/generated/`.
+- `reports/validation-results.json` for the validated counts, mechanical result, and retained warning state.
 
 ## Visual Asset
 

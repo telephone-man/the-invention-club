@@ -13,6 +13,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_SOURCE = ROOT / "curriculum/source/curriculum.v1.json"
 DEFAULT_GENERATED_DIR = ROOT / "curriculum/generated"
+SCHEMA_PATH = ROOT / "curriculum/schema/curriculum.schema.json"
 
 REQUIRED_TOP_LEVEL = {
     "meta",
@@ -25,6 +26,7 @@ REQUIRED_TOP_LEVEL = {
     "preload_profiles",
     "lesson_plan_profiles",
     "red_team_cases",
+    "audit_warnings",
 }
 
 POWER_FIELDS = {
@@ -71,14 +73,37 @@ WEAK_BOUNDARY_WARNING_IDS = {
 }
 
 
+def json_text(path: Path) -> str:
+    text = path.read_text(encoding="utf-8")
+    if path.suffix in {".yaml", ".yml"}:
+        text = "\n".join(line for line in text.splitlines() if not line.lstrip().startswith("#"))
+    return text
+
+
 def load_json(path: Path, errors: list[str]) -> Any:
     try:
-        return json.loads(path.read_text(encoding="utf-8"))
+        return json.loads(json_text(path))
     except FileNotFoundError:
         errors.append(f"Missing file: {path}")
     except json.JSONDecodeError as exc:
         errors.append(f"{path}: JSON parse error at line {exc.lineno}: {exc.msg}")
     return {}
+
+
+def expected_browser_curriculum_payload(source: dict[str, Any]) -> dict[str, Any]:
+    return {
+        "levels": source.get("levels", []),
+        "families": [
+            {key: value for key, value in family.items() if key not in {"icon_asset", "summary"}}
+            for family in source.get("skill_cards", [])
+            if isinstance(family, dict)
+        ],
+        "powerCards": source.get("power_cards", []),
+        "integrationCards": source.get("integration_cards", []),
+        "inventionCards": source.get("invention_cards", []),
+        "assetInventory": source.get("asset_inventory", {}),
+        "preloadProfiles": source.get("preload_profiles", []),
+    }
 
 
 def extract_window_json(path: Path, global_name: str, errors: list[str]) -> Any:
@@ -136,6 +161,45 @@ def validate_top_level(source: dict[str, Any], errors: list[str]) -> None:
     schema_version = source.get("meta", {}).get("schema_version")
     if schema_version != "curriculum.v1":
         errors.append(f"source: expected meta.schema_version 'curriculum.v1', found {schema_version!r}")
+
+
+def validate_schema_contract(source: dict[str, Any], errors: list[str], warnings: list[str]) -> dict[str, Any]:
+    schema = load_json(SCHEMA_PATH, errors)
+    strategy = {
+        "schema_path": str(SCHEMA_PATH.relative_to(ROOT)),
+        "mode": "custom_validator_with_schema_contract_check",
+        "reason": (
+            "The repository does not depend on a JSON Schema runtime; this validator parses the schema, "
+            "checks its required top-level contract, and then applies stricter semantic rules that JSON "
+            "Schema alone does not express."
+        ),
+    }
+    if not isinstance(schema, dict):
+        return strategy
+
+    required = set(schema.get("required", []))
+    if required != REQUIRED_TOP_LEVEL:
+        errors.append(
+            f"schema: top-level required fields {sorted(required)} do not match validator required fields {sorted(REQUIRED_TOP_LEVEL)}"
+        )
+    missing = sorted(required - set(source))
+    if missing:
+        errors.append(f"schema: source missing schema-required top-level fields {missing}")
+
+    schema_version = (
+        schema.get("properties", {})
+        .get("meta", {})
+        .get("properties", {})
+        .get("schema_version", {})
+        .get("const")
+    )
+    if schema_version != "curriculum.v1":
+        errors.append(f"schema: expected meta.schema_version const 'curriculum.v1', found {schema_version!r}")
+
+    warnings.append(
+        "JSON schema contract parsed; custom semantic validation is used because no JSON Schema runtime is vendored."
+    )
+    return strategy
 
 
 def validate_levels(source: dict[str, Any], errors: list[str]) -> set[int]:
@@ -442,23 +506,14 @@ def validate_generated_outputs(source: dict[str, Any], generated_dir: Path, erro
         "INVENTION_CLUB_CURRICULUM",
         errors,
     )
+    expected_browser = expected_browser_curriculum_payload(source)
     if browser_curriculum:
-        expected_keys = {
-            "levels",
-            "families",
-            "powerCards",
-            "integrationCards",
-            "inventionCards",
-            "assetInventory",
-            "preloadProfiles",
-        }
+        expected_keys = set(expected_browser)
         missing = sorted(expected_keys - set(browser_curriculum))
         if missing:
             errors.append(f"generated browser curriculum: missing keys {missing}")
-        if len(browser_curriculum.get("powerCards", [])) != len(source.get("power_cards", [])):
-            errors.append("generated browser curriculum: powerCards count does not match source")
-        if len(browser_curriculum.get("families", [])) != len(source.get("skill_cards", [])):
-            errors.append("generated browser curriculum: families count does not match source")
+        if browser_curriculum != expected_browser:
+            errors.append("generated browser curriculum-data.js payload does not structurally match canonical source")
 
     root_curriculum = extract_window_json(ROOT / "curriculum-data.js", "INVENTION_CLUB_CURRICULUM", errors)
     if root_curriculum and browser_curriculum and root_curriculum != browser_curriculum:
@@ -471,20 +526,23 @@ def validate_generated_outputs(source: dict[str, Any], generated_dir: Path, erro
     elif root_scene.exists() and scene_bundle.read_text(encoding="utf-8") != root_scene.read_text(encoding="utf-8"):
         errors.append("generated browser power-card-scenes.js does not match root power-card-scenes.js baseline")
 
-    for filename in (
-        "families.yaml",
-        "power_cards.yaml",
-        "integration_cards.yaml",
-        "invention_cards.yaml",
-        "red_team_cases.yaml",
-        "asset-inventory.json",
-        "preload-manifest.json",
-    ):
+    expected_generated_payloads = {
+        "families.yaml": {"realistic": source.get("skill_cards", [])},
+        "power_cards.yaml": {"realistic": source.get("power_cards", [])},
+        "integration_cards.yaml": {"realistic": source.get("integration_cards", [])},
+        "invention_cards.yaml": {"realistic": source.get("invention_cards", [])},
+        "red_team_cases.yaml": {"cases": source.get("red_team_cases", [])},
+        "asset-inventory.json": source.get("asset_inventory", {}),
+        "preload-manifest.json": {"profiles": source.get("preload_profiles", [])},
+    }
+    for filename, expected_payload in expected_generated_payloads.items():
         path = generated_dir / filename
         if not path.exists():
             errors.append(f"Missing generated artefact: {path}")
             continue
-        load_json(path, errors)
+        payload = load_json(path, errors)
+        if payload and payload != expected_payload:
+            errors.append(f"generated artefact {filename} does not structurally match canonical source")
 
 
 def compute_metrics(source: dict[str, Any], power_by_id: dict[str, dict[str, Any]]) -> dict[str, Any]:
@@ -527,6 +585,7 @@ def validate_source(source_path: Path, generated_dir: Path, validate_generated: 
         return result, 1
 
     validate_top_level(source, errors)
+    validation_strategy = validate_schema_contract(source, errors, warnings)
     level_ids = validate_levels(source, errors)
     family_ids = validate_skill_cards(source, level_ids, errors)
     power_by_id = validate_power_cards(source, family_ids, level_ids, errors)
@@ -541,6 +600,7 @@ def validate_source(source_path: Path, generated_dir: Path, validate_generated: 
         "mechanical_valid": not errors,
         "source": str(source_path.relative_to(ROOT) if source_path.is_relative_to(ROOT) else source_path),
         "generated_dir": str(generated_dir.relative_to(ROOT) if generated_dir.is_relative_to(ROOT) else generated_dir),
+        "validation_strategy": validation_strategy,
         "metrics": compute_metrics(source, power_by_id),
         "errors": errors,
         "warnings": warnings,
